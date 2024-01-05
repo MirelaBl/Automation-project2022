@@ -1,0 +1,7 @@
+print('aziiiiiiiiiiii')
+a = '25'
+if a.isdigit():
+    print('numar')
+elif a.isalpha():
+    print( 'sdggd')
+

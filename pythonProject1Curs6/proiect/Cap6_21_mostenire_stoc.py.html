@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>Cap6_21_mostenire_stoc.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #cc7832;}
+.s4 { color: #629755; font-style: italic;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_21_mostenire_stoc.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+621 Clase avansat   
+Stoc mostenit 
+PF - 08.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+<span class="s1">enunt = </span><span class="s0">&quot;&quot;&quot; 
+Programul creat la exercitiul 521 va fi considerat o superclasa (Stoc). 
+ Creati 2-3 subclase magazin1, 2, .... Fiecare subclasa va avea si 1-2 metode proprii 
+   
+ Creati trei instante (produse). Pentru 2 din ele efecturati cate 4-5 operatiuni (intrari, iesiri) 
+ Apelati metoda fisa produsului pentru cele 2 produse. 
+ Apelati celelalte metode noi. 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+
+<span class="s3">from </span><span class="s1">datetime </span><span class="s3">import </span><span class="s1">datetime</span>
+<span class="s3">from </span><span class="s1">prettytable </span><span class="s3">import </span><span class="s1">PrettyTable</span>
+
+<span class="s3">class </span><span class="s1">Stoc:</span>
+    <span class="s4">&quot;&quot;&quot;Despre gestiunea produselor&quot;&quot;&quot;</span>
+
+    <span class="s1">categorii = {}</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">denp</span><span class="s3">, </span><span class="s1">categ</span><span class="s3">, </span><span class="s1">um=</span><span class="s0">'buc'</span><span class="s3">, </span><span class="s1">sold=</span><span class="s5">0</span><span class="s1">):</span>
+        <span class="s4">&quot;&quot;&quot;metoda constructor&quot;&quot;&quot;</span>
+        <span class="s1">self.denp = denp</span>
+        <span class="s1">self.categ = categ</span>
+        <span class="s1">self.um = um</span>
+        <span class="s1">self.sold = sold</span>
+        <span class="s1">self.do = {}</span>
+        <span class="s3">if </span><span class="s1">categ </span><span class="s3">in </span><span class="s1">Stoc.categorii:</span>
+            <span class="s1">self.categorii[categ] += [denp]</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">self.categorii[categ] = [denp]</span>
+
+    <span class="s3">def </span><span class="s1">gen_cheia(self):</span>
+        <span class="s3">if </span><span class="s1">self.do:</span>
+            <span class="s1">cheia = max(self.do.keys()) + </span><span class="s5">1</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">cheia = </span><span class="s5">1</span>
+        <span class="s3">return </span><span class="s1">cheia</span>
+
+    <span class="s3">def </span><span class="s1">intrari(self</span><span class="s3">, </span><span class="s1">cant</span><span class="s3">, </span><span class="s1">data=str(datetime.now().strftime(</span><span class="s0">'%Y%m%d'</span><span class="s1">))):</span>
+        <span class="s1">cheia = self.gen_cheia()</span>
+        <span class="s1">self.do[cheia] = [data</span><span class="s3">, </span><span class="s1">cant</span><span class="s3">, </span><span class="s5">0</span><span class="s1">]</span>
+        <span class="s1">self.sold += cant</span>
+
+    <span class="s3">def </span><span class="s1">iesiri(self</span><span class="s3">, </span><span class="s1">cant</span><span class="s3">, </span><span class="s1">data=str(datetime.now().strftime(</span><span class="s0">'%Y%m%d'</span><span class="s1">))):</span>
+        <span class="s1">cheia = self.gen_cheia()</span>
+        <span class="s3">if </span><span class="s1">self.sold &lt; cant:</span>
+            <span class="s1">cant = self.sold</span>
+        <span class="s1">self.do[cheia] = [data</span><span class="s3">, </span><span class="s5">0</span><span class="s3">, </span><span class="s1">cant]</span>
+        <span class="s1">self.sold -= cant</span>
+
+    <span class="s3">def </span><span class="s1">fisap(self):</span>
+        <span class="s1">print(</span><span class="s0">f'Fisa produsului </span><span class="s3">{</span><span class="s1">self.denp</span><span class="s3">} {</span><span class="s1">self.um</span><span class="s3">}</span><span class="s0">'</span><span class="s1">)</span>
+        <span class="s1">listeaza = PrettyTable()</span>
+        <span class="s1">listeaza.field_names= [</span><span class="s0">'Nrc'</span><span class="s3">, </span><span class="s0">'Data'</span><span class="s3">, </span><span class="s0">'Intrare'</span><span class="s3">, </span><span class="s0">'Iesire'</span><span class="s1">]</span>
+        <span class="s3">for </span><span class="s1">k</span><span class="s3">, </span><span class="s1">v </span><span class="s3">in </span><span class="s1">self.do.items():</span>
+            <span class="s1">listeaza.add_row([k</span><span class="s3">, </span><span class="s1">v[</span><span class="s5">0</span><span class="s1">]</span><span class="s3">, </span><span class="s1">v[</span><span class="s5">1</span><span class="s1">]</span><span class="s3">, </span><span class="s1">v[</span><span class="s5">2</span><span class="s1">]])</span>
+        <span class="s1">print(listeaza)</span>
+        <span class="s1">print(</span><span class="s0">'Stoc final: '</span><span class="s3">, </span><span class="s1">self.sold)</span>
+
+
+<span class="s3">class </span><span class="s1">DepNou(Stoc):</span>
+
+    <span class="s3">def </span><span class="s1">perisabilitati(self</span><span class="s3">, </span><span class="s1">procent):</span>
+        <span class="s1">rulaj = </span><span class="s5">0</span>
+        <span class="s3">for </span><span class="s1">i </span><span class="s3">in </span><span class="s1">self.do.values():</span>
+            <span class="s1">rulaj += i[</span><span class="s5">1</span><span class="s1">]</span>
+        <span class="s1">scazaminte = rulaj * procent / </span><span class="s5">100</span>
+        <span class="s1">self.iesiri(scazaminte)</span>
+
+    <span class="s3">def </span><span class="s1">val_stoc(self</span><span class="s3">, </span><span class="s1">pret):</span>
+        <span class="s1">valoare = self.sold * pret</span>
+        <span class="s3">return </span><span class="s1">valoare</span>
+
+<span class="s1">cuie = DepNou(</span><span class="s0">'cuie'</span><span class="s3">, </span><span class="s0">'metal'</span><span class="s3">, </span><span class="s0">'kg'</span><span class="s1">)</span>
+<span class="s1">print(cuie.__dict__)</span>
+
+<span class="s1">cuie.intrari(</span><span class="s5">100</span><span class="s3">, </span><span class="s0">'20210303'</span><span class="s1">)</span>
+<span class="s1">cuie.iesiri(</span><span class="s5">23</span><span class="s3">, </span><span class="s0">'20210305'</span><span class="s1">)</span>
+<span class="s1">cuie.iesiri(</span><span class="s5">41</span><span class="s3">, </span><span class="s0">'20210405'</span><span class="s1">)</span>
+<span class="s1">cuie.intrari(</span><span class="s5">50</span><span class="s1">)</span>
+<span class="s1">cuie.iesiri(</span><span class="s5">57</span><span class="s1">)</span>
+
+<span class="s1">print(cuie.__dict__)</span>
+
+<span class="s1">cuie.fisap()</span>
+<span class="s1">print(cuie.categorii)</span>
+
+<span class="s1">cuie.val_stoc(</span><span class="s5">7</span><span class="s1">)</span>
+<span class="s1">cuie.perisabilitati(</span><span class="s5">.5</span><span class="s1">)</span></pre>
+</body>
+</html>

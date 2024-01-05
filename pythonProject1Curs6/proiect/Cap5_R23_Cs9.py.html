@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>Cap5_R23_Cs9.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #cc7832;}
+.s4 { color: #629755; font-style: italic;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap5_R23_Cs9.py</font>
+</center></td></tr></table>
+<pre><span class="s0"># 571 Clase</span>
+<span class="s0"># Clase</span>
+<span class="s0"># PF - v 21/09/2017</span>
+
+<span class="s2">''' 
+Rescrieti aplicatia de la Exercitiul 521 astfel: 
+    In loc de trei dictionare folositi doar un dictionar, care la valori va avea 
+    informatiile fiecarei tranzactii astfel 
+        Ex:  ds = {1: {'d':'20170101', 'i':100, 'e' : 0}, 2: {'20170103', 0, 29} } 
+ 
+  - o metoda intrari cu 
+        - cantitatea, 
+        - data = str ( datetime.now ( ).strftime ( '%Y%m%d' ) ) 
+        - testati daca exista chei in dictionarul cu data op. Daca exista stabileste cheia curenta 
+        ca fiind maximul cheilor existente plus 1, altfel va fi egala cu 1 
+        - introduce in dict datele operatiunii (va introduce zero la iesiri) 
+        - actualizeaza soldul 
+ 
+  - o metoda iesiri, similara cu precedenta. Diferente: (va introduce zero la intrari) 
+ 
+  - o metoda fisa produsului cu urmatoarele specificatii: 
+        - Sa printeze 'Fisa produsului &quot;denumire_produs&quot;' (sa stim si noi a cui e fisa) 
+        - Sa printeze ' Nrc ', '  Data  ', ' Intrare', ' Iesire' pentru toate tranzactiile produsului 
+        - Sa printeze stocul actual al produsului 
+        - pentru avansati - aliniati coloanele 
+ 
+Creati trei instante (produse). Pentru 2 din ele efectuati cate 4-5 operatiuni (intrari, iesiri) 
+ 
+Apelati metoda fisa produsului pentru cele 2 produse 
+''' </span><span class="s0">#</span>
+
+<span class="s3">from </span><span class="s1">datetime </span><span class="s3">import </span><span class="s1">datetime</span>
+
+<span class="s3">class </span><span class="s1">Stoc:</span>
+    <span class="s4">&quot;&quot;&quot;Tine stocul unui depozit&quot;&quot;&quot;</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">prod</span><span class="s3">, </span><span class="s1">categ</span><span class="s3">, </span><span class="s1">um=</span><span class="s2">'Buc'</span><span class="s3">, </span><span class="s1">sold=</span><span class="s5">0</span><span class="s1">):</span>
+        <span class="s1">self.prod = prod			</span><span class="s0"># parametri cu valori default ii lasam la sfarsitul listei</span>
+        <span class="s1">self.categ = categ  		</span><span class="s0"># fiecare instanta va fi creata obligatoriu cu primii trei param.</span>
+        <span class="s1">self.sold = sold			</span><span class="s0"># al patrulea e optional, soldul va fi zero</span>
+        <span class="s1">self.um = um</span>
+        <span class="s1">self.sd = {}                </span><span class="s0"># dictionar cu cheie numerica, valoare tip dictionar</span>
+
+    <span class="s3">def </span><span class="s1">intr(self</span><span class="s3">, </span><span class="s1">cant</span><span class="s3">, </span><span class="s1">data=str(datetime.now().strftime(</span><span class="s2">'%Y%m%d'</span><span class="s1">))):</span>
+        <span class="s1">self.data = data</span>
+        <span class="s1">self.cant = cant</span>
+        <span class="s1">self.sold += self.cant          </span><span class="s0"># recalculam soldul dupa fiecare tranzactie</span>
+        <span class="s3">if </span><span class="s1">self.sd.keys():               </span><span class="s0"># dictionarul data are toate cheile (fiecare tranzactie are data)</span>
+            <span class="s1">cheie = max(self.sd.keys()) + </span><span class="s5">1</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">cheie = </span><span class="s5">1</span>
+
+        <span class="s1">self.sd[cheie] = {</span><span class="s2">'d'</span><span class="s1">: self.data</span><span class="s3">, </span><span class="s2">'i'</span><span class="s1">: self.cant</span><span class="s3">, </span><span class="s2">'e' </span><span class="s1">: </span><span class="s5">0</span><span class="s1">}</span>
+        <span class="s0"># self.sd[cheie] = [self.data, self.cant, 0] daca verem lista in loc de dictonar</span>
+
+    <span class="s3">def </span><span class="s1">iesi(self</span><span class="s3">, </span><span class="s1">cant</span><span class="s3">, </span><span class="s1">data=str(datetime.now().strftime(</span><span class="s2">'%Y%m%d'</span><span class="s1">))):</span>
+        <span class="s1">self.data = data</span>
+        <span class="s1">self.cant = cant</span>
+        <span class="s1">self.sold -= self.cant</span>
+        <span class="s3">if </span><span class="s1">self.sd.keys():</span>
+            <span class="s1">cheie = max(self.sd.keys()) + </span><span class="s5">1</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">cheie = </span><span class="s5">1</span>
+
+        <span class="s1">self.sd[cheie] = {</span><span class="s2">'d'</span><span class="s1">: self.data</span><span class="s3">, </span><span class="s2">'i'</span><span class="s1">: </span><span class="s5">0</span><span class="s3">, </span><span class="s2">'e'</span><span class="s1">: self.cant}</span>
+
+    <span class="s3">def </span><span class="s1">fisap(self):</span>
+        <span class="s1">print(</span><span class="s2">'*-*' </span><span class="s1">* </span><span class="s5">10</span><span class="s1">)</span>
+        <span class="s1">print(</span><span class="s2">'Fisa produsului {0} ({1})'</span><span class="s1">.format(self.prod</span><span class="s3">, </span><span class="s1">self.um))</span>
+        <span class="s1">print(</span><span class="s2">'*-*' </span><span class="s1">* </span><span class="s5">10</span><span class="s1">)</span>
+        <span class="s1">print(</span><span class="s2">' Nrc '</span><span class="s3">, </span><span class="s2">'  Data '</span><span class="s3">, </span><span class="s2">'Intrari'</span><span class="s3">, </span><span class="s2">'Iesiri'</span><span class="s1">)</span>
+        <span class="s1">print(</span><span class="s2">'*-*' </span><span class="s1">* </span><span class="s5">10</span><span class="s1">)</span>
+        <span class="s3">for </span><span class="s1">k </span><span class="s3">in </span><span class="s1">self.sd.keys():</span>
+            <span class="s1">print(str(k).rjust(</span><span class="s5">5</span><span class="s1">)</span><span class="s3">,</span>
+                  <span class="s1">self.sd[k][</span><span class="s2">'d'</span><span class="s1">]</span><span class="s3">,</span>
+                  <span class="s1">str(self.sd[k][</span><span class="s2">'i'</span><span class="s1">]).rjust(</span><span class="s5">6</span><span class="s1">)</span><span class="s3">,</span>
+                  <span class="s1">str(self.sd[k][</span><span class="s2">'e'</span><span class="s1">]).rjust(</span><span class="s5">6</span><span class="s1">))</span>
+        <span class="s1">print(</span><span class="s2">'*-*' </span><span class="s1">* </span><span class="s5">10</span><span class="s1">)</span>
+        <span class="s1">print(</span><span class="s2">'Stoc actual:              {0}'</span><span class="s1">.format(str(self.sold)))</span>
+        <span class="s1">print(</span><span class="s2">'*-*' </span><span class="s1">* </span><span class="s5">10 </span><span class="s1">+</span><span class="s2">'</span><span class="s3">\n</span><span class="s2">'</span><span class="s1">)</span>
+
+
+<span class="s1">fragute = Stoc(</span><span class="s2">'fragute'</span><span class="s3">, </span><span class="s2">'fructe'</span><span class="s3">, </span><span class="s2">'kg'</span><span class="s1">)       </span><span class="s0"># cream instantele clasei</span>
+<span class="s1">lapte = Stoc(</span><span class="s2">'lapte'</span><span class="s3">, </span><span class="s2">'lactate'</span><span class="s3">, </span><span class="s2">'litri'</span><span class="s1">)</span>
+<span class="s1">ceasuri = Stoc(</span><span class="s2">'ceasuri'</span><span class="s3">, </span><span class="s2">'ceasuri'</span><span class="s1">)</span>
+
+<span class="s1">fragute.sold                    </span><span class="s0"># ATRIBUTE</span>
+<span class="s1">fragute.intr(</span><span class="s5">100</span><span class="s1">)</span>
+<span class="s1">fragute.iesi(</span><span class="s5">73</span><span class="s1">)</span>
+<span class="s1">fragute.intr(</span><span class="s5">100</span><span class="s1">)</span>
+<span class="s1">fragute.iesi(</span><span class="s5">85</span><span class="s1">)</span>
+<span class="s1">fragute.intr(</span><span class="s5">100</span><span class="s1">)</span>
+<span class="s1">fragute.iesi(</span><span class="s5">101</span><span class="s1">)</span>
+
+<span class="s1">fragute.sd            </span><span class="s0"># dictionarele produsului cu informatii i/e</span>
+
+<span class="s1">fragute.sold</span>
+<span class="s1">fragute.categ</span>
+<span class="s1">fragute.prod</span>
+<span class="s1">fragute.um</span>
+
+<span class="s1">fragute.fisap()</span>
+
+<span class="s1">lapte.intr(</span><span class="s5">1500</span><span class="s1">)</span>
+<span class="s1">lapte.iesi(</span><span class="s5">975</span><span class="s1">)</span>
+<span class="s1">lapte.intr(</span><span class="s5">1200</span><span class="s1">)</span>
+<span class="s1">lapte.iesi(</span><span class="s5">1490</span><span class="s1">)</span>
+<span class="s1">lapte.intr(</span><span class="s5">1000</span><span class="s1">)</span>
+<span class="s1">lapte.iesi(</span><span class="s5">1200</span><span class="s1">)</span>
+
+<span class="s1">lapte.fisap()</span>
+
+<span class="s1">l = [fragute</span><span class="s3">, </span><span class="s1">lapte</span><span class="s3">, </span><span class="s1">ceasuri]</span>
+
+<span class="s3">for </span><span class="s1">i </span><span class="s3">in </span><span class="s1">l:         </span><span class="s0"># fisele tuturor produselor</span>
+    <span class="s1">i.fisap()</span></pre>
+</body>
+</html>

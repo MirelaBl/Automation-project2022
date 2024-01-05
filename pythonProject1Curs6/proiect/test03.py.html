@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>test03.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #629755; font-style: italic;}
+.s3 { color: #6a8759;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+test03.py</font>
+</center></td></tr></table>
+<pre><span class="s0">from </span><span class="s1">datetime </span><span class="s0">import </span><span class="s1">datetime</span>
+<span class="s0">from </span><span class="s1">prettytable </span><span class="s0">import </span><span class="s1">PrettyTable</span>
+
+<span class="s0">class </span><span class="s1">Stoc:</span>
+	<span class="s2">&quot;&quot;&quot;Despre gestiunea produselor&quot;&quot;&quot;</span>
+
+	<span class="s1">categorii = {}</span>
+
+	<span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">, </span><span class="s1">denp</span><span class="s0">, </span><span class="s1">categ</span><span class="s0">, </span><span class="s1">um=</span><span class="s3">'kg'</span><span class="s0">, </span><span class="s1">sold=</span><span class="s4">0</span><span class="s1">):</span>
+		<span class="s2">&quot;&quot;&quot;metoda constructor&quot;&quot;&quot;</span>
+		<span class="s1">self.denp = denp</span>
+		<span class="s1">self.categ = categ</span>
+		<span class="s1">self.um = um</span>
+		<span class="s1">self.sold = sold</span>
+		<span class="s1">self.do = {}</span>
+		<span class="s0">if </span><span class="s1">categ </span><span class="s0">in </span><span class="s1">Stoc.categorii:</span>
+			<span class="s1">self.categorii[categ] += [denp]</span>
+		<span class="s0">else</span><span class="s1">:</span>
+			<span class="s1">self.categorii[categ] = [denp]</span>
+
+	<span class="s0">def </span><span class="s1">gen_cheia(self):</span>
+		<span class="s0">if </span><span class="s1">self.do:</span>
+			<span class="s1">cheia = max(self.do.keys()) + </span><span class="s4">1</span>
+		<span class="s0">else</span><span class="s1">:</span>
+			<span class="s1">cheia = </span><span class="s4">1</span>
+		<span class="s0">return </span><span class="s1">cheia</span>
+
+	<span class="s0">def </span><span class="s1">intrari(self</span><span class="s0">, </span><span class="s1">cant</span><span class="s0">, </span><span class="s1">data=str(datetime.now().strftime(</span><span class="s3">'%Y%m%d'</span><span class="s1">))):</span>
+		<span class="s1">cheia = self.gen_cheia()</span>
+		<span class="s1">self.do[cheia] = [data</span><span class="s0">, </span><span class="s1">cant</span><span class="s0">, </span><span class="s4">0</span><span class="s1">]</span>
+		<span class="s1">self.sold += cant</span>
+
+	<span class="s0">def </span><span class="s1">iesiri(self</span><span class="s0">, </span><span class="s1">cant</span><span class="s0">, </span><span class="s1">data=str(datetime.now().strftime(</span><span class="s3">'%Y%m%d'</span><span class="s1">))):</span>
+		<span class="s1">cheia = self.gen_cheia()</span>
+		<span class="s0">if </span><span class="s1">self.sold &lt; cant:</span>
+			<span class="s1">cant = self.sold</span>
+		<span class="s1">self.do[cheia] = [data</span><span class="s0">, </span><span class="s4">0</span><span class="s0">, </span><span class="s1">cant]</span>
+		<span class="s1">self.sold -= cant</span>
+
+	<span class="s0">def </span><span class="s1">fisap(self):</span>
+		<span class="s1">print(</span><span class="s3">f'Fisa produsului </span><span class="s0">{</span><span class="s1">self.denp</span><span class="s0">} {</span><span class="s1">self.um</span><span class="s0">}</span><span class="s3">'</span><span class="s1">)</span>
+		<span class="s1">listeaza = PrettyTable()</span>
+		<span class="s1">listeaza.field_names = [</span><span class="s3">'Nrc'</span><span class="s0">, </span><span class="s3">'Data'</span><span class="s0">, </span><span class="s3">'Intrare'</span><span class="s0">, </span><span class="s3">'Iesire'</span><span class="s1">]</span>
+		<span class="s0">for </span><span class="s1">k</span><span class="s0">, </span><span class="s1">v </span><span class="s0">in </span><span class="s1">self.do.items():</span>
+			<span class="s1">listeaza.add_row([k</span><span class="s0">, </span><span class="s1">v[</span><span class="s4">0</span><span class="s1">]</span><span class="s0">, </span><span class="s1">v[</span><span class="s4">1</span><span class="s1">]</span><span class="s0">, </span><span class="s1">v[</span><span class="s4">2</span><span class="s1">]])</span>
+		<span class="s0">return </span><span class="s1">str(listeaza)</span>
+
+
+<span class="s1">alune = Stoc(</span><span class="s3">'alune'</span><span class="s0">, </span><span class="s3">'fructe'</span><span class="s0">, </span><span class="s3">'cutie'</span><span class="s1">)</span>
+
+<span class="s1">alune.intrari(</span><span class="s4">100</span><span class="s1">)</span>
+<span class="s1">alune.iesiri(</span><span class="s4">83</span><span class="s1">)</span>
+
+<span class="s1">print(alune.fisap())</span>
+
+
+
+<span class="s0">class </span><span class="s1">DepozitCuca(Stoc):</span>
+
+	<span class="s1">nume_depozit = </span><span class="s3">&quot;Cuca&quot;</span>
+
+
+	<span class="s0">def </span><span class="s1">val_stoc(self</span><span class="s0">, </span><span class="s1">pret):</span>
+		<span class="s0">return </span><span class="s1">pret * self.sold</span>
+
+
+	<span class="s0">def </span><span class="s1">perisabilitati(self</span><span class="s0">, </span><span class="s1">procent):</span>
+		<span class="s1">rulaj = </span><span class="s4">0</span>
+		<span class="s0">for </span><span class="s1">v </span><span class="s0">in </span><span class="s1">self.do.values():</span>
+			<span class="s1">rulaj += v[</span><span class="s4">1</span><span class="s1">]</span>
+		<span class="s1">scazaminte = rulaj * procent / </span><span class="s4">100</span>
+		<span class="s1">self.iesiri(scazaminte)</span></pre>
+</body>
+</html>

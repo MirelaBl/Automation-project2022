@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>Cap6_12_mostenire_ierarhica.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #cc7832;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_12_mostenire_ierarhica.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+612 OOP   
+Mostenire ierarhica - multipla 
+PF - 08.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+<span class="s3">class </span><span class="s1">A:</span>
+    <span class="s1">x = </span><span class="s4">10</span>
+    <span class="s1">y = </span><span class="s0">&quot;a&quot;</span>
+
+<span class="s3">class </span><span class="s1">B(A):</span>
+    <span class="s1">x = </span><span class="s4">20</span>
+    <span class="s1">z = [</span><span class="s4">1</span><span class="s3">,</span><span class="s4">2</span><span class="s3">,</span><span class="s4">3</span><span class="s1">]</span>
+
+<span class="s3">class </span><span class="s1">C(B):</span>
+    <span class="s1">x = </span><span class="s4">30</span>
+    <span class="s1">w = {</span><span class="s4">1</span><span class="s1">: </span><span class="s0">'cirese'</span><span class="s1">}</span>
+
+<span class="s3">class </span><span class="s1">M(A):</span>
+    <span class="s1">x = </span><span class="s4">100</span>
+
+<span class="s3">class </span><span class="s1">N(M):  </span><span class="s2"># mostenire ierarhica</span>
+    <span class="s1">x = </span><span class="s4">1000</span>
+
+<span class="s3">class </span><span class="s1">X(N):  </span><span class="s2"># clasa X mosteneste clasa N, care mosteneste M, care mosteneste A</span>
+    <span class="s3">pass</span>
+
+<span class="s1">obj1 = X()</span>
+
+<span class="s1">print(obj1.x)  </span><span class="s2"># instanta va prelua atributul x de la cea mai apropiata, N in acest caz</span>
+<span class="s1">print(obj1.y)</span>
+
+<span class="s1">dir(X)</span>
+
+<span class="s1">print(</span><span class="s0">'A.x'</span><span class="s3">, </span><span class="s1">A.x</span><span class="s3">, </span><span class="s0">'</span><span class="s3">\n</span><span class="s0">B.x'</span><span class="s3">, </span><span class="s1">B.x</span><span class="s3">, </span><span class="s0">'</span><span class="s3">\n</span><span class="s0">B.z'</span><span class="s3">, </span><span class="s1">B.z</span><span class="s3">, </span><span class="s0">'</span><span class="s3">\n</span><span class="s0">C.y'</span><span class="s3">, </span><span class="s1">C.y</span><span class="s3">, </span><span class="s0">'</span><span class="s3">\n</span><span class="s0">C.w'</span><span class="s3">, </span><span class="s1">C.w</span><span class="s3">, </span><span class="s0">'</span><span class="s3">\n</span><span class="s0">N.x'</span><span class="s3">, </span><span class="s1">N.x)</span>
+
+<span class="s3">class </span><span class="s1">Y(N</span><span class="s3">, </span><span class="s1">B</span><span class="s3">, </span><span class="s1">A):  </span><span class="s2"># Mostenire multipla</span>
+    <span class="s3">pass</span>
+
+<span class="s1">obj2 = Y()</span>
+<span class="s1">Y.__mro__</span>
+<span class="s1">print(obj2.y)</span>
+<span class="s1">print(obj2.x)</span>
+<span class="s1">print(obj2.z)</span>
+</pre>
+</body>
+</html>

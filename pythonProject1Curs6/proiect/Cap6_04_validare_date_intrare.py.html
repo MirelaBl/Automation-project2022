@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>Cap6_04_validare_date_intrare.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #cc7832;}
+.s4 { color: #629755; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_04_validare_date_intrare.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+604 OOP VS 
+Validarea datelor de intrare 
+PF - 08.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+
+<span class="s3">class </span><span class="s1">People:</span>
+	<span class="s4">&quot;&quot;&quot;Atribut clasa / atribut obiect - continuare&quot;&quot;&quot;</span>
+	<span class="s1">an_studiu = {</span><span class="s0">'Anul 1'</span><span class="s3">, </span><span class="s0">'Anul 2'</span><span class="s3">, </span><span class="s0">'Anul 3'</span><span class="s3">, </span><span class="s0">'Anul 4'</span><span class="s3">, </span><span class="s0">'Anul 5'</span><span class="s1">}  </span><span class="s2"># ani de studiu</span>
+	<span class="s1">facultate = {</span><span class="s0">'Inginerie'</span><span class="s3">, </span><span class="s0">'Drept'</span><span class="s3">, </span><span class="s0">'Finante'</span><span class="s3">, </span><span class="s0">'Geografie'</span><span class="s1">}  </span><span class="s2"># specializari</span>
+
+	<span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">nume</span><span class="s3">, </span><span class="s1">anul</span><span class="s3">, </span><span class="s1">facultatea):</span>
+		<span class="s3">if </span><span class="s1">anul </span><span class="s3">in </span><span class="s1">People.an_studiu:</span>
+			<span class="s1">self.anul = anul</span>
+		<span class="s3">else</span><span class="s1">:</span>
+			<span class="s3">raise </span><span class="s1">NameError(</span><span class="s0">'Anul de studii este incorect'</span><span class="s1">)</span>
+		<span class="s3">if </span><span class="s1">facultatea </span><span class="s3">in </span><span class="s1">People.facultate:</span>
+			<span class="s1">self.studii = facultatea</span>
+		<span class="s3">else</span><span class="s1">:</span>
+			<span class="s3">raise </span><span class="s1">NameError(</span><span class="s0">'Specialitate incorecta'</span><span class="s1">)</span>
+		<span class="s1">self.nume = nume</span>
+
+	<span class="s3">def </span><span class="s1">__str__(self):</span>
+		<span class="s1">result =  self.nume + </span><span class="s0">&quot; este in &quot; </span><span class="s1">+ self.anul + </span><span class="s0">' la ' </span><span class="s1">+ self.studii + </span><span class="s0">'.'</span>
+		<span class="s3">return </span><span class="s1">result</span>
+
+<span class="s2"># student 1</span>
+<span class="s1">Vasile = People( </span><span class="s0">'Vasile'</span><span class="s3">, </span><span class="s0">'Anul 2'</span><span class="s3">, </span><span class="s0">'Drept' </span><span class="s1">)</span>
+<span class="s1">print( Vasile )</span>
+
+<span class="s2"># student 2</span>
+<span class="s1">Carmen = People( </span><span class="s0">'Carmen'</span><span class="s3">, </span><span class="s0">'Anul 1'</span><span class="s3">, </span><span class="s0">'Geografie' </span><span class="s1">)</span>
+<span class="s1">print ( Carmen )</span>
+<span class="s1">Carmen.__dict__</span>
+
+<span class="s2"># student 3</span>
+<span class="s1">Dorel = People( </span><span class="s0">'Dorel'</span><span class="s3">,</span><span class="s0">'Anul 3'</span><span class="s3">,</span><span class="s0">'Finante' </span><span class="s1">)</span>
+<span class="s1">print ( Dorel )</span>
+
+<span class="s0">''' negative  
+# student 3 
+Dorel = People( 'Dorel', 'Finante', 'Anul 3' ) 
+print ( Dorel ) 
+'''</span>
+</pre>
+</body>
+</html>

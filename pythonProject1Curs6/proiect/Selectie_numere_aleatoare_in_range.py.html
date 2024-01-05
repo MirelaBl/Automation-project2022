@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Selectie_numere_aleatoare_in_range.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Selectie_numere_aleatoare_in_range.py</font>
+</center></td></tr></table>
+<pre><span class="s0">from </span><span class="s1">random </span><span class="s0">import </span><span class="s1">randint</span>
+
+<span class="s1">l = []</span>
+<span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">range (</span><span class="s2">1</span><span class="s0">, </span><span class="s2">9</span><span class="s1">):</span>
+    <span class="s0">while True</span><span class="s1">:</span>
+        <span class="s1">x = randint(</span><span class="s2">1</span><span class="s0">, </span><span class="s2">8</span><span class="s1">)</span>
+        <span class="s0">if </span><span class="s1">len(l) == </span><span class="s2">8</span><span class="s1">:</span>
+            <span class="s0">break</span>
+        <span class="s0">elif </span><span class="s1">x </span><span class="s0">in </span><span class="s1">l:</span>
+            <span class="s0">continue</span>
+        <span class="s0">else</span><span class="s1">:</span>
+            <span class="s1">print(x)</span>
+            <span class="s1">l.append(x)       </span>
+
+</pre>
+</body>
+</html>

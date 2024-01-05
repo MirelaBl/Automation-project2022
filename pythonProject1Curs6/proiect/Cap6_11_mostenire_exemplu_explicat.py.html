@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>Cap6_11_mostenire_exemplu_explicat.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #cc7832;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_11_mostenire_exemplu_explicat.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+611 OOP   
+Mostenire - exemplu explicat 
+PF - 08.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+
+<span class="s3">class </span><span class="s1">Banca:  						</span><span class="s2"># creem clasa</span>
+	<span class="s0">&quot;&quot;&quot;Institutie financiara&quot;&quot;&quot;</span>
+
+	<span class="s1">nr_conturi = </span><span class="s4">0</span>
+
+	<span class="s3">def </span><span class="s1">__init__(self):  </span><span class="s2"># metoda constructor - se mosteneste</span>
+		<span class="s1">self.sold = </span><span class="s4">0 	</span><span class="s2"># se aplica la crearea fiecarui obiect - se mosteneste</span>
+		<span class="s1">Banca.nr_conturi += </span><span class="s4">1  </span><span class="s2"># incrementeaza numarul de conturi disponibile - se mosteneste</span>
+
+	<span class="s3">def </span><span class="s1">alim_cont(self</span><span class="s3">, </span><span class="s1">suma): </span><span class="s2"># metoda - aplicabila pentru fiecare obiect - se mosteneste</span>
+		<span class="s1">self.sold += suma</span>
+		<span class="s1">self.sold_nou ()</span>
+
+	<span class="s3">def </span><span class="s1">extr_cash(self</span><span class="s3">, </span><span class="s1">suma): </span><span class="s2"># metoda - aplicabila pentru fiecare obiect - se mosteneste</span>
+		<span class="s1">self.sold -= suma</span>
+		<span class="s1">self.sold_nou()</span>
+
+	<span class="s3">def </span><span class="s1">sold_nou(self):  </span><span class="s2"># metoda - aplicabila pentru fiecare obiect - se mosteneste</span>
+		<span class="s1">print (</span><span class="s0">'Noul sold este: {:.2f}'</span><span class="s1">.format(self.sold ))</span>
+
+	<span class="s3">def </span><span class="s1">__del__(self):</span>
+		<span class="s1">Banca.nr_conturi -= </span><span class="s4">1</span>
+		<span class="s1">print(</span><span class="s0">'Am sters contul'</span><span class="s1">)</span>
+
+
+<span class="s3">class </span><span class="s1">CEC(Banca):</span>
+
+	<span class="s3">def </span><span class="s1">plata_op(self</span><span class="s3">, </span><span class="s1">suma):  </span><span class="s2"># metoda proprie a subclasei</span>
+		<span class="s1">self.sold -= suma</span>
+		<span class="s1">self.sold_nou()</span>
+
+	<span class="s3">def </span><span class="s1">desc_cont(self</span><span class="s3">, </span><span class="s1">suma):  </span><span class="s2"># metoda proprie a subclasei</span>
+		<span class="s1">self.sold += suma</span>
+		<span class="s1">self.sold_nou()</span>
+
+<span class="s1">Cont_Germin = CEC()  </span><span class="s2"># instanta noua subclasa</span>
+<span class="s1">print(Cont_Germin.__dict__)</span>
+<span class="s1">print(Cont_Germin.nr_conturi)</span>
+
+<span class="s1">Cont_Germin.alim_cont(</span><span class="s4">20000</span><span class="s1">)  </span><span class="s2"># metoda mostenita</span>
+<span class="s1">Cont_Germin.plata_op(</span><span class="s4">1800</span><span class="s1">)  </span><span class="s2"># metoda proprie</span>
+<span class="s1">Cont_Germin.extr_cash(</span><span class="s4">1950</span><span class="s1">)  </span><span class="s2"># metoda mostenita</span>
+<span class="s1">Cont_Germin.sold_nou()  </span><span class="s2"># metoda mostenita</span>
+
+<span class="s1">Cont_Alina = Banca()  </span><span class="s2"># instanta noua superclasa</span>
+
+<span class="s1">Cont_Alina.sold_nou()</span>
+<span class="s1">Cont_Alina.desc_cont(</span><span class="s4">5000</span><span class="s1">)  </span><span class="s2"># o instanta a unei superclase nu poate accesa metode proprii subclaselor</span>
+
+<span class="s1">print(Banca.nr_conturi)  </span><span class="s2"># numar de conturi poate fi apelat de orice instanta, superclasa si subclasa</span>
+
+<span class="s1">print(CEC.nr_conturi)</span>
+
+<span class="s1">print(Cont_Alina.nr_conturi)</span>
+
+<span class="s1">print(Cont_Germin.nr_conturi)</span>
+
+<span class="s1">isinstance(Cont_Germin</span><span class="s3">, </span><span class="s1">Banca)</span>
+<span class="s1">isinstance(Cont_Germin</span><span class="s3">, </span><span class="s1">CEC)</span>
+
+<span class="s1">isinstance(Cont_Alina</span><span class="s3">, </span><span class="s1">Banca)</span>
+
+<span class="s1">print(Cont_Germin)</span>
+
+<span class="s1">issubclass(CEC</span><span class="s3">, </span><span class="s1">Banca)</span>
+<span class="s1">issubclass(Banca</span><span class="s3">, </span><span class="s1">CEC)</span>
+
+</pre>
+</body>
+</html>

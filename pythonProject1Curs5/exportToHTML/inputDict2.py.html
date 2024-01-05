@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>inputDict2.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #629755; font-style: italic;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #cc7832;}
+.s3 { color: #6a8759;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+inputDict2.py</font>
+</center></td></tr></table>
+<pre><span class="s0">''' 
+sa se creeze o functie care citeste pe fiecare rand perechi de numere intregi in care al doilea numar intreg trebuie sa 
+fie strict pozitiv 
+Sa se creeze un dictionar care sa ia aceste randuri si sa le faca in perechi cheie valoare cu optionea aditiva 
+si sa l returneze 
+'''</span>
+<span class="s2">import </span><span class="s1">math</span>
+<span class="s2">from </span><span class="s1">math </span><span class="s2">import </span><span class="s1">sqrt</span>
+<span class="s2">def </span><span class="s1">functia2():</span>
+    <span class="s1">d = dict()</span>
+    <span class="s1">print(</span><span class="s3">&quot;input: &quot;</span><span class="s1">)</span>
+    <span class="s1">s = input()</span>
+    <span class="s1">ls = s.split()</span>
+    <span class="s2">while </span><span class="s1">len(ls) == </span><span class="s4">2</span><span class="s1">:</span>
+        <span class="s1">k = int(ls[</span><span class="s4">0</span><span class="s1">])</span>
+        <span class="s1">v = int(ls[</span><span class="s4">1</span><span class="s1">])</span>
+        <span class="s2">if </span><span class="s1">v &lt; </span><span class="s4">0</span><span class="s1">:</span>
+            <span class="s1">print(</span><span class="s3">&quot;row ignored&quot;</span><span class="s1">)</span>
+        <span class="s2">else</span><span class="s1">:</span>
+            <span class="s2">if </span><span class="s1">k </span><span class="s2">in </span><span class="s1">d.keys():</span>
+                <span class="s1">d[k] += v</span>
+            <span class="s2">else</span><span class="s1">:</span>
+                <span class="s1">d[k] = v</span>
+        <span class="s1">s = input()</span>
+        <span class="s1">ls = s.split()</span>
+
+    <span class="s2">return </span><span class="s1">d</span>
+
+<span class="s1">dkt = functia2()</span>
+<span class="s1">print(dkt)</span>
+
+<span class="s2">def </span><span class="s1">ststs(d):</span>
+    <span class="s1">sumaVal = </span><span class="s4">0</span>
+    <span class="s2">for </span><span class="s1">k </span><span class="s2">in </span><span class="s1">d.keys():</span>
+        <span class="s1">sumaVal += d[k]</span>
+    <span class="s1">mediaCalif = </span><span class="s4">0</span>
+    <span class="s1">mediaCalif += (k * d[k]) / sumaVal</span>
+    <span class="s1">print(</span><span class="s3">'sumaVal'</span><span class="s2">, </span><span class="s1">end=</span><span class="s3">' '</span><span class="s1">)</span>
+    <span class="s1">print(sumaVal)</span>
+    <span class="s1">print(</span><span class="s3">'mediaCalif'</span><span class="s2">, </span><span class="s1">end=</span><span class="s3">' '</span><span class="s1">)</span>
+    <span class="s1">print(mediaCalif)</span>
+    <span class="s1">media = </span><span class="s4">0</span>
+    <span class="s2">for </span><span class="s1">k </span><span class="s2">in </span><span class="s1">d.keys():</span>
+        <span class="s1">media += k * d[k]</span>
+    <span class="s1">medPat = </span><span class="s4">0</span>
+    <span class="s2">for </span><span class="s1">a</span><span class="s2">, </span><span class="s1">b </span><span class="s2">in </span><span class="s1">d.items():</span>
+        <span class="s1">medPat += (a ** </span><span class="s4">2</span><span class="s1">) * b / sumaVal</span>
+    <span class="s1">disp = medPat - (media ** </span><span class="s4">2</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s3">&quot;media:&quot;</span><span class="s2">, </span><span class="s1">media)</span>
+    <span class="s1">print(</span><span class="s3">&quot;medPat:&quot;</span><span class="s2">, </span><span class="s1">medPat)</span>
+    <span class="s1">print(</span><span class="s3">&quot;media**2:&quot;</span><span class="s2">, </span><span class="s1">media ** </span><span class="s4">2</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s3">&quot;disp:&quot;</span><span class="s2">, </span><span class="s1">disp)</span>
+    <span class="s1">abatStand = math.sqrt(disp)</span>
+    <span class="s1">errnormal = </span><span class="s4">3 </span><span class="s1">* abatStand / math.sqrt(n)</span>
+    <span class="s1">valSup = media + errnormal</span>
+    <span class="s1">valInf = media - errnormal</span>
+    <span class="s1">t = (valInf</span><span class="s2">, </span><span class="s1">valSup)</span>
+    <span class="s2">return </span><span class="s1">t</span>
+
+<span class="s1">d = ststs(dkt)</span>
+<span class="s1">print(d)</span>
+<span class="s3">''' 
+dictionarul care rezulta din apelul functiei 2 este format din perechi cheie valoare cu urmatoarea semnificatie  
+cheia reprezinta un calificativ la un test (10-100) iar valorile reprezinta cati studenti au luat acel calificativ  
+media calificativelor se face prin suma produselor cheie valoare impartita la suma valorilor  
+Media patratica se va calcula prin produsul dintre patratul fiecarei chei inmultit cu fiecare valoare  
+si apoi se imparte la suma tuturor valorilor  
+se calculeaza dispersia cu formula cunoscuta  
+abaterea standard 
+err normala  va fi de 3 ori abaterea standard impartita la math.sqrt(suma tuturor valorilor v1 v2 v3...) 
+valorile inferioare si superioare se cunosc din tema trecuta  
+sa se creeze o functie numita ststs care primeste ca parametru dictionarul d, calculeaza ceea ce e metionat (medie,  
+abatere si returneaza ca tuplu valoarea inferioara si cea superioara  din intervalul de incredere ) 
+'''</span>
+
+</pre>
+</body>
+</html>

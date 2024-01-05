@@ -1,0 +1,276 @@
+<html>
+<head>
+<title>Cap6_R21_Cs9.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #cc7832;}
+.s4 { color: #629755; font-style: italic;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_R21_Cs9.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+621 Clase avansat   
+Stoc mostenit 
+PF - 08.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+<span class="s0">&quot;&quot;&quot; 
+ importati functia datetime din modulul datetime. Instructiune scrisa deja (vezi mai jos)          # 
+ Initializati o variabila 'cheie' care va da cheile unor dictionare, cu valoarea 1(vezi mai jos)   # 
+ Creati o clasa 'Stoc' care va avea:                                                               # 
+ - 2 variabile statice, care sa numere cate produse avem si cate categorii (doar pentru avansati)  # 
+ - o metoda constructor cu                                                                         # 
+ denumire produs                                                                                   # 
+ categoria                                                                                         # 
+ unitatea de masura default 'Buc'                                                                  # 
+ sold default 0                                                                                    # 
+ initializati trei dictionate, cu cheie comuna, pentru data op., intrari si iesiri din stoc        # 
+ - o metoda intrari cu                                                                             # 
+ cantitatea,                                                                                       # 
+ data = str ( datetime.now ( ).strftime ( '%Y%m%d' ) )                                             # 
+ definiti cheia ca variabila globala                                                               # 
+ testati daca cheia se gaseste in dictionarul cu data op. Daca exista stabileste cheia             # 
+ ca fiind maximul cheilor existente plus 1, altfel va fi egala cu 1                                # 
+ introduce in dict intrari cheie si cant                                                           # 
+ introduce in dict data cheie si data op                                                           # 
+ actualizeaza soldul                                                                               # 
+ - o metoda iesiri, similara cu precedenta. Diferente: populam dict iesiri                         # 
+ - o metoda fisa produsului cu urmatoarele specificatii:                                           # 
+ Sa printeze 'Fisa produsului &quot;denumire_produs&quot;' (sa stim si noi a cui e fisa)                     # 
+ Sa printeze ' Nrc ', '  Data  ', ' Intrare', ' Iesire' pentru toate tranzactiile produsului       # 
+ Sa printeze stocul actual al produsului                                                           # 
+ pentru avansati - aliniati coloanele                                                              # 
+ Creati trei instante (produse). Pentru 2 din ele efecturati cate 4-5 operatiuni (intrari, iesiri) # 
+ Apelati metoda fisa produsului pentru cele 2 produse                                              # 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+<span class="s3">from </span><span class="s1">datetime </span><span class="s3">import </span><span class="s1">datetime</span>
+
+<span class="s3">class </span><span class="s1">Stoc:</span>
+    <span class="s4">&quot;&quot;&quot;Tine stocul unui depozit&quot;&quot;&quot;</span>
+    <span class="s1">tot_categ = </span><span class="s5">0</span>
+    <span class="s1">tot_prod = </span><span class="s5">0</span>
+    <span class="s1">categorii = list()</span>
+    <span class="s1">produse = list()</span>
+    <span class="s1">categ_prod = {}</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">prod</span><span class="s3">, </span><span class="s1">categ</span><span class="s3">, </span><span class="s1">um=</span><span class="s0">'Buc'</span><span class="s3">, </span><span class="s1">sold=</span><span class="s5">0</span><span class="s1">):</span>
+        <span class="s1">self.prod = prod  </span><span class="s2"># parametri cu valori default ii lasam la sfarsitul listei</span>
+        <span class="s1">self.categ = categ  </span><span class="s2"># fiecare instanta va fi creata obligatoriu cu primii trei param.</span>
+        <span class="s1">self.sold = sold  </span><span class="s2"># al patrulea e optional, soldul va fi zero</span>
+        <span class="s1">self.um = um</span>
+        <span class="s1">self.i = {}  </span><span class="s2"># fiecare instanta va avea trei dictionare intrari, iesiri, data</span>
+        <span class="s1">self.e = {}  </span><span class="s2"># pentru mentinerea corelatiilor cheia operatiunii va fi unica</span>
+        <span class="s1">self.d = {}</span>
+        <span class="s1">Stoc.tot_prod += </span><span class="s5">1  </span><span class="s2"># la fiecare instantiere se calculeaza numarul produselor si al categ</span>
+        <span class="s1">Stoc.produse.append(prod)  </span><span class="s2"># populam lista cu produse</span>
+
+        <span class="s3">if </span><span class="s1">categ </span><span class="s3">not in </span><span class="s1">Stoc.categorii:  </span><span class="s2"># populam lista cu categorii, daca nu exista (unicitate)</span>
+            <span class="s1">Stoc.tot_categ += </span><span class="s5">1</span>
+            <span class="s1">Stoc.categorii.append(categ)</span>
+            <span class="s1">Stoc.categ_prod[categ] = {prod}</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">Stoc.categ_prod[categ].add(prod)</span>
+
+    <span class="s3">def </span><span class="s1">intr(self</span><span class="s3">, </span><span class="s1">cant</span><span class="s3">, </span><span class="s1">data=str(datetime.now().strftime(</span><span class="s0">'%Y%m%d'</span><span class="s1">))):</span>
+        <span class="s1">self.sold += cant  </span><span class="s2"># recalculam soldul dupa fiecare tranzactie</span>
+        <span class="s3">if </span><span class="s1">self.d.keys():  </span><span class="s2"># dictionarul data are toate cheile (fiecare tranzactie are data)</span>
+            <span class="s1">cheie = max(self.d.keys()) + </span><span class="s5">1</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">cheie = </span><span class="s5">1</span>
+        <span class="s1">self.i[cheie] = cant  </span><span class="s2"># introducem valorile in dictionarele de intrari si data</span>
+        <span class="s1">self.d[cheie] = data</span>
+
+    <span class="s3">def </span><span class="s1">iesi(self</span><span class="s3">, </span><span class="s1">cant</span><span class="s3">, </span><span class="s1">data=str(datetime.now().strftime(</span><span class="s0">'%Y%m%d'</span><span class="s1">))):</span>
+        <span class="s1">self.sold -= cant</span>
+        <span class="s3">if </span><span class="s1">self.d.keys():</span>
+            <span class="s1">cheie = max(self.d.keys()) + </span><span class="s5">1</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">cheie = </span><span class="s5">1</span>
+        <span class="s1">self.e[cheie] = cant  </span><span class="s2"># similar, introducem datele in dictionarele iesiri si data</span>
+        <span class="s1">self.d[cheie] = data</span>
+
+    <span class="s3">def </span><span class="s1">fisap(self):</span>
+
+        <span class="s1">print(</span><span class="s0">'Fisa produsului ' </span><span class="s1">+ self.prod + </span><span class="s0">': ' </span><span class="s1">+ self.um)</span>
+        <span class="s1">print(</span><span class="s0">'----------------------------'</span><span class="s1">)</span>
+        <span class="s1">print(</span><span class="s0">' Nrc '</span><span class="s3">, </span><span class="s0">'  Data '</span><span class="s3">, </span><span class="s0">'Intrari'</span><span class="s3">, </span><span class="s0">'Iesiri'</span><span class="s1">)</span>
+        <span class="s1">print(</span><span class="s0">'----------------------------'</span><span class="s1">)</span>
+        <span class="s3">for </span><span class="s1">v </span><span class="s3">in </span><span class="s1">self.d.keys():</span>
+            <span class="s3">if </span><span class="s1">v </span><span class="s3">in </span><span class="s1">self.i.keys():</span>
+                <span class="s1">print(str(v).rjust(</span><span class="s5">5</span><span class="s1">)</span><span class="s3">, </span><span class="s1">self.d[v]</span><span class="s3">, </span><span class="s1">str(self.i[v]).rjust(</span><span class="s5">6</span><span class="s1">)</span><span class="s3">, </span><span class="s1">str(</span><span class="s5">0</span><span class="s1">).rjust(</span><span class="s5">6</span><span class="s1">))</span>
+            <span class="s3">else</span><span class="s1">:</span>
+                <span class="s1">print(str(v).rjust(</span><span class="s5">5</span><span class="s1">)</span><span class="s3">, </span><span class="s1">self.d[v]</span><span class="s3">, </span><span class="s1">str(</span><span class="s5">0</span><span class="s1">).rjust(</span><span class="s5">6</span><span class="s1">)</span><span class="s3">, </span><span class="s1">str(self.e[v]).rjust(</span><span class="s5">6</span><span class="s1">))</span>
+        <span class="s1">print(</span><span class="s0">'----------------------------'</span><span class="s1">)</span>
+        <span class="s1">print(</span><span class="s0">'Stoc actual       ' </span><span class="s1">+ str(self.sold).rjust(</span><span class="s5">10</span><span class="s1">))</span>
+        <span class="s1">print(</span><span class="s0">'----------------------------</span><span class="s3">\n</span><span class="s0">'</span><span class="s1">)</span>
+
+
+<span class="s1">fragute = Stoc(</span><span class="s0">'fragute'</span><span class="s3">, </span><span class="s0">'fructe'</span><span class="s3">, </span><span class="s0">'kg'</span><span class="s1">)  </span><span class="s2"># cream instantele clasei</span>
+<span class="s1">lapte = Stoc(</span><span class="s0">'lapte'</span><span class="s3">, </span><span class="s0">'lactate'</span><span class="s3">, </span><span class="s0">'litru'</span><span class="s1">)</span>
+<span class="s1">ceasuri = Stoc(</span><span class="s0">'ceasuri'</span><span class="s3">, </span><span class="s0">'ceasuri'</span><span class="s1">)</span>
+
+<span class="s1">print(fragute.sold)  </span><span class="s2"># ATRIBUTE</span>
+<span class="s1">fragute.intr(</span><span class="s5">100</span><span class="s1">)</span>
+<span class="s1">fragute.iesi(</span><span class="s5">73</span><span class="s1">)</span>
+<span class="s1">fragute.intr(</span><span class="s5">100</span><span class="s1">)</span>
+<span class="s1">fragute.iesi(</span><span class="s5">85</span><span class="s1">)</span>
+<span class="s1">fragute.intr(</span><span class="s5">100</span><span class="s1">)</span>
+<span class="s1">fragute.iesi(</span><span class="s5">101</span><span class="s1">)</span>
+
+<span class="s1">print(fragute.d)  </span><span class="s2"># dictinarele produsului cu informatii specializate</span>
+<span class="s1">print(fragute.i)</span>
+<span class="s1">print(fragute.e)</span>
+
+<span class="s1">print(fragute.sold)</span>
+<span class="s1">print(fragute.tot_categ)</span>
+<span class="s1">print(fragute.categ)</span>
+<span class="s1">print(fragute.prod)</span>
+<span class="s1">print(fragute.tot_prod)</span>
+<span class="s1">print(fragute.um)</span>
+<span class="s1">print(fragute.categorii)</span>
+<span class="s1">print(fragute.categ_prod)</span>
+
+<span class="s1">fragute.fisap()</span>
+
+<span class="s1">lapte.intr(</span><span class="s5">1500</span><span class="s1">)</span>
+<span class="s1">lapte.iesi(</span><span class="s5">975</span><span class="s1">)</span>
+<span class="s1">lapte.intr(</span><span class="s5">1200</span><span class="s1">)</span>
+<span class="s1">lapte.iesi(</span><span class="s5">1490</span><span class="s1">)</span>
+<span class="s1">lapte.intr(</span><span class="s5">1000</span><span class="s1">)</span>
+<span class="s1">lapte.iesi(</span><span class="s5">1200</span><span class="s1">)</span>
+
+<span class="s1">lapte.fisap()</span>
+
+<span class="s3">for </span><span class="s1">i </span><span class="s3">in </span><span class="s1">Stoc.produse:</span>
+    <span class="s1">print(i)</span>
+    <span class="s1">globals()[i].fisap()</span>
+    <span class="s1">print(globals()[i])</span>
+
+<span class="s2"># Mostenire</span>
+
+<span class="s3">class </span><span class="s1">Mag1(Stoc):</span>
+    <span class="s4">&quot;&quot;&quot;Subclasa a clasei Stoc&quot;&quot;&quot;</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">pro</span><span class="s3">, </span><span class="s1">cat</span><span class="s3">, </span><span class="s1">uni</span><span class="s3">, </span><span class="s1">x</span><span class="s3">, </span><span class="s1">y</span><span class="s3">, </span><span class="s1">z=</span><span class="s5">7</span><span class="s1">):</span>
+        <span class="s1">self.x = x</span>
+        <span class="s1">self.y = y</span>
+        <span class="s1">super().__init__(pro</span><span class="s3">, </span><span class="s1">cat</span><span class="s3">, </span><span class="s1">uni)</span>
+
+    <span class="s3">def </span><span class="s1">perisabilitati(self</span><span class="s3">, </span><span class="s1">procent):</span>
+        <span class="s4">&quot;&quot;&quot;Calculeaza valoarea perisabilitatilor si o scade din sold (iesire)&quot;&quot;&quot;</span>
+        <span class="s1">s = </span><span class="s5">0</span>
+        <span class="s3">for </span><span class="s1">k</span><span class="s3">, </span><span class="s1">v </span><span class="s3">in </span><span class="s1">self.i.items():</span>
+            <span class="s1">s += v</span>
+        <span class="s1">p = int(s * procent / </span><span class="s5">100 </span><span class="s1">+ </span><span class="s5">.99</span><span class="s1">)</span>
+        <span class="s1">self.iesi(p)</span>
+
+    <span class="s3">def </span><span class="s1">valoare_stoc(self</span><span class="s3">, </span><span class="s1">pret):</span>
+        <span class="s3">return </span><span class="s1">pret * self.sold</span>
+
+    <span class="s3">def </span><span class="s1">cauta_tranzactii(self</span><span class="s3">, </span><span class="s1">data_start=str(datetime.now().strftime(</span><span class="s0">'%Y0101'</span><span class="s1">))</span><span class="s3">,</span>
+                         <span class="s1">data_final=str(datetime.now().strftime(</span><span class="s0">'%Y1231'</span><span class="s1">))):</span>
+        <span class="s3">if </span><span class="s1">self.d != {}:</span>
+            <span class="s1">print(</span><span class="s0">'Fisa produsului ' </span><span class="s1">+ self.prod + </span><span class="s0">': ' </span><span class="s1">+ self.um)</span>
+            <span class="s1">print(</span><span class="s0">'----------------------------'</span><span class="s1">)</span>
+            <span class="s1">print(</span><span class="s0">' Nrc '</span><span class="s3">, </span><span class="s0">'  Data '</span><span class="s3">, </span><span class="s0">'Intrari'</span><span class="s3">, </span><span class="s0">'Iesiri'</span><span class="s1">)</span>
+            <span class="s1">print(</span><span class="s0">'----------------------------'</span><span class="s1">)</span>
+            <span class="s3">for </span><span class="s1">v </span><span class="s3">in </span><span class="s1">self.d.keys():</span>
+                <span class="s3">if </span><span class="s1">data_start &lt;= self.d[v] </span><span class="s3">and  </span><span class="s1">data_final &gt;= self.d[v]:</span>
+                    <span class="s3">if </span><span class="s1">v </span><span class="s3">in </span><span class="s1">self.i.keys():</span>
+                        <span class="s1">print(str(v).rjust(</span><span class="s5">5</span><span class="s1">)</span><span class="s3">, </span><span class="s1">self.d[v]</span><span class="s3">, </span><span class="s1">str(self.i[v]).rjust(</span><span class="s5">6</span><span class="s1">)</span><span class="s3">, </span><span class="s1">str(</span><span class="s5">0</span><span class="s1">).rjust(</span><span class="s5">6</span><span class="s1">))</span>
+                    <span class="s3">else</span><span class="s1">:</span>
+                        <span class="s1">print(str(v).rjust(</span><span class="s5">5</span><span class="s1">)</span><span class="s3">, </span><span class="s1">self.d[v]</span><span class="s3">, </span><span class="s1">str(</span><span class="s5">0</span><span class="s1">).rjust(</span><span class="s5">6</span><span class="s1">)</span><span class="s3">, </span><span class="s1">str(self.e[v]).rjust(</span><span class="s5">6</span><span class="s1">))</span>
+            <span class="s1">print(</span><span class="s0">'----------------------------'</span><span class="s1">)</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">print(</span><span class="s0">'Sold zero'</span><span class="s1">)</span>
+
+
+<span class="s1">pepeni = Mag1(</span><span class="s0">'pepeni'</span><span class="s3">, </span><span class="s0">'fructe'</span><span class="s3">, </span><span class="s0">'kg'</span><span class="s3">, </span><span class="s0">'xpepeni'</span><span class="s3">, </span><span class="s0">'ypepeni'</span><span class="s1">)</span>
+
+<span class="s1">print(pepeni.sold)</span>
+
+<span class="s1">pepeni.intr(</span><span class="s5">1000</span><span class="s3">, </span><span class="s0">'20170930'</span><span class="s1">)</span>
+<span class="s1">pepeni.iesi(</span><span class="s5">975</span><span class="s3">, </span><span class="s0">'20171230'</span><span class="s1">)</span>
+<span class="s1">pepeni.intr(</span><span class="s5">2500</span><span class="s1">)</span>
+<span class="s1">pepeni.intr(</span><span class="s5">1800</span><span class="s1">)</span>
+<span class="s1">pepeni.iesi(</span><span class="s5">3972</span><span class="s1">)</span>
+
+
+<span class="s1">pepeni.fisap()</span>
+
+<span class="s1">print(pepeni.categ_prod)</span>
+
+<span class="s3">for </span><span class="s1">elem </span><span class="s3">in </span><span class="s1">Stoc.categ_prod:  </span><span class="s2"># Listeaza categoriile si produsele aferente</span>
+    <span class="s1">print(</span><span class="s0">'Produse in categoria: ' </span><span class="s1">+ elem)</span>
+    <span class="s3">for </span><span class="s1">count</span><span class="s3">, </span><span class="s1">val </span><span class="s3">in </span><span class="s1">enumerate(Stoc.categ_prod[elem]):</span>
+        <span class="s1">print(count + </span><span class="s5">1</span><span class="s3">, </span><span class="s1">val)</span>
+
+<span class="s1">print(fragute.categ_prod)</span>
+
+<span class="s1">print(Stoc.categorii)</span>
+<span class="s1">print(Stoc.tot_categ)</span>
+<span class="s1">print(Stoc.tot_prod)</span>
+<span class="s1">print(Stoc.categ_prod)</span>
+
+<span class="s1">print(Mag1.produse)</span>
+<span class="s1">print(Mag1.categorii)</span>
+<span class="s1">print(Mag1.tot_categ)</span>
+<span class="s1">print(Mag1.tot_prod)</span>
+<span class="s1">print(Mag1.categ_prod)</span>
+
+<span class="s1">tabla = Mag1(</span><span class="s0">'tabla'</span><span class="s3">, </span><span class="s0">'mat_constr'</span><span class="s3">, </span><span class="s0">'kg'</span><span class="s3">, </span><span class="s0">'x'</span><span class="s3">, </span><span class="s0">'y'</span><span class="s1">)</span>
+
+<span class="s1">tabla.intr(</span><span class="s5">1000</span><span class="s3">, </span><span class="s0">'20170501'</span><span class="s1">)</span>
+<span class="s1">tabla.iesi(</span><span class="s5">877</span><span class="s3">, </span><span class="s0">'20170502'</span><span class="s1">)</span>
+<span class="s1">tabla.intr(</span><span class="s5">1500</span><span class="s3">, </span><span class="s0">'20170505'</span><span class="s1">)</span>
+<span class="s1">tabla.iesi(</span><span class="s5">1001</span><span class="s1">)</span>
+<span class="s1">tabla.intr(</span><span class="s5">500</span><span class="s1">)</span>
+<span class="s1">tabla.perisabilitati(</span><span class="s5">.5</span><span class="s1">)</span>
+
+<span class="s1">tabla.fisap()</span>
+
+<span class="s1">pepeni.fisap()</span>
+
+<span class="s1">pepeni.perisabilitati(</span><span class="s5">4</span><span class="s1">)</span>
+
+<span class="s1">fragute.fisap()</span>
+
+<span class="s1">fragute.perisabilitati()</span>
+
+<span class="s1">pepeni.valoare_stoc(</span><span class="s5">1.2</span><span class="s1">)</span>
+
+<span class="s1">print(pepeni.sold)</span>
+
+<span class="s1">pepeni.cauta_tranzactii()</span>
+
+<span class="s3">def </span><span class="s1">tranzactii(</span>
+    <span class="s1">produs</span><span class="s3">, </span><span class="s1">data_start=str(datetime.now().strftime(</span><span class="s0">'%Y0101'</span><span class="s1">))</span><span class="s3">,</span>
+                         <span class="s1">data_final=str(datetime.now().strftime(</span><span class="s0">'%Y1231'</span><span class="s1">))):</span>
+    <span class="s1">res = globals()[produs].cauta_tranzactii(data_start</span><span class="s3">, </span><span class="s1">data_final)</span>
+    <span class="s3">return </span><span class="s1">res</span>
+
+
+<span class="s3">for </span><span class="s1">i </span><span class="s3">in </span><span class="s1">globals():</span>
+    <span class="s3">if </span><span class="s1">isinstance(globals()[i]</span><span class="s3">, </span><span class="s1">Stoc):</span>
+        <span class="s1">print(i)</span>
+
+<span class="s1">lista = list(dicti.keys())</span>
+<span class="s1">lista.sort()</span>
+<span class="s1">lista.reverse()</span>
+<span class="s1">sold = </span><span class="s5">413</span>
+
+<span class="s1">pepeni.perisabilitati(</span><span class="s5">2</span><span class="s1">)</span>
+
+<span class="s1">pepeni.cauta_tranzactii()</span></pre>
+</body>
+</html>

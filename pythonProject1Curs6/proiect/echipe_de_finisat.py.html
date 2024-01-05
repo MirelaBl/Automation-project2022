@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>echipe_de_finisat.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6897bb;}
+.s3 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+echipe_de_finisat.py</font>
+</center></td></tr></table>
+<pre><span class="s0">class </span><span class="s1">Echipa():</span>
+
+    <span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">, </span><span class="s1">nume</span><span class="s0">, </span><span class="s1">antrenor</span><span class="s0">, </span><span class="s1">sponsor</span><span class="s0">, </span><span class="s1">*nume_jucatori):</span>
+        <span class="s1">self.nume = nume</span>
+        <span class="s1">self.antrenor = antrenor</span>
+        <span class="s1">self.sponsor = sponsor</span>
+        <span class="s1">self.lista_jucatori = []</span>
+        <span class="s1">self.goluri = {}</span>
+        <span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">nume_jucatori:</span>
+            <span class="s1">self.lista_jucatori.append(i)</span>
+            <span class="s1">self.goluri[i] = </span><span class="s2">0</span>
+        <span class="s1">self.nr_jucatori = len(self.lista_jucatori)</span>
+
+    <span class="s0">def </span><span class="s1">adauga_jucator(self</span><span class="s0">, </span><span class="s1">jucator_intrat):</span>
+        <span class="s0">if </span><span class="s1">jucator_intrat </span><span class="s0">not  in </span><span class="s1">self.lista_jucatori:</span>
+            <span class="s1">self.lista_jucatori.append(jucator_intrat)</span>
+            <span class="s1">self.nr_jucatori += </span><span class="s2">1</span>
+            <span class="s1">self.goluri[jucator_intrat] = </span><span class="s2">0</span>
+        <span class="s0">else</span><span class="s1">:</span>
+            <span class="s1">print(</span><span class="s3">'Jucatorul %s deja exista' </span><span class="s1">% jucator_intrat)</span>
+
+    <span class="s0">def </span><span class="s1">elimina_jucatori(self</span><span class="s0">, </span><span class="s1">jucator_iesit):</span>
+        <span class="s0">if </span><span class="s1">jucator_iesit </span><span class="s0">in </span><span class="s1">self.lista_jucatori:</span>
+            <span class="s1">self.lista_jucatori.remove(jucator_iesit)</span>
+            <span class="s1">self.nr_jucatori -= </span><span class="s2">1</span>
+        <span class="s0">else</span><span class="s1">:</span>
+            <span class="s1">print(</span><span class="s3">'Jucatorul %s nu exista in lista' </span><span class="s1">% jucator_iesit)</span>
+
+    <span class="s0">def </span><span class="s1">marcheaza(self</span><span class="s0">, </span><span class="s1">jucatorul</span><span class="s0">, </span><span class="s1">nr_goluri = </span><span class="s2">1</span><span class="s1">):</span>
+        <span class="s0">if </span><span class="s1">jucatorul </span><span class="s0">in </span><span class="s1">self.lista_jucatori:</span>
+            <span class="s1">self.goluri[jucatorul] += nr_goluri</span>
+        <span class="s0">else</span><span class="s1">:</span>
+            <span class="s1">print(</span><span class="s3">'Jucatorul %s nu este in echipa noastra' </span><span class="s1">% jucatorul)</span>
+
+<span class="s0">class </span><span class="s1">Romania(Echipa):</span>
+
+    <span class="s0">def </span><span class="s1">statistici(self):</span>
+       <span class="s1">self.suma_goluri = </span><span class="s2">0</span>
+       <span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">self.goluri.values():</span>
+           <span class="s1">self.suma_goluri += i</span>
+       <span class="s1">self.media_goluri = self.suma_goluri/self.nr_jucatori</span>
+       <span class="s1">self.maxim_goluri = max(self.goluri.values())</span>
+
+       <span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">self.goluri:</span>
+            <span class="s0">if </span><span class="s1">self.goluri[i] == self.maxim_goluri:</span>
+                <span class="s1">self.golgheter = i</span>
+
+    <span class="s0">def </span><span class="s1">__str__(self):</span>
+        <span class="s1">self.statistici()</span>
+
+        <span class="s0">return </span><span class="s3">'Total goluri marcate: {0} </span><span class="s0">\n</span><span class="s3">Media de goluri: {1} </span><span class="s0">\n</span><span class="s3">Golgheter: {2}'</span><span class="s1">.\</span>
+            <span class="s1">format(self.suma_goluri</span><span class="s0">, </span><span class="s1">self.media_goluri</span><span class="s0">, </span><span class="s1">self.golgheter)</span>
+
+
+<span class="s1">Steaua = Romania(</span><span class="s3">'SB'</span><span class="s0">, </span><span class="s3">'Piturca'</span><span class="s0">, </span><span class="s3">'City'</span><span class="s0">, </span><span class="s3">'Dumitrescu'</span><span class="s0">, </span><span class="s3">'Lacatus'</span><span class="s0">,</span>
+                 <span class="s3">'Hagi'</span><span class="s0">, </span><span class="s3">'Belodedici'</span><span class="s0">, </span><span class="s3">'Ducadam'</span><span class="s0">, </span><span class="s3">'Balint'</span><span class="s0">, </span><span class="s3">'Barbulescu'</span><span class="s1">)</span>
+
+<span class="s1">print(Steaua.nume)</span>
+<span class="s1">print(Steaua.nr_jucatori)</span>
+<span class="s1">print(Steaua.antrenor)</span>
+<span class="s1">print(Steaua.lista_jucatori)</span>
+<span class="s1">print(Steaua.goluri)</span>
+<span class="s1">Steaua.adauga_jucator(</span><span class="s3">'Bumbescu'</span><span class="s1">)</span>
+<span class="s1">Steaua.elimina_jucatori(</span><span class="s3">'Barbulescu'</span><span class="s1">)</span>
+
+<span class="s1">Steaua.marcheaza(</span><span class="s3">'Balint'</span><span class="s0">, </span><span class="s2">5</span><span class="s1">)</span>
+<span class="s1">Steaua.marcheaza(</span><span class="s3">'Bumbescu'</span><span class="s1">)</span>
+
+<span class="s1">print(Steaua)</span>
+
+
+<span class="s1">Rapid = Romania(</span><span class="s3">'RB'</span><span class="s0">, </span><span class="s3">'Sumudica'</span><span class="s0">, </span><span class="s3">'CFR'</span><span class="s0">, </span><span class="s3">'Coman'</span><span class="s0">, </span><span class="s3">'Raducanu'</span><span class="s0">,</span>
+                 <span class="s3">'Rada'</span><span class="s1">)</span>
+
+<span class="s1">print(Rapid.nume)</span>
+<span class="s1">print(Rapid.nr_jucatori)</span>
+<span class="s1">print(Rapid.antrenor)</span>
+<span class="s1">print(Rapid.lista_jucatori)</span>
+<span class="s1">print(Rapid.goluri)</span>
+<span class="s1">Rapid.adauga_jucator(</span><span class="s3">'Vasile'</span><span class="s1">)</span>
+<span class="s1">Rapid.elimina_jucatori(</span><span class="s3">'Rada'</span><span class="s1">)</span>
+
+<span class="s1">Rapid.marcheaza(</span><span class="s3">'Vasile'</span><span class="s0">, </span><span class="s2">7</span><span class="s1">)</span>
+<span class="s1">Rapid.marcheaza(</span><span class="s3">'Coman'</span><span class="s0">, </span><span class="s2">5</span><span class="s1">)</span>
+
+<span class="s1">print(Rapid)</span></pre>
+</body>
+</html>

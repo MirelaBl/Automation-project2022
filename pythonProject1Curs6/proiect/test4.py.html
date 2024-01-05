@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>test4.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6897bb;}
+.s3 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+test4.py</font>
+</center></td></tr></table>
+<pre><span class="s0">class </span><span class="s1">Autoturism():</span>
+    <span class="s1">nr_roti = </span><span class="s2">4</span>
+
+    <span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">, </span><span class="s1">marca</span><span class="s0">, </span><span class="s1">model</span><span class="s0">, </span><span class="s1">comb</span><span class="s0">, </span><span class="s1">jenti</span><span class="s0">, </span><span class="s1">culoare = </span><span class="s3">'Alb'</span><span class="s1">):</span>
+        <span class="s1">self.marca = marca</span>
+        <span class="s1">self.model = model</span>
+        <span class="s1">self.comb = comb</span>
+        <span class="s1">self.jenti = jenti</span>
+        <span class="s1">self.culoare = culoare</span>
+
+    <span class="s0">def </span><span class="s1">siguranta(self</span><span class="s0">, </span><span class="s1">abs = </span><span class="s2">1</span><span class="s0">, </span><span class="s1">esp = </span><span class="s2">0</span><span class="s1">):</span>
+        <span class="s1">self.abs =abs</span>
+        <span class="s1">self.esp = esp</span>
+
+    <span class="s0">def </span><span class="s1">optionale(self</span><span class="s0">, </span><span class="s1">**optionale):</span>
+        <span class="s0">for </span><span class="s1">i</span><span class="s0">,</span><span class="s1">j </span><span class="s0">in </span><span class="s1">optionale.items():</span>
+            <span class="s1">self.__dict__[i] = j</span>
+
+    <span class="s0">def </span><span class="s1">modifica_nr_roti(self</span><span class="s0">, </span><span class="s1">nr):</span>
+        <span class="s1">self.nr_roti = nr</span>
+
+
+<span class="s1">Logan = Autoturism(</span><span class="s3">'Dacia'</span><span class="s0">, </span><span class="s3">'Logan'</span><span class="s0">, </span><span class="s3">'Hibryd'</span><span class="s0">, </span><span class="s3">'Otel'</span><span class="s0">, </span><span class="s3">'Verde'</span><span class="s1">)</span>
+
+<span class="s1">Logan.siguranta()</span>
+
+<span class="s1">Logan.optionale( **{</span><span class="s3">'aercond' </span><span class="s1">: </span><span class="s2">1</span><span class="s0">, </span><span class="s3">'navigatie' </span><span class="s1">: </span><span class="s2">0</span><span class="s1">} )</span>
+
+<span class="s1">Logan.__dict__</span>
+</pre>
+</body>
+</html>

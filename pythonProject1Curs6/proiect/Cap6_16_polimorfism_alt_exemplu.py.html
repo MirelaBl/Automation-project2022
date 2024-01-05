@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>Cap6_16_polimorfism_alt_exemplu.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #cc7832;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_16_polimorfism_alt_exemplu.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+616 OOP   
+Polimorfism - alt exemplu 
+PF - 08.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+
+<span class="s3">class </span><span class="s1">Electronice:</span>
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">name):</span>
+        <span class="s1">self.name = name</span>
+
+    <span class="s3">def </span><span class="s1">camera(self</span><span class="s3">, </span><span class="s1">*caracteristici):</span>
+        <span class="s3">raise </span><span class="s1">NotImplementedError(</span><span class="s0">&quot;Metoda abstracta - se defineste in subclasa&quot;</span><span class="s1">)</span>
+
+    <span class="s3">def </span><span class="s1">ecran(self</span><span class="s3">, </span><span class="s1">*caracteristici):</span>
+        <span class="s3">raise </span><span class="s1">NotImplementedError(</span><span class="s0">&quot;Metoda abstracta - se defineste in subclasa&quot;</span><span class="s1">)</span>
+
+<span class="s3">class </span><span class="s1">Telefon(Electronice):</span>
+    <span class="s3">def </span><span class="s1">camera(self</span><span class="s3">, </span><span class="s1">mpixeli = </span><span class="s4">1</span><span class="s3">, </span><span class="s1">model = </span><span class="s0">'NoName'</span><span class="s3">, </span><span class="s1">culoare = </span><span class="s0">'Negru'</span><span class="s1">):</span>
+        <span class="s1">self.mpixeli = mpixeli</span>
+        <span class="s1">self.model = model</span>
+        <span class="s1">self.culoare = culoare</span>
+
+    <span class="s3">def </span><span class="s1">ecran(self</span><span class="s3">, </span><span class="s1">diagonala = </span><span class="s4">4</span><span class="s3">, </span><span class="s1">tip = </span><span class="s0">'Cristal'</span><span class="s3">, </span><span class="s1">model = </span><span class="s0">'None'</span><span class="s1">):</span>
+        <span class="s1">self.diagonala = diagonala</span>
+        <span class="s1">self.tip = tip</span>
+        <span class="s1">self.model = model</span>
+
+<span class="s3">class </span><span class="s1">Televizor(Electronice):</span>
+    <span class="s3">def </span><span class="s1">camera(self</span><span class="s3">, </span><span class="s1">mpixeli = </span><span class="s4">5</span><span class="s3">, </span><span class="s1">model = </span><span class="s0">'Leica'</span><span class="s3">, </span><span class="s1">culoare = </span><span class="s0">'Alb'</span><span class="s1">):</span>
+        <span class="s1">self.mpixeli = mpixeli</span>
+        <span class="s1">self.model = model</span>
+        <span class="s1">self.culoare = culoare</span>
+
+    <span class="s3">def </span><span class="s1">ecran(self</span><span class="s3">, </span><span class="s1">diagonala = </span><span class="s4">51</span><span class="s3">, </span><span class="s1">tip = </span><span class="s0">'Led'</span><span class="s3">, </span><span class="s1">model = </span><span class="s0">'Plat'</span><span class="s1">):</span>
+        <span class="s1">self.diagonala = diagonala</span>
+        <span class="s1">self.tip = tip</span>
+        <span class="s1">self.model = model</span>
+
+<span class="s3">class </span><span class="s1">Radio(Electronice):</span>
+    <span class="s3">def </span><span class="s1">camera(self):</span>
+        <span class="s3">pass</span>
+
+    <span class="s3">def </span><span class="s1">ecran(self):</span>
+        <span class="s3">pass</span>
+
+<span class="s1">i7 = Telefon(</span><span class="s0">'Iphone_10'</span><span class="s1">)</span>
+
+<span class="s1">i7.camera(</span><span class="s4">13</span><span class="s1">)</span>
+<span class="s1">i7.ecran(</span><span class="s4">5</span><span class="s1">)</span>
+
+<span class="s1">TV1 = Televizor(</span><span class="s0">'TV1'</span><span class="s1">)</span>
+
+<span class="s1">TV1.camera(</span><span class="s4">10</span><span class="s1">)</span>
+
+<span class="s1">TV1.ecran(</span><span class="s4">101</span><span class="s1">)</span>
+
+<span class="s1">R1 = Radio(</span><span class="s0">'radio'</span><span class="s1">)</span>
+
+<span class="s1">R1.camera()</span>
+<span class="s1">R1.ecran()</span>
+
+<span class="s3">def </span><span class="s1">caracteristici(*lista):</span>
+    <span class="s3">for </span><span class="s1">elem </span><span class="s3">in </span><span class="s1">(lista):</span>
+        <span class="s1">nume = elem.name</span>
+        <span class="s3">if </span><span class="s0">'diagonala' </span><span class="s3">in </span><span class="s1">elem.__dict__:</span>
+            <span class="s1">diagonala = elem.__dict__[</span><span class="s0">'diagonala'</span><span class="s1">]</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">diagonala = </span><span class="s0">'-'</span>
+        <span class="s3">if </span><span class="s0">'model' </span><span class="s3">in </span><span class="s1">elem.__dict__:</span>
+            <span class="s1">model = elem.__dict__[</span><span class="s0">'model'</span><span class="s1">]</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">model = </span><span class="s0">'-'</span>
+        <span class="s3">if </span><span class="s0">'culoare' </span><span class="s3">in </span><span class="s1">elem.__dict__:</span>
+            <span class="s1">culoare = elem.__dict__[</span><span class="s0">'culoare'</span><span class="s1">]</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">culoare = </span><span class="s0">'-'</span>
+        <span class="s3">if </span><span class="s0">'tip' </span><span class="s3">in </span><span class="s1">elem.__dict__:</span>
+            <span class="s1">tip = elem.__dict__[</span><span class="s0">'tip'</span><span class="s1">]</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">tip = </span><span class="s0">'-'</span>
+        <span class="s3">if </span><span class="s0">'mpixeli' </span><span class="s3">in </span><span class="s1">elem.__dict__:</span>
+            <span class="s1">mpixeli = elem.__dict__[</span><span class="s0">'mpixeli'</span><span class="s1">]</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">mpixeli = </span><span class="s0">'-'</span>
+        <span class="s1">print(</span><span class="s0">'Nume: {0} </span><span class="s3">\n</span><span class="s0">Camera: {1} </span><span class="s3">\n</span><span class="s0">Tip: {3} </span><span class="s3">\n</span><span class="s0">Model: {4} </span><span class="s3">\n</span><span class="s0">Ecran {2}'</span><span class="s1">.format</span>
+            <span class="s1">(nume</span><span class="s3">, </span><span class="s1">mpixeli</span><span class="s3">, </span><span class="s1">diagonala</span><span class="s3">, </span><span class="s1">tip</span><span class="s3">, </span><span class="s1">model ))</span>
+        <span class="s1">print(type(elem))</span>
+
+<span class="s1">caracteristici(TV1</span><span class="s3">, </span><span class="s1">i7</span><span class="s3">, </span><span class="s1">R1)</span>
+
+<span class="s3">for </span><span class="s1">elem </span><span class="s3">in </span><span class="s1">(TV1</span><span class="s3">, </span><span class="s1">i7</span><span class="s3">, </span><span class="s1">R1):</span>
+    <span class="s3">for </span><span class="s1">i </span><span class="s3">in </span><span class="s1">elem.__dict__:</span>
+        <span class="s1">print(i + </span><span class="s0">' : ' </span><span class="s1">+ str(elem.__dict__[i]))</span>
+    <span class="s1">print(type(elem))</span></pre>
+</body>
+</html>

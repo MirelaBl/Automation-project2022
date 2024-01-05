@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>Cap5_R56_T51.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #cc7832;}
+.s4 { color: #629755; font-style: italic;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap5_R56_T51.py</font>
+</center></td></tr></table>
+<pre><span class="s0"># Tema 51</span>
+<span class="s0"># Demonstreaza utilizarea claselor</span>
+<span class="s0"># PF - v 21/09/2017</span>
+
+<span class="s2">''' 
+ Creati o clasa ce va reprezenta un catalog: 
+    La initializare trebuie sa oferim doi parametrii de intrare:  nume si prenume 
+ Creati o metoda care afiseaza absente implementata cu __str__ 
+ Creati o metoda care incrementeaza cu 1 nr. de absente 
+ Creati o metoda care sterge un numar de absente dat(exclusiv un numar - verifica) 
+  (pentru cazurile in care avem o scutire medicala) fara a deveni numar negativ 
+ 
+ Creati 1 student numit (alege nume) 
+ Aplicati de 3 ori prima metoda, pentru incrementare absente 
+ Stergeti doua absente prin metoda specificata 
+ 
+ Creati al doilea student numit (alege alt nume) 
+ Aplicati de 4 ori metoda pentru incrementare absente 
+ Stergeti doua absente prin metoda specificata 
+ 
+ Afisati absentele fiecarui student 
+'''  </span><span class="s0">#</span>
+
+<span class="s3">class </span><span class="s1">Catalog:</span>
+    <span class="s4">&quot;&quot;&quot;catalog absente&quot;&quot;&quot;</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">Nume</span><span class="s3">, </span><span class="s1">Prenume):</span>
+        <span class="s4">&quot;&quot;&quot;initializeaza atribute&quot;&quot;&quot;</span>
+        <span class="s1">self.Nume = Nume</span>
+        <span class="s1">self.Prenume = Prenume</span>
+        <span class="s1">self.absente = </span><span class="s5">0</span>
+        <span class="s1">self.email = str(Nume)+str(Prenume)+</span><span class="s2">'@'</span><span class="s1">+</span><span class="s2">'gmail.com'</span>
+
+    <span class="s3">def </span><span class="s1">__str__(self):</span>
+        <span class="s4">&quot;&quot;&quot;afiseaza nr. de absente&quot;&quot;&quot;</span>
+        <span class="s3">return </span><span class="s2">&quot;Numarul de absente al studentului {0} {1} este {2}. </span><span class="s3">\n</span><span class="s2">Adresa de email este {3}&quot;</span><span class="s1">.format(</span>
+            <span class="s1">str(self.Nume)</span><span class="s3">,</span>
+            <span class="s1">str(self.Prenume)</span><span class="s3">,</span>
+            <span class="s1">str(self.absente)</span><span class="s3">,</span>
+            <span class="s1">str(self.email))</span>
+
+    <span class="s3">def </span><span class="s1">IncrAbs(self):</span>
+        <span class="s4">&quot;&quot;&quot;Incrementeaza absente&quot;&quot;&quot;</span>
+        <span class="s1">self.absente += </span><span class="s5">1</span>
+
+    <span class="s3">def </span><span class="s1">StergeAbs(self</span><span class="s3">, </span><span class="s1">nr):</span>
+        <span class="s4">&quot;&quot;&quot;Scade din nr actual un numar de absente&quot;&quot;&quot;</span>
+        <span class="s3">if </span><span class="s1">type(nr) </span><span class="s3">is </span><span class="s1">int:</span>
+            <span class="s3">if </span><span class="s1">self.absente &lt; nr:</span>
+                <span class="s1">self.absente = </span><span class="s5">0</span>
+            <span class="s3">else</span><span class="s1">:</span>
+                <span class="s1">self.absente = self.absente - nr</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">print(</span><span class="s2">&quot;Nu ati introdus un numar</span><span class="s3">\n</span><span class="s2">&quot;</span><span class="s1">)</span>
+
+
+<span class="s0"># student1</span>
+
+<span class="s1">std1 = Catalog(</span><span class="s2">&quot;Popa&quot;</span><span class="s3">, </span><span class="s2">&quot;Vasile&quot;</span><span class="s1">)</span>
+<span class="s1">std1.IncrAbs()</span>
+<span class="s1">std1.IncrAbs()</span>
+<span class="s1">std1.IncrAbs()</span>
+<span class="s1">print(</span><span class="s2">&quot;Cu scop de verificare! nu a fost solicitat in cerinta</span><span class="s3">\n</span><span class="s2">&quot;</span><span class="s3">, </span><span class="s1">std1)</span>
+
+<span class="s1">std1.StergeAbs(</span><span class="s2">&quot;2&quot;</span><span class="s1">)</span>
+<span class="s1">std1.StergeAbs(</span><span class="s5">2</span><span class="s1">)</span>
+
+<span class="s0"># student2</span>
+
+<span class="s1">std2 = Catalog(</span><span class="s2">&quot;Ilie&quot;</span><span class="s3">, </span><span class="s2">&quot;Dragomir&quot;</span><span class="s1">)</span>
+<span class="s1">std2.IncrAbs()</span>
+<span class="s1">std2.IncrAbs()</span>
+<span class="s1">std2.IncrAbs()</span>
+<span class="s1">std2.IncrAbs()</span>
+
+<span class="s1">print(</span><span class="s2">&quot;Cu scop de verificare! nu a fost solicitat in cerinta</span><span class="s3">\n</span><span class="s2">&quot;</span><span class="s3">, </span><span class="s1">std2)</span>
+
+<span class="s1">std2.StergeAbs(</span><span class="s2">&quot;2&quot;</span><span class="s1">)</span>
+<span class="s1">std2.StergeAbs(</span><span class="s5">2</span><span class="s1">)</span>
+
+<span class="s0"># afisare</span>
+<span class="s1">print(std1)</span>
+<span class="s1">print(std2)</span>
+</pre>
+</body>
+</html>

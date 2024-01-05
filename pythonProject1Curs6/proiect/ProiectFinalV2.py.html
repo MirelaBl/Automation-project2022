@@ -1,0 +1,209 @@
+<html>
+<head>
+<title>ProiectFinalV2.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #cc7832;}
+.s3 { color: #629755; font-style: italic;}
+.s4 { color: #6a8759;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ProiectFinalV2.py</font>
+</center></td></tr></table>
+<pre><span class="s0"># 571 Clase</span>
+<span class="s0"># Clase</span>
+<span class="s0"># PF - 10/08/2016</span>
+
+<span class="s2">import </span><span class="s1">pygal</span>
+<span class="s2">import </span><span class="s1">os</span>
+<span class="s2">import </span><span class="s1">sys</span>
+<span class="s0">#sys.path.append(&quot;C:\\Users\\Default\\Documents\\__PyThOn\\0 PyP\\_module&quot;)    # pt pftp</span>
+<span class="s0">#import pftp</span>
+<span class="s2">import </span><span class="s1">smtplib</span>
+<span class="s2">import </span><span class="s1">re</span>
+
+<span class="s2">class </span><span class="s1">Stoc:</span>
+    <span class="s3">&quot;&quot;&quot;Tine stocul unui depozit&quot;&quot;&quot;</span>
+
+    <span class="s2">def </span><span class="s1">__init__(self</span><span class="s2">, </span><span class="s1">prod</span><span class="s2">, </span><span class="s1">categ</span><span class="s2">,</span><span class="s1">pret</span><span class="s2">, </span><span class="s1">um=</span><span class="s4">'Buc'</span><span class="s1">):</span>
+        <span class="s1">self.prod = prod			</span><span class="s0"># parametri cu valori default ii lasam la sfarsitul listei</span>
+        <span class="s1">self.categ = categ       </span><span class="s0"># fiecare instanta va fi creata obligatoriu cu primii trei param.</span>
+        <span class="s1">self.pret = pret         </span><span class="s0"># adaugat pret</span>
+        <span class="s1">self.um = um</span>
+
+
+        <span class="s1">self.DatoriiLaFurnizor = </span><span class="s5">180</span>
+
+    <span class="s2">def </span><span class="s1">__str__(self):</span>
+        <span class="s3">&quot;&quot;&quot;afiseaza &quot;&quot;&quot;</span>
+        <span class="s2">return </span><span class="s4">&quot;pretul pe kg de {0} este de {1} lei&quot;</span><span class="s1">.format(</span>
+                <span class="s1">str(self.prod)</span><span class="s2">,</span>
+                <span class="s1">str(self.pret))</span>
+
+
+<span class="s1">visine = Stoc(</span><span class="s4">'visine'</span><span class="s2">, </span><span class="s4">'fructe'</span><span class="s2">, </span><span class="s4">'kg'</span><span class="s1">)       </span><span class="s0"># cream instantele clasei</span>
+
+<span class="s1">dictintrari = {</span><span class="s5">0</span><span class="s1">: </span><span class="s5">20</span><span class="s2">, </span><span class="s5">1</span><span class="s1">: </span><span class="s5">30</span><span class="s2">, </span><span class="s5">2</span><span class="s1">: </span><span class="s5">55</span><span class="s1">}</span>
+<span class="s1">dictiesiri={</span><span class="s5">0</span><span class="s1">: </span><span class="s5">10</span><span class="s2">, </span><span class="s5">1</span><span class="s1">: </span><span class="s5">28</span><span class="s2">, </span><span class="s5">2</span><span class="s1">: </span><span class="s5">60</span><span class="s1">}</span>
+
+
+
+<span class="s1">print(</span><span class="s5">40 </span><span class="s1">* </span><span class="s4">'-'</span><span class="s1">)</span>
+<span class="s1">visine.prod</span>
+<span class="s1">print(</span><span class="s4">'In aplicatia Stoc produsul este: '</span><span class="s1">+visine.prod)</span>
+<span class="s1">print(</span><span class="s4">'punctul1'</span><span class="s1">+</span><span class="s5">20 </span><span class="s1">* </span><span class="s4">'-'</span><span class="s1">)</span>
+<span class="s1">print(</span><span class="s4">'atentie trebuie sa inchideti graficul!!'</span><span class="s1">)</span>
+
+<span class="s4">'''1. Adaugati o metoda in clasa Stoc care sa ofere o proiectie grafica a intrarilor si iesirilor intr-o 
+anumita perioada, pentru un anumit produs;  --pygal--'''</span>
+<span class="s0">#exemplu  pygal.Bar</span>
+<span class="s1">ob_chart = pygal.Bar()  </span><span class="s0"># creare obiect - grafic cu bare verticale alaturate</span>
+<span class="s0">#ob_chart.add('Grafic12', (print(fragute.i.values())))  # adaugare date nepermisa de functia add</span>
+<span class="s0">#ob_chart.add('Grafic12', (print(fragute.e.values())))  # adaugare date nepermisa de functia add</span>
+
+<span class="s1">ob_chart.add(</span><span class="s4">'Stoc produs'</span><span class="s2">, </span><span class="s1">[</span>
+
+ <span class="s1">{</span><span class="s4">'value'</span><span class="s1">: </span><span class="s5">73</span><span class="s2">, </span><span class="s4">'color'</span><span class="s1">: </span><span class="s4">'red'</span><span class="s1">}</span><span class="s2">,</span>
+ <span class="s1">{</span><span class="s4">'value'</span><span class="s1">: </span><span class="s5">100</span><span class="s2">, </span><span class="s4">'color'</span><span class="s1">: </span><span class="s4">'rgba(0,128,0, .6)'</span><span class="s1">}</span><span class="s2">,</span>
+ <span class="s1">{</span><span class="s4">'value'</span><span class="s1">: </span><span class="s5">85</span><span class="s2">, </span><span class="s4">'color'</span><span class="s1">: </span><span class="s4">'red'</span><span class="s1">}</span><span class="s2">,</span>
+ <span class="s1">{</span><span class="s4">'value'</span><span class="s1">: </span><span class="s5">100</span><span class="s2">, </span><span class="s4">'color'</span><span class="s1">: </span><span class="s4">'rgba(0,128,0, .6)'</span><span class="s1">}</span><span class="s2">,</span>
+<span class="s1">{</span><span class="s4">'value'</span><span class="s1">: </span><span class="s5">101</span><span class="s2">, </span><span class="s4">'color'</span><span class="s1">: </span><span class="s4">'red'</span><span class="s1">}</span><span class="s2">,</span>
+<span class="s1">{</span><span class="s4">'value'</span><span class="s1">: </span><span class="s5">100</span><span class="s2">, </span><span class="s4">'color'</span><span class="s1">: </span><span class="s4">'rgba(0,128,0, .6)'</span><span class="s1">}</span><span class="s2">,</span>
+<span class="s1">])</span>
+
+<span class="s1">ob_chart.render_to_file(</span><span class="s4">'grafic2023.svg'</span><span class="s1">)  </span><span class="s0"># salvare fisier grafic</span>
+
+<span class="s1">os.system(</span><span class="s4">'../grafic2023.svg'</span><span class="s1">)  </span><span class="s0"># deschide fisierul</span>
+<span class="s0">#os.system('grafic2023.svg').close() nu merge cu close</span>
+
+<span class="s4">'''2. Adaugati o solutie in clasa Stoc care sa va avertizeze automat cand stocul unui produs este mai mic decat o  
+limita minima, predefinita per produs. Limita sa poata fi variabila (per produs). Preferabil sa  
+transmita automat un email de avertizare;'''</span>
+<span class="s1">print(</span><span class="s5">40 </span><span class="s1">* </span><span class="s4">'-'</span><span class="s1">)</span>
+<span class="s1">print(</span><span class="s4">'punctul2'</span><span class="s1">+</span><span class="s5">20 </span><span class="s1">* </span><span class="s4">'-'</span><span class="s1">)</span>
+<span class="s1">print(</span><span class="s4">'dictionar intrari visine: '</span><span class="s1">)</span>
+<span class="s1">print(dictintrari.values())</span>
+<span class="s1">print(</span><span class="s4">'dictionar iesiri visine: '</span><span class="s1">)</span>
+<span class="s1">print(dictiesiri.values())</span>
+<span class="s1">print(</span><span class="s4">'cantit min intrari visine: 25 kg'</span><span class="s1">)</span>
+<span class="s1">min = </span><span class="s5">25</span>
+<span class="s1">print(</span><span class="s4">'cantit max intrari visine:50 kg'</span><span class="s1">)</span>
+<span class="s1">max =</span><span class="s5">50</span>
+<span class="s1">print(</span><span class="s5">40 </span><span class="s1">* </span><span class="s4">'-'</span><span class="s1">)</span>
+
+<span class="s2">for </span><span class="s1">v </span><span class="s2">in </span><span class="s1">dictintrari.values():</span>
+        <span class="s2">if </span><span class="s1">v &lt; min:</span>
+            <span class="s1">print(</span><span class="s4">'cantitate intrari visine:'</span><span class="s1">)</span>
+            <span class="s1">print(v)</span>
+            <span class="s1">print(</span><span class="s4">' se trimite email'</span><span class="s1">)</span>
+        <span class="s2">elif </span><span class="s1">v &gt; max:</span>
+            <span class="s1">print(</span><span class="s4">'cantitate intrari visine:'</span><span class="s1">)</span>
+            <span class="s1">print(v)</span>
+            <span class="s1">print(</span><span class="s4">' se trimite email'</span><span class="s1">)</span>
+
+
+<span class="s2">for </span><span class="s1">v </span><span class="s2">in </span><span class="s1">dictiesiri.values():</span>
+    <span class="s2">if </span><span class="s1">v &lt; min:</span>
+        <span class="s1">print(</span><span class="s4">'cantitate iesiri visine:'</span><span class="s1">)</span>
+        <span class="s1">print(v)</span>
+        <span class="s1">print(</span><span class="s4">' se trimite email'</span><span class="s1">)</span>
+    <span class="s2">elif </span><span class="s1">v &gt; max:</span>
+        <span class="s1">print(</span><span class="s4">'cantitate iesiri visine:'</span><span class="s1">)</span>
+        <span class="s1">print(v)</span>
+        <span class="s1">print(</span><span class="s4">' se trimite email'</span><span class="s1">)</span>
+
+<span class="s1">print(</span><span class="s4">'punctul3'</span><span class="s1">+</span><span class="s5">20 </span><span class="s1">* </span><span class="s4">'-'</span><span class="s1">)</span>
+
+<span class="s4">'''3. Adaugati o metoda in clasa Stoc care sa transmita prin email diferite informatii( 
+de exemplu fisa produsului) ;   --SMTP--'''</span>
+
+<span class="s1">expeditor = </span><span class="s4">'bmirela306@gmx.at'</span>
+<span class="s1">destinatar = </span><span class="s4">'mirela.blaschke@gmail.com'</span>
+<span class="s1">username = </span><span class="s4">'bmirela306@gmx.at'</span>
+<span class="s1">subiect = </span><span class="s4">'ceva'</span>
+<span class="s1">mesaj = </span><span class="s4">&quot;&quot;&quot;From: {0} 
+To: {1} 
+Subject: {2} 
+Content-type: text/html 
+&lt;html&gt; 
+Salut, 
+    &lt;head&gt; 
+        &lt;title&gt;&lt;/title&gt; 
+        &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot; /&gt; 
+        &lt;link href=&quot;../../../default.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt; 
+    &lt;/head&gt; 
+    &lt;body style=&quot;background:none;margin:0px&quot;&gt; 
+        &lt;h1 class=jobstitle&gt;TEST test&lt;/h1&gt; 
+    &lt;/body&gt; 
+&lt;p&gt;Paul&lt;/p&gt; 
+&lt;/html&gt; 
+&quot;&quot;&quot;</span><span class="s1">.format(expeditor</span><span class="s2">, </span><span class="s1">destinatar</span><span class="s2">, </span><span class="s1">subiect)</span>
+
+<span class="s1">parola= </span><span class="s4">'123test123test123'</span>
+<span class="s1">print(expeditor</span><span class="s2">, </span><span class="s1">destinatar</span><span class="s2">, </span><span class="s1">subiect);</span>
+<span class="s2">try</span><span class="s1">:</span>
+	<span class="s1">smtp_ob = smtplib.SMTP(</span><span class="s4">'mail.gmx.com:587'</span><span class="s1">)</span>
+	<span class="s1">smtp_ob.starttls()  						</span><span class="s0"># protocol criptare</span>
+	<span class="s1">smtp_ob.login(username</span><span class="s2">, </span><span class="s1">parola)</span>
+	<span class="s2">for </span><span class="s1">i </span><span class="s2">in </span><span class="s1">destinatar:</span>
+		<span class="s1">smtp_ob.sendmail(expeditor</span><span class="s2">, </span><span class="s1">i</span><span class="s2">, </span><span class="s1">mesaj)</span>
+		<span class="s1">print(</span><span class="s4">f'Mesaj to </span><span class="s2">{</span><span class="s1">i</span><span class="s2">} </span><span class="s4">expediat cu succes!'</span><span class="s1">)</span>
+	<span class="s1">smtp_ob.close()</span>
+
+<span class="s2">except</span><span class="s1">:</span>
+		<span class="s1">print(</span><span class="s4">f'Mesajul  expediat catre </span><span class="s2">{</span><span class="s1">expeditor</span><span class="s2">} </span><span class="s4">de catre </span><span class="s2">{</span><span class="s1">destinatar</span><span class="s2">} </span><span class="s4">nu a putut fi expediat!'</span><span class="s1">)</span>
+<span class="s1">print(</span><span class="s5">40 </span><span class="s1">* </span><span class="s4">'-'</span><span class="s1">)</span>
+
+<span class="s4">'''4. Adaugati o metoda in clasa Stoc care sa utilizeze Regex pentru a cauta : 
+    - un produs introdus de utilizator; 
+    - o tranzactie cu o anumita valoare introdusa de utilizator;    --re--'''</span>
+<span class="s1">print(</span><span class="s4">'punctul4'</span><span class="s1">+</span><span class="s5">20 </span><span class="s1">* </span><span class="s4">'-'</span><span class="s1">)</span>
+<span class="s1">x = input(</span><span class="s4">'introdu o propozitie care sa contina urmatoarele produse mere, pere, ardei:'</span><span class="s1">)</span>
+<span class="s1">print(x)</span>
+<span class="s1">searchWithRe = re.findall(</span><span class="s4">'\S+er\S+'</span><span class="s2">, </span><span class="s1">x)  </span><span class="s0"># cauta toate aparitiile de forma 'er'</span>
+<span class="s1">print(</span><span class="s4">'cauta toate aparitiile de forma &quot;er&quot;:' </span><span class="s1">)</span>
+<span class="s1">print(searchWithRe)</span>
+<span class="s1">print(</span><span class="s5">20 </span><span class="s1">* </span><span class="s4">'-'</span><span class="s1">)</span>
+<span class="s0"># cauta cuv cu 'er' in input dat</span>
+<span class="s1">input = </span><span class="s4">'pretul pe kg de mere este de 8 lei'</span>
+<span class="s1">searchWithRe = re.findall(</span><span class="s4">'\S+er\S+'</span><span class="s2">, </span><span class="s1">input)  </span><span class="s0"># cauta toate aparitiile de forma 'er'</span>
+<span class="s1">print(</span><span class="s4">'cauta toate aparitiile de forma &quot;er&quot;:' </span><span class="s1">)</span>
+<span class="s1">print(searchWithRe)</span>
+<span class="s4">'''5. Completati aplicatia astfel incat sa permita introducerea pretului la fiecare intrare si iesire. 
+Pretul de iesire va fi pretul mediu ponderat (la fiecare tranzactie de intrare se va face o medie intre 
+pretul produselor din stoc si al celor intrate ceea ce va deveni noul pret al produselor stocate). 
+Pretul de iesire va fi pretul din acel moment; '''</span>
+<span class="s1">print(</span><span class="s4">'punctul5'</span><span class="s1">+</span><span class="s5">20 </span><span class="s1">* </span><span class="s4">'-'</span><span class="s1">)</span>
+<span class="s1">mere = Stoc(</span><span class="s4">'mere'</span><span class="s2">, </span><span class="s4">'fructe'</span><span class="s2">,</span><span class="s5">8</span><span class="s2">, </span><span class="s4">'kg'</span><span class="s1">)</span>
+<span class="s1">print(mere.categ)</span>
+<span class="s1">print(mere.prod)</span>
+<span class="s1">print(mere.pret)</span>
+<span class="s1">print(mere.__str__())</span>
+
+<span class="s1">pere = Stoc(</span><span class="s4">'pere'</span><span class="s2">, </span><span class="s4">'fructe'</span><span class="s2">,</span><span class="s5">12</span><span class="s2">, </span><span class="s4">'kg'</span><span class="s1">)</span>
+<span class="s1">print(pere.__str__())</span>
+<span class="s4">'''6. Creati trei metode noi, diferite de cele facute la clasa, testati-le si asigurati-va ca functioneaza cu succes;'''</span>
+<span class="s1">print(</span><span class="s4">'punctul6'</span><span class="s1">+</span><span class="s5">20 </span><span class="s1">* </span><span class="s4">'-'</span><span class="s1">)</span>
+<span class="s2">def </span><span class="s1">DatoriiLaFurnizor( DatoriiLaFurnizor):</span>
+    <span class="s2">return </span><span class="s1">DatoriiLaFurnizor</span>
+
+<span class="s1">visine2 = Stoc(</span><span class="s4">'visine2'</span><span class="s2">, </span><span class="s4">'fructe'</span><span class="s2">, </span><span class="s4">'kg'</span><span class="s1">)</span>
+<span class="s1">print(</span><span class="s4">'DatoriiLaFurnizorinBani:'</span><span class="s1">)</span>
+<span class="s1">print(visine2.DatoriiLaFurnizor)</span>
+
+
+
+
+
+
+
+</pre>
+</body>
+</html>

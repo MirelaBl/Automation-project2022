@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>Cap5_R22_Cs.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #cc7832;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap5_R22_Cs.py</font>
+</center></td></tr></table>
+<pre><span class="s0"># 572 Clase</span>
+<span class="s0"># Clase -  dictionar</span>
+<span class="s0"># PF - v 21/09/2017</span>
+
+<span class="s2">''' 
+Creati o clasa dictionar, cu urmatoarele metode: 
+    - init, care atribuie fiecarei instante un dictionar 
+        (cheia va fi cuvantul, valoarea va fi descrierea) 
+    - adauga, care va permite adaugarea succesiva de cuvinte. Va avea: 
+        - input cuvant 
+        - o conditie de iesire daca am terminat de introdus cuvinte 
+        - testeaza daca cuvantul introdus exista. Daca exista apeleaza aceeasi metoda: self.adauga() 
+        - daca nu exista introduce si descrierea 
+        - il introduce in dictionar 
+    - modifica, care va permite modificarea succesiva de cuvinte. Va avea: 
+        - testeaza daca dictionarul e gol 
+        - input cuvant 
+        - o conditie de iesire daca am terminat de modificat cuvinte 
+        - testeaza daca cuvantul de modificat exista. Daca exista il modifica. 
+    - cauta, care va permite cautare succesiva de cuvinte. Va avea: 
+        - testeaza daca dictionarul e gol 
+        - input cuvant 
+        - o conditie de iesire daca am terminat de cautat cuvinte 
+        - testeaza daca cuvantul exista. Daca exista printeaza cheie si valoare. 
+    - sterge, care va permite stergerea succesiva de cuvinte. Va avea: 
+        - testeaza daca dictionarul e gol 
+        - input cuvant 
+        - o conditie de iesire daca am terminat de sters cuvinte 
+        - testeaza daca cuvantul exista. Daca exista il sterge. 
+    - afiseaza, care va permite listarea dictionarului: 
+''' </span><span class="s0">#</span>
+
+
+<span class="s3">class </span><span class="s1">dictionar():</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self):</span>
+        <span class="s1">self.dict_cuv = {}</span>
+
+    <span class="s3">def </span><span class="s1">adauga(self):</span>
+        <span class="s3">while True</span><span class="s1">:</span>
+            <span class="s1">cuvant = input(</span><span class="s2">&quot;Ce cuvant doriti sa adaugati? </span><span class="s3">\ 
+                </span><span class="s2">Introduceti '000' (trei de zero) pentru a iesi: &quot;</span><span class="s1">).lower()</span>
+            <span class="s3">if </span><span class="s1">cuvant == </span><span class="s2">'000'</span><span class="s1">:</span>
+                <span class="s3">break</span>
+            <span class="s3">elif </span><span class="s1">self.dict_cuv.get(cuvant):</span>
+                <span class="s1">print(</span><span class="s2">'Cuvant Existent. Adaugati alt cuvant: '</span><span class="s1">)</span>
+                <span class="s1">self.adauga()       </span><span class="s0"># putem sa apelam propria metoda (recursivitate)</span>
+            <span class="s3">else</span><span class="s1">:</span>
+                <span class="s1">descriere = input(</span><span class="s2">&quot;Introduceti descrierea: &quot;</span><span class="s1">).lower()</span>
+                <span class="s1">self.dict_cuv[cuvant] = descriere</span>
+                <span class="s1">print(</span><span class="s2">&quot;Am introdus in dictionar {0} = {1}&quot;</span><span class="s1">.format(cuvant</span><span class="s3">, </span><span class="s1">descriere))</span>
+                <span class="s1">print(self.dict_cuv)</span>
+
+    <span class="s3">def </span><span class="s1">modifica(self):</span>
+        <span class="s3">while </span><span class="s1">self.dict_cuv:</span>
+            <span class="s1">cuvant = input(</span><span class="s2">&quot;Ce cuvant doriti sa modificati? </span><span class="s3">\ 
+                </span><span class="s2">Introduceti '000' pentru a iesi: &quot;</span><span class="s1">).lower()</span>
+            <span class="s3">if </span><span class="s1">cuvant == </span><span class="s2">'000'</span><span class="s1">:</span>
+                <span class="s3">break</span>
+            <span class="s3">elif </span><span class="s1">self.dict_cuv.get(cuvant):</span>
+                <span class="s1">descriere = input(</span><span class="s2">&quot;Introduceti noua descriere: &quot;</span><span class="s1">).lower()</span>
+                <span class="s1">self.dict_cuv[cuvant] = descriere</span>
+                <span class="s1">print(</span><span class="s2">&quot;Am modificat dictionarul: {0} = {1}&quot;</span><span class="s1">.format(cuvant</span><span class="s3">, </span><span class="s1">descriere))</span>
+                <span class="s1">print(self.dict_cuv)</span>
+            <span class="s3">else</span><span class="s1">:</span>
+                <span class="s1">print(</span><span class="s2">&quot;Cuvantul &quot; </span><span class="s1">+ str(cuvant) + </span><span class="s2">&quot; nu exista in dictionar!&quot;</span><span class="s1">)</span>
+
+    <span class="s3">def </span><span class="s1">cauta(self):</span>
+        <span class="s3">while </span><span class="s1">self.dict_cuv:</span>
+            <span class="s1">cuvant = input(</span><span class="s2">&quot;Ce cuvant cautati? </span><span class="s3">\ 
+                </span><span class="s2">Introduceti '000' pentru a iesi: &quot;</span><span class="s1">).lower()</span>
+            <span class="s3">if </span><span class="s1">cuvant == </span><span class="s2">'000'</span><span class="s1">:</span>
+                <span class="s3">break</span>
+            <span class="s3">if </span><span class="s1">self.dict_cuv.get(cuvant):</span>
+                <span class="s1">print(</span><span class="s2">'Cuvant: {0}, Descriere: {1}'</span><span class="s1">.format(cuvant</span><span class="s3">, </span><span class="s1">self.dict_cuv[cuvant]))</span>
+            <span class="s3">else</span><span class="s1">:</span>
+                <span class="s1">print(</span><span class="s2">&quot;Cuvantul &quot; </span><span class="s1">+ cuvant + </span><span class="s2">&quot; nu exista in dictionar!&quot;</span><span class="s1">)</span>
+
+
+    <span class="s3">def </span><span class="s1">sterge(self):</span>
+        <span class="s3">while </span><span class="s1">self.dict_cuv:</span>
+            <span class="s1">cuvant = input(</span><span class="s2">&quot;Ce cuvant doriti sa stergeti? </span><span class="s3">\ 
+                </span><span class="s2">Introduceti '000' pentru a iesi: &quot;</span><span class="s1">).lower()</span>
+            <span class="s3">if </span><span class="s1">cuvant == </span><span class="s2">'000'</span><span class="s1">:</span>
+                <span class="s3">break</span>
+            <span class="s3">if </span><span class="s1">self.dict_cuv.get(cuvant):</span>
+                <span class="s1">self.dict_cuv.pop(cuvant)</span>
+                <span class="s1">print(</span><span class="s2">'Cuvantul: {0} a fost sters.'</span><span class="s1">.format(cuvant))</span>
+            <span class="s3">else</span><span class="s1">:</span>
+                <span class="s1">print(</span><span class="s2">&quot;Cuvantul {0} nu exista in dictionar!&quot;</span><span class="s1">.format(cuvant))</span>
+
+    <span class="s3">def </span><span class="s1">afiseaza(self):</span>
+        <span class="s3">for </span><span class="s1">i </span><span class="s3">in </span><span class="s1">self.dict_cuv:</span>
+            <span class="s1">print(</span><span class="s2">'Cuvant:'</span><span class="s3">, </span><span class="s1">i</span><span class="s3">, </span><span class="s2">&quot;Descriere:&quot;</span><span class="s3">, </span><span class="s1">self.dict_cuv[i])</span>
+
+
+<span class="s1">dict_eng = dictionar()</span>
+<span class="s1">dict_eng.adauga()</span>
+
+<span class="s1">dict_eng.cauta()</span>
+<span class="s1">dict_eng.sterge()</span>
+
+<span class="s1">dict_eng.afiseaza()</span>
+<span class="s1">dict_eng.modifica()</span>
+
+</pre>
+</body>
+</html>

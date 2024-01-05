@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>Cap6_02_atribut_instanta_vs_atribut_clasa.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #cc7832;}
+.s4 { color: #629755; font-style: italic;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_02_atribut_instanta_vs_atribut_clasa.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+602 OOP VS 
+Variabila de clasa --&gt; atribut propriu dat de o metoda 
+PF - 08.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+<span class="s2"># pylint: disable=invalid-name</span>
+<span class="s2"># pylint: disable=no-member</span>
+
+
+<span class="s3">class </span><span class="s1">Clasa:</span>
+    <span class="s4">&quot;&quot;&quot;Atribut clasa / atribut obiect&quot;&quot;&quot;</span>
+
+    <span class="s1">atribut_clasa = </span><span class="s5">77</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">atribut_instanta=</span><span class="s5">10</span><span class="s1">):</span>
+        <span class="s4">&quot;&quot;&quot;atribut propriu&quot;&quot;&quot;</span>
+        <span class="s1">self.atribut_instanta = atribut_instanta</span>
+
+    <span class="s3">def </span><span class="s1">modifica(self</span><span class="s3">, </span><span class="s1">valoare_noua):</span>
+        <span class="s4">&quot;&quot;&quot;utilizand self genereaza un atribut propriu, nu modifica atributul de clasa&quot;&quot;&quot;</span>
+        <span class="s1">self.atribut_clasa = valoare_noua</span>
+
+    <span class="s3">def </span><span class="s1">modif_atribut_instanta(self</span><span class="s3">, </span><span class="s1">noua_val):</span>
+        <span class="s4">&quot;&quot;&quot;modifica (atribuie) atributul propriu&quot;&quot;&quot;</span>
+        <span class="s1">self.atribut_instanta = noua_val</span>
+
+
+<span class="s2"># definim un obiect cu valoarea default pentru atribut_instanta</span>
+<span class="s1">obj1 = Clasa()</span>
+<span class="s1">print(obj1.atribut_instanta)</span>
+<span class="s1">print(obj1.atribut_clasa)</span>
+<span class="s1">print(obj1.__dict__)</span>
+
+<span class="s2"># Aplicam metode. Listam noile atribute</span>
+<span class="s1">obj1.modif_atribut_instanta(</span><span class="s5">20</span><span class="s1">)  </span><span class="s2"># atribuire de valori proprii instantelor</span>
+<span class="s1">obj1.modifica(</span><span class="s5">100</span><span class="s1">)</span>
+<span class="s1">print(obj1.atribut_instanta)</span>
+<span class="s1">print(obj1.atribut_clasa)</span>
+<span class="s1">print(Clasa.atribut_clasa)</span>
+<span class="s1">print(obj1.__dict__)</span>
+
+<span class="s2"># Avem acces la atributul instantei doar prin intermediul aceteia, nu si al clasei</span>
+<span class="s1">print(Clasa.atribut_instanta)  </span><span class="s2"># eroare</span>
+
+<span class="s2"># definim un alt obiect, fara sa-i aplicam metode</span>
+<span class="s1">obj2 = Clasa(</span><span class="s5">5</span><span class="s1">)</span>
+<span class="s1">obj2.atribut_clasa</span>
+
+<span class="s1">print(obj2.__dict__)</span>
+</pre>
+</body>
+</html>

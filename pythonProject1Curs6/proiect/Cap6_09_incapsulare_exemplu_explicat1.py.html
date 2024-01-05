@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Cap6_09_incapsulare_exemplu_explicat1.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #cc7832;}
+.s4 { color: #629755; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_09_incapsulare_exemplu_explicat1.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+609 OOP   
+Incapsulare - exemplu explicat 
+PF - 08.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+
+<span class="s3">class </span><span class="s1">Masina:</span>
+    <span class="s4">&quot;&quot;&quot;Testam metoda privata si atributul privat&quot;&quot;&quot;</span>
+
+    <span class="s3">def </span><span class="s1">cul_pub(self):  </span><span class="s2"># metoda publica</span>
+        <span class="s4">&quot;&quot;&quot;O metoda publica poate avea argumente publice si private&quot;&quot;&quot;</span>
+        <span class="s1">self.culoare_public = </span><span class="s0">'publica'  </span><span class="s2"># argument public - vizibil</span>
+        <span class="s1">self.__culoare_privata = </span><span class="s0">'privata'  </span><span class="s2"># argument privat - nu va fi vizibil</span>
+
+    <span class="s3">def </span><span class="s1">listeaza_culoare(self):</span>
+        <span class="s4">&quot;&quot;&quot;O metoda publica poate acceasa si argumente private&quot;&quot;&quot;</span>
+        <span class="s1">print(self.__culoare_privata)</span>
+
+    <span class="s3">def </span><span class="s1">__listeazaCuloare(self):  </span><span class="s2"># metoda privata, nu poate fi accesata de obiect direct</span>
+        <span class="s4">&quot;&quot;&quot;O metoda privata poate avea argumente publice si private&quot;&quot;&quot;</span>
+        <span class="s1">print(self.culoare_public)  </span><span class="s2"># argument public</span>
+        <span class="s1">print(self.__culoare_privata)  </span><span class="s2"># argument privat</span>
+
+    <span class="s3">def </span><span class="s1">apeleaza(self):</span>
+        <span class="s4">&quot;&quot;&quot;O metoda publica poate accesa una privata&quot;&quot;&quot;</span>
+        <span class="s1">self.__listeazaCuloare()</span>
+
+
+<span class="s1">obiect_1 = Masina()</span>
+
+<span class="s1">print(obiect_1.__dict__)</span>
+
+<span class="s2"># Apelam metoda listeaza_culoare</span>
+<span class="s1">print(obiect_1.cul_pub())  </span><span class="s2"># argumentul public este accesibil</span>
+
+<span class="s1">print(obiect_1.__culoare_privata)  </span><span class="s2"># argumentul privat nu este accesibil indiferent cum il apelam</span>
+<span class="s1">print(obiect_1.culoare_public)</span>
+
+<span class="s1">print(obiect_1.__dict__)</span>
+
+<span class="s1">print(obiect_1._Masina__culoare_privata)   </span><span class="s2"># putem totusi sa-l apelam cu _Clasa__atributprivat</span>
+
+<span class="s2"># nume_instanta._NumeClasa__variabilaPrivata</span>
+
+<span class="s2"># Apelam metoda listeaza_culoare</span>
+
+<span class="s1">obiect_1.listeaza_culoare()     </span><span class="s2"># atributul privat va fi listat</span>
+
+<span class="s2"># Apelam metoda privata __listeazaCuloare</span>
+
+<span class="s1">obiect_1.__listeazaCuloare()    </span><span class="s2"># nu poate fi apelata</span>
+
+<span class="s1">obiect_1._Masina__listeazaCuloare()     </span><span class="s2"># o apelam prin constructia obiect._Clasa__metodaprivata</span>
+
+
+<span class="s2"># Apelam metoda &quot;apeleaza&quot;</span>
+
+<span class="s1">obiect_1.apeleaza() </span><span class="s2"># metoda privata accesata printr-o metoda publica</span>
+
+<span class="s1">print(obiect_1.__dict__)</span>
+
+<span class="s1">dir(obiect_1)</span>
+
+<span class="s1">print(Masina.__dict__)</span>
+</pre>
+</body>
+</html>

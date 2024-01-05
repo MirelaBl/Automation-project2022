@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>Cap6_13_mostenire_init.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #cc7832;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_13_mostenire_init.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+613 OOP   
+Mostenire init 
+PF - 08.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+<span class="s2"># mostenira obisnuita</span>
+<span class="s3">class </span><span class="s1">jucarii:</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">categorie</span><span class="s3">, </span><span class="s1">dimensiuni):</span>
+        <span class="s1">self.categorie = categorie</span>
+        <span class="s1">self.dimensiuni = dimensiuni</span>
+
+<span class="s3">class </span><span class="s1">valoare:</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">pret = </span><span class="s4">1000</span><span class="s1">):</span>
+        <span class="s1">self.pret = pret</span>
+
+    <span class="s3">def </span><span class="s1">ceva(self):</span>
+        <span class="s1">print(</span><span class="s0">'ceva'</span><span class="s1">)</span>
+
+<span class="s3">class </span><span class="s1">papusi(jucarii</span><span class="s3">, </span><span class="s1">valoare):</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">nume = </span><span class="s0">'Barbie'</span><span class="s3">, </span><span class="s1">**parent):</span>
+        <span class="s1">self.nume = nume</span>
+        <span class="s1">super().__init__(**parent)</span>
+
+<span class="s1">parametri = {</span><span class="s0">'categorie'</span><span class="s1">: </span><span class="s0">'5-8 ani'</span><span class="s3">, </span><span class="s0">'dimensiuni'</span><span class="s1">: </span><span class="s4">50 </span><span class="s1">}</span>
+
+<span class="s1">p1 = papusi(</span><span class="s0">'Aradeanca'</span><span class="s3">, </span><span class="s1">**parametri)</span>
+<span class="s1">p2 = papusi(categorie=</span><span class="s0">'8-11 ani'</span><span class="s3">, </span><span class="s1">dimensiuni=</span><span class="s4">25</span><span class="s1">)</span>
+<span class="s1">print(p1.nume)</span>
+<span class="s1">print(p1.categorie)</span>
+<span class="s1">print(p1.pret)</span>
+<span class="s1">p1.ceva()</span>
+<span class="s1">print(p1.dimensiuni)</span>
+<span class="s1">print(p2.__dict__)</span>
+
+<span class="s1">isinstance(p1</span><span class="s3">, </span><span class="s1">valoare)</span>
+<span class="s1">issubclass(papusi</span><span class="s3">, </span><span class="s1">jucarii)</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="s2"># exceptia, mostenire multipla init</span>
+<span class="s3">class </span><span class="s1">jucarii:</span>
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">categorie = </span><span class="s0">'ceva'</span><span class="s1">):</span>
+        <span class="s1">super(jucarii</span><span class="s3">, </span><span class="s1">self).__init__()</span>
+        <span class="s1">self.categorie = categorie</span>
+
+<span class="s3">class </span><span class="s1">valoare:</span>
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">pret = </span><span class="s4">1000</span><span class="s1">):</span>
+        <span class="s1">super(valoare</span><span class="s3">, </span><span class="s1">self).__init__()</span>
+        <span class="s1">self.pret = pret</span>
+
+<span class="s3">class </span><span class="s1">papusi(jucarii</span><span class="s3">, </span><span class="s1">valoare):</span>
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">categorie</span><span class="s3">, </span><span class="s1">nume = </span><span class="s0">'Barbie'</span><span class="s1">):</span>
+        <span class="s1">super(papusi</span><span class="s3">, </span><span class="s1">self).__init__(categorie)</span>
+        <span class="s1">self.nume = nume</span>
+
+
+<span class="s1">p1 = papusi(</span><span class="s0">'10+'</span><span class="s1">)</span>
+<span class="s1">print(p1.__dict__)</span>
+<span class="s1">print(p1.nume)</span>
+<span class="s1">print(p1.categorie)</span>
+<span class="s1">print(p1.pret)</span>
+</pre>
+</body>
+</html>

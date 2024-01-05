@@ -1,0 +1,1489 @@
+<html>
+<head>
+<title>Cap 6 master.ipynb</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap 6 master.ipynb</font>
+</center></td></tr></table>
+<pre><span class="s0">{ 
+ &quot;cells&quot;: [ 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: 3, 
+   &quot;id&quot;: &quot;cd43793e&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [ 
+    { 
+     &quot;data&quot;: { 
+      &quot;text/html&quot;: [ 
+       &quot;\n&quot;, 
+       &quot;&lt;style&gt;\n&quot;, 
+       &quot;     .blue {\n&quot;, 
+       &quot;         color: blue;\n&quot;, 
+       &quot;     }\n&quot;, 
+       &quot;     \n&quot;, 
+       &quot;     .red {\n&quot;, 
+       &quot;         color: red;\n&quot;, 
+       &quot;     }\n&quot;, 
+       &quot;\n&quot;, 
+       &quot;     .trcz {\n&quot;, 
+       &quot;         color:#48CAE4;\n&quot;, 
+       &quot;     }\n&quot;, 
+       &quot;\n&quot;, 
+       &quot;     .trcz a {\n&quot;, 
+       &quot;         color: inherit;\n&quot;, 
+       &quot;     }\n&quot;, 
+       &quot;\n&quot;, 
+       &quot;     .green {\n&quot;, 
+       &quot;         color: green;\n&quot;, 
+       &quot;     }\n&quot;, 
+       &quot;\n&quot;, 
+       &quot;     .ita {\n&quot;, 
+       &quot;         font-style: italic;\n&quot;, 
+       &quot;     }\n&quot;, 
+       &quot;     \n&quot;, 
+       &quot;     .vio {\n&quot;, 
+       &quot;        font-style: violet;\n&quot;, 
+       &quot;     }\n&quot;, 
+       &quot;\n&quot;, 
+       &quot;\n&quot;, 
+       &quot;&lt;/style&gt;\n&quot; 
+      ], 
+      &quot;text/plain&quot;: [ 
+       &quot;&lt;IPython.core.display.HTML object&gt;&quot; 
+      ] 
+     }, 
+     &quot;execution_count&quot;: 3, 
+     &quot;metadata&quot;: {}, 
+     &quot;output_type&quot;: &quot;execute_result&quot; 
+    } 
+   ], 
+   &quot;source&quot;: [ 
+    &quot;from ipythoncss import HTML, STILURI\n&quot;, 
+    &quot;HTML(STILURI)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: 2, 
+   &quot;id&quot;: &quot;9c1cb478&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;import sys\n&quot;, 
+    &quot;sys.path\n&quot;, 
+    &quot;sys.path.extend(['C:\\\\Users\\\\paul\\\\OneDrive\\\\Documents\\\\__PyThOn'\n&quot;, 
+    &quot;            'C:\\\\Users\\\\paul\\\\OneDrive\\\\Documents\\\\__PyThOn\\\\0 PyP\\\\_module',\n&quot;, 
+    &quot;            'C:\\\\Users\\\\paul\\\\OneDrive\\\\Documents\\\\__PyThOn\\\\venv\\\\Lib\\\\site-packages'])&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;5d7dc591&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;# &lt;span class=\&quot;blue\&quot;&gt; 6. OOP Advanced&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;0c3bf16b&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;## &lt;span class=\&quot;trcz\&quot;&gt; 6.1. Variabila de clasa (statica)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;0d3ef0a8&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### Variabila este creata in afara unei metode. Poate fi accesata prin apelarea : \n&quot;, 
+    &quot;        NumeClasa.numeVariabila;\n&quot;, 
+    &quot;        numeObiect.numeVariabila;\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Aceast procedeu ne permite sa cream un atribut care sa nu fie afectat de metode (atribuit unei instante anume) ci sa fie atribuit tuturor instantelor\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Atributul va fi creat intr-un singur exemplar, spre deosebire de cele date de metode, care au cate un exemplar pentru fiecare instanta \t\t\t\t\t&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;96ecc629&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;class Demo:\n&quot;, 
+    &quot;    \&quot;\&quot;\&quot;Aceasta clasa are variabile de clasa\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    nr_magic = 7\n&quot;, 
+    &quot;    nr_instante = 0  # variabila de clasa (statica). Numara instantele create\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __init__(self):\n&quot;, 
+    &quot;        Demo.nr_instante += 1  # apelare! nume_clasa.variabila&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;b42af4f3&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;obj1 = Demo()\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;print(obj1.__dict__)\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;# apelarea variabilei se poate face prin nume clasa sau nume instanta\n&quot;, 
+    &quot;print(Demo.nr_magic)\n&quot;, 
+    &quot;print(Demo.nr_instante)\n&quot;, 
+    &quot;print(obj1.nr_magic)\n&quot;, 
+    &quot;print(obj1.nr_instante)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;d8c1b2ef&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;## &lt;span class=\&quot;trcz\&quot;&gt; 6.2. Variabila de clasa vs atribut instanta&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;53b87360&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### Daca avem doua atribute cu acelasi nume, unul de clasa si unul dat de o metoda, atributul dat de o metoda are prioritate\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Consecinta este ca obiectul nu va mai avea access la atributul(variabila) de clasa\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Daca vrem ca o metoda sa atribuie/modifice un atribut al instantei utilizam self\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Daca vrem ca metoda sa modifice variabila de clasa utilizam numele clasei&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;80bc61a9&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;class Clasa:\n&quot;, 
+    &quot;    \&quot;\&quot;\&quot;Atribut clasa / atribut obiect\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    atribut1 = 77\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __init__(self, atribut2=10):\n&quot;, 
+    &quot;        \&quot;\&quot;\&quot;atribut propriu\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;        self.atribut2 = atribut2\n&quot;, 
+    &quot;        \n&quot;, 
+    &quot;    def modifica_atribut_clasa(self, valoare_noua):\n&quot;, 
+    &quot;        \&quot;\&quot;\&quot;utilizand nume clasa modifica atributul de clasa\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;        Clasa.atribut1 = valoare_noua\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def atribuie_atribut_propriu(self, valoare_noua):\n&quot;, 
+    &quot;        \&quot;\&quot;\&quot;utilizand self genereaza un atribut propriu, nu modifica atributul de clasa\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;        self.atribut1 = valoare_noua\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def modif_atribut_instanta(self, noua_val):\n&quot;, 
+    &quot;        \&quot;\&quot;\&quot;modifica (atribuie) atributul propriu\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;        self.atribut2 = noua_val&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;70e9a154&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# definim un obiect cu valoarea default pentru atribut_instanta\n&quot;, 
+    &quot;obj1 = Clasa()\n&quot;, 
+    &quot;print(obj1.atribut2)\n&quot;, 
+    &quot;print(obj1.atribut1)\n&quot;, 
+    &quot;print(obj1.__dict__)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;ef5aa72d&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# aplicam metodele si observam schimbarile\n&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;51878b0b&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;## &lt;span class=\&quot;trcz\&quot;&gt; 6.3. Validarea datelor de intrare&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;acdc5345&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### Verificam tipul de date\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Verificam daca datele de intrare indeplinesc anumite criterii, cum ar fi urmatoarele:\n&quot;, 
+    &quot;#### - plaja de valori\n&quot;, 
+    &quot;#### - multimea de valori\n&quot;, 
+    &quot;#### - alti parametri specifici&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;d10d65b7&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;class People:\n&quot;, 
+    &quot;    \&quot;\&quot;\&quot;Atribut clasa / atribut obiect - continuare\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;    an_studiu = {'Anul 1', 'Anul 2', 'Anul 3', 'Anul 4', 'Anul 5'}  # ani de studiu\n&quot;, 
+    &quot;    facultate = {'Inginerie', 'Drept', 'Finante', 'Geografie'}  # specializari\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __init__(self, nume, anul, facultatea):\n&quot;, 
+    &quot;        if anul in People.an_studiu:\n&quot;, 
+    &quot;            self.anul = anul\n&quot;, 
+    &quot;        else:\n&quot;, 
+    &quot;            raise NameError('Anul de studii este incorect')\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;        if facultatea in People.facultate:\n&quot;, 
+    &quot;            self.studii = facultatea\n&quot;, 
+    &quot;        else:\n&quot;, 
+    &quot;            raise NameError('Specialitate incorecta')\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;        if nume.isalpha() and len(nume) &gt; 1:\n&quot;, 
+    &quot;            self.nume = nume\n&quot;, 
+    &quot;        else:\n&quot;, 
+    &quot;            self.nume = ''\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __str__(self):\n&quot;, 
+    &quot;        result = self.nume + \&quot; este in \&quot; + self.anul + ' la ' + self.studii + '.'\n&quot;, 
+    &quot;        return result&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;1cd39ceb&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# date valide\n&quot;, 
+    &quot;Ioana = People('Ioana', 'Anul 2', 'Drept')\n&quot;, 
+    &quot;print(Ioana)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;59e8e736&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# date invalide\n&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;279bc2a7&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;## &lt;span class=\&quot;trcz\&quot;&gt; 6.4. Variabila statica - utilizare&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;896246e3&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### In interiorul clasei putem utiliza:\n&quot;, 
+    &quot;#### - &lt;span class=\&quot;red\&quot;&gt;self&lt;/span&gt;.nume_atribut\n&quot;, 
+    &quot;#### - &lt;span class=\&quot;red\&quot;&gt;NumeClasa&lt;/span&gt;.nume_atribut\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### In exteriorul clasei (global) putem utiliza:\n&quot;, 
+    &quot;#### - &lt;span class=\&quot;red\&quot;&gt;NumeClasa&lt;/span&gt;.nume_atribut\n&quot;, 
+    &quot;#### - &lt;span class=\&quot;red\&quot;&gt;nume_obiect&lt;/span&gt;.nume_atribut&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;5d65aa71&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;class Auto:\n&quot;, 
+    &quot;    \&quot;\&quot;\&quot;Atribut clasa / atribut obiect - continuare\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;    \n&quot;, 
+    &quot;    culoare = 'Alb'\n&quot;, 
+    &quot;    model = 'Berlina'\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    # in interiorul clasei putem folosi atat self cat si numele clasei\n&quot;, 
+    &quot;    def __str__(self):\n&quot;, 
+    &quot;        result = 'Autorurismul are culoarea ' + self.culoare + ', si modelul ' + Auto.model\n&quot;, 
+    &quot;        return result&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;8b9e06ca&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# instantiem\n&quot;, 
+    &quot;masina_mea = Auto()\n&quot;, 
+    &quot;print(masina_mea)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;64fa7b9f&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# in exterior putem apela VS atat cu NumeClasa.VS cat si cu NumeInstanta.VS\n&quot;, 
+    &quot;print(Auto.culoare )\n&quot;, 
+    &quot;print(masina_mea.culoare)\n&quot;, 
+    &quot;print(masina_mea.__dict__)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;08029ddd&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;## &lt;span class=\&quot;trcz\&quot;&gt; 6.5. Variabila globala, globals() &quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;1dffbd2b&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### &lt;span class=\&quot;red\&quot;&gt;globals&lt;/span&gt;() – dictionar care contine variabile din namespace-ul global\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### consecinta - putem defini variabile, inclusiv instante ale claselor, direct in globals()\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### putem, de asemenea, accesa valoarea variabilelor sau a atributelor instantelor direct in globals()&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;87a2706e&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;a = 100                     # Creare VG\n&quot;, 
+    &quot;b = 'caine'\n&quot;, 
+    &quot;c = ['a', 'x', 'ax']\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;globals()                   # DICT cu VG la un moment dat&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;5f293923&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;if 'c' in globals():\n&quot;, 
+    &quot;    print(c)                # verifica existenta VG&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;65492ad1&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# modificare valoare variabila direct in globals()\n&quot;, 
+    &quot;print('Inainte:', b)\n&quot;, 
+    &quot;globals()['b'] = 'pisica'  # atribuire valoare valoare noua VG direct in globals()\n&quot;, 
+    &quot;print('Dupa:', b)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;e825ed3c&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# definire variabila direct in globals()\n&quot;, 
+    &quot;globals()['animal'] = 'maimuta'   \n&quot;, 
+    &quot;print(animal)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;fb4941f2&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# o instanta a unui obiect creata direct in globals()\n&quot;, 
+    &quot;globals()['Dacia'] = Auto()\n&quot;, 
+    &quot;print(Dacia)\n&quot;, 
+    &quot;print(Dacia.culoare)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;05e2de56&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# eval()\n&quot;, 
+    &quot;eval('Dacia.culoare')&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;76648028&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;## &lt;span class=\&quot;trcz\&quot;&gt; 6.6. Recursivitatea intr-o clasa&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;787172c9&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### Intr-o functie recursivitatea se rezuma la apelarea aceleiasi functii fara sa genereze o eroare\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Intr-o clasa recursivitatea presupune instantierea in mod recursiv. Aceasta se pune in practica printr-o metoda a clasei&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;9d33b09c&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;from random import randint  # importam functia randint care returneaza un numar intreg aleator dint-un interval\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;class Banca:\n&quot;, 
+    &quot;    \&quot;\&quot;\&quot;Institutie financiara\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;    nr_conturi = 0                 # numara cate conturi saunt create la un moment dat\n&quot;, 
+    &quot;    conturi = {}                   # cheia client, valoarea o lista cu conturi\n&quot;, 
+    &quot;    valute = {'RON', 'EUR', 'USD', 'GBP', 'CHF'}\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __init__(self, client, nume_cont):\n&quot;, 
+    &quot;        \&quot;\&quot;\&quot;Numele contului va fi de forma: valuta + 10 cifre,\n&quot;, 
+    &quot;            valuta fiind una din setul de valori\&quot;\&quot;\&quot;  #\n&quot;, 
+    &quot;        if nume_cont[0: 3] in Banca.valute:\n&quot;, 
+    &quot;            if nume_cont[3:].isdigit() and (len(nume_cont) == 13):\n&quot;, 
+    &quot;                conturi = []\n&quot;, 
+    &quot;                for i in Banca.conturi.values():\n&quot;, 
+    &quot;                    conturi +=i\n&quot;, 
+    &quot;                if not nume_cont in conturi:\n&quot;, 
+    &quot;                    self.nume_cont = nume_cont\n&quot;, 
+    &quot;                else:\n&quot;, 
+    &quot;                    raise NameError('Nume cont existent!')\n&quot;, 
+    &quot;            else:\n&quot;, 
+    &quot;                raise NameError('Nu contine 10 cifre!')\n&quot;, 
+    &quot;        else:\n&quot;, 
+    &quot;            raise NameError('Valuta inexistenta!')\n&quot;, 
+    &quot;        self.client = client\n&quot;, 
+    &quot;        self.sold = 0\n&quot;, 
+    &quot;        Banca.nr_conturi += 1\n&quot;, 
+    &quot;        if client in Banca.conturi:\n&quot;, 
+    &quot;            Banca.conturi[client] += [nume_cont]\n&quot;, 
+    &quot;        else:\n&quot;, 
+    &quot;            Banca.conturi[client] = [nume_cont]\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    @classmethod                   # o metoda a clasei, poate fi apelata fara sa existe o instanta\n&quot;, 
+    &quot;    def creez_cont(cls, Cate, valuta, *persoane):\n&quot;, 
+    &quot;        \&quot;\&quot;\&quot;\n&quot;, 
+    &quot;        metoda care poate crea multiple instante apeland clasa\n&quot;, 
+    &quot;        :param Cate: cate conturi vor fi create\n&quot;, 
+    &quot;        :param valuta: poate fi una din setul de valori Banca.valute\n&quot;, 
+    &quot;        :return:\n&quot;, 
+    &quot;        \&quot;\&quot;\&quot;\n&quot;, 
+    &quot;        for i in range(Cate):\n&quot;, 
+    &quot;            persoana = persoane[i]\n&quot;, 
+    &quot;            nume_cont = randint(0, 10000000000)\n&quot;, 
+    &quot;            nume_cont = valuta + '%010d' % nume_cont\n&quot;, 
+    &quot;            globals()[persoana] = Banca(persoana, nume_cont)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;a41c5e82&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# instanta obisnuita, creare cont\n&quot;, 
+    &quot;Nico = Banca('Nico', 'RON1111111111')  &quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;bf2289e0&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;print(Banca.nr_conturi)\n&quot;, 
+    &quot;print(Banca.conturi)\n&quot;, 
+    &quot;print(Nico.nr_conturi)\n&quot;, 
+    &quot;print(Nico.conturi)\n&quot;, 
+    &quot;print(Nico.__dict__)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;dc12f052&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# instantiere recursiva - apelarea unei metode a clasei prin intermediul clasei\n&quot;, 
+    &quot;lista_persoane = ('Ana', 'Lia', 'Stefan', 'Mary')\n&quot;, 
+    &quot;Banca.creez_cont(len(lista_persoane), 'EUR', *lista_persoane)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;3fd03078&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;print(Banca.nr_conturi)\n&quot;, 
+    &quot;print(Banca.conturi)\n&quot;, 
+    &quot;print(Stefan.nr_conturi)\n&quot;, 
+    &quot;print(Stefan.conturi)\n&quot;, 
+    &quot;print(Stefan.__dict__)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;3cda3a56&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# instantiere recursiva - apelarea unei metode a clasei prin intermediul unui obiect\n&quot;, 
+    &quot;Stefan.creez_cont(2, 'GBP', 'Emil', 'Ioana', 'Ana')&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;507d933a&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;print(Banca.nr_conturi)\n&quot;, 
+    &quot;print(Banca.conturi)\n&quot;, 
+    &quot;print(Ioana.nr_conturi)\n&quot;, 
+    &quot;print(Ioana.conturi)\n&quot;, 
+    &quot;print(Ioana.__dict__)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;335f25c8&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;## &lt;span class=\&quot;trcz\&quot;&gt; 6.7. Interactiunea obiectelor&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;1489768c&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### Obiectele apartin clasei prin tipul de date dat de clasa\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Obiectele sunt disponibile global\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Obiectele ineractioneaza pentru realizarea scopului aplicatiei&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;39906201&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;class A:\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def aduna(self, *diferiti_parametri):\n&quot;, 
+    &quot;        suma = sum(diferiti_parametri)\n&quot;, 
+    &quot;        return suma\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;class B:\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def inmulteste(self, x, y):\n&quot;, 
+    &quot;        return x * y&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;2efdf0df&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;a = A()\n&quot;, 
+    &quot;b = B()\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;print(b.inmulteste(a.aduna(3, 7), b.inmulteste(3, 2)))\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;print(a.aduna(b.inmulteste(5, 3), 7, 3))&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;37e441e9&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;class Persoana:\n&quot;, 
+    &quot;    \&quot;\&quot;\&quot;Clasa persoana\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __init__(self, nume, prenume):\n&quot;, 
+    &quot;        \&quot;\&quot;\&quot;Atribute persoana\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;        self.nume = nume\n&quot;, 
+    &quot;        self.prenume = prenume&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;bbb8fcbb&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# are director cu tipul de date Persoana\n&quot;, 
+    &quot;class Firma:\n&quot;, 
+    &quot;    \&quot;\&quot;\&quot;Clasa firma\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __init__(self, nume, director: Persoana):\n&quot;, 
+    &quot;        \&quot;\&quot;\&quot;Atribute firma\n&quot;, 
+    &quot;        Diectorul este un obiect de tip persoana\n&quot;, 
+    &quot;        \&quot;\&quot;\&quot;\n&quot;, 
+    &quot;        self.nume = nume\n&quot;, 
+    &quot;        self.director = director&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;8c54c155&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;cristina = Persoana('Dobrin', 'Cristina')\n&quot;, 
+    &quot;alfa = Firma('Alfa', cristina)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;00b64847&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;print(alfa.nume)\n&quot;, 
+    &quot;print(alfa.director.nume)\n&quot;, 
+    &quot;print(alfa.director.prenume)\n&quot;, 
+    &quot;print(alfa.__dict__)\n&quot;, 
+    &quot;print(alfa.director.__dict__)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;8b21b3f1&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;## &lt;span class=\&quot;trcz\&quot;&gt; 6.8. Incapsularea - caracteristici&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;dd3090c5&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### Contribuie la introducerea corecta a datelor in instante (valori atribute)\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Datele trebuie accesate (modificate) prin intermediul metodelor\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Reprezentarea interna a obiectelor nu poate fi vazuta din exterior\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Datele trebuie validate, sa ne asiguram ca nu sunt modificate prin interventii externe. Acces de tip getters /setters\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Pentru a realiza incapsularea putem utiliza diferite instrumente:\n&quot;, 
+    &quot;#### - Variabile si metode private\n&quot;, 
+    &quot;#### - Metode speciale\n&quot;, 
+    &quot;#### - Decoratori&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;2bff2ee0&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;class Masina:\n&quot;, 
+    &quot;    \&quot;\&quot;\&quot;Testam metoda privata si atributul privat\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def cul_pub(self):  # metoda publica\n&quot;, 
+    &quot;        \&quot;\&quot;\&quot;O metoda publica poate avea argumente publice si private\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;        self.culoare_public = 'publica'  # argument public - vizibil\n&quot;, 
+    &quot;        self.__culoare_privata = 'privata'  # argument privat - nu va fi vizibil\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def listeaza_culoare(self):\n&quot;, 
+    &quot;        \&quot;\&quot;\&quot;O metoda publica poate acceasa si argumente private\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;        print(self.__culoare_privata)\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __listeazaCuloare(self):  # metoda privata, nu poate fi accesata de obiect direct\n&quot;, 
+    &quot;        \&quot;\&quot;\&quot;O metoda privata poate avea argumente publice si private\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;        print(self.culoare_public)  # argument public\n&quot;, 
+    &quot;        print(self.__culoare_privata)  # argument privat\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def apeleaza(self):\n&quot;, 
+    &quot;        \&quot;\&quot;\&quot;O metoda publica poate accesa una privata\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;        self.__listeazaCuloare()&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;5c44b4ab&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# instantiere\n&quot;, 
+    &quot;obiect_1 = Masina()\n&quot;, 
+    &quot;print(obiect_1.__dict__)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;083fd231&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# Apelam metoda cul_pub\n&quot;, 
+    &quot;obiect_1.cul_pub()\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;print(obiect_1.__dict__)\n&quot;, 
+    &quot;print(obiect_1.culoare_public)\n&quot;, 
+    &quot;print(obiect_1.__culoare_privata)        # atributul privat nu este accesibil direct&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;082c8342&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# Apelam metoda listeaza_culoare\n&quot;, 
+    &quot;obiect_1.listeaza_culoare()              # atributul privat este accesibil prin intermediul metodei publice&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;7f478911&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# metoda publica nu este accesibila direct\n&quot;, 
+    &quot;obiect_1.__listeazaCuloare()&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;b0b4b215&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# metoda privata accesata printr-o metoda publica\n&quot;, 
+    &quot;obiect_1.apeleaza()&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;fc3f1871&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;## &lt;span class=\&quot;trcz\&quot;&gt; 6.9. Mostenirea  - caracteristici&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;746bb291&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### Clasa de baza/Superclasa - Clasa derivate/Subclasa\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Atributele si metodele din superclasa sunt mostenite in subclasa\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Superclasa nu mosteneste nimic de la Subclasa \n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Poate exista o ierarhie de mostenire si mostenire multipla\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Si metoda __init__ se poate mosteni ierarhic\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Obiectele (instantele) nu se mostenesc\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Ierarhia de cautare atribut: metoda, clasa proprie, clase mostenite\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### &lt;span class=\&quot;red\&quot;&gt;issubclass&lt;/span&gt;(sub, sup) - verifica daca subclasa apartine \tsuperclasei\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### &lt;span class=\&quot;red\&quot;&gt;isinstance&lt;/span&gt;(obj, Class) - verifica daca instanta apartine clasei &quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;9f8a2bfe&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# superclasa\n&quot;, 
+    &quot;class Banca: \n&quot;, 
+    &quot;    \&quot;\&quot;\&quot;Institutie financiara\&quot;\&quot;\&quot;\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    nr_conturi = 0\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __init__(self):          # metoda constructor - se mosteneste\n&quot;, 
+    &quot;        self.sold = 0            # se aplica la crearea fiecarui obiect - se mosteneste\n&quot;, 
+    &quot;        Banca.nr_conturi += 1    # incrementeaza numarul de conturi disponibile - se mosteneste\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def alim_cont(self, suma):   # metoda - aplicabila pentru fiecare obiect - se mosteneste\n&quot;, 
+    &quot;        self.sold += suma\n&quot;, 
+    &quot;        self.sold_nou()\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def extr_cash(self, suma):   # metoda - aplicabila pentru fiecare obiect - se mosteneste\n&quot;, 
+    &quot;        self.sold -= suma\n&quot;, 
+    &quot;        self.sold_nou()\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def sold_nou(self):          # metoda - aplicabila pentru fiecare obiect - se mosteneste\n&quot;, 
+    &quot;        print('Noul sold este: {:.2f}'.format(self.sold))\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __del__(self):\n&quot;, 
+    &quot;        Banca.nr_conturi -= 1\n&quot;, 
+    &quot;        print('Am sters contul')&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;9056ade0&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# subclasa\n&quot;, 
+    &quot;class CEC(Banca):\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def plata_op(self, suma):   # metoda proprie a subclasei\n&quot;, 
+    &quot;        self.sold -= suma\n&quot;, 
+    &quot;        self.sold_nou()\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def desc_cont(self, suma):  # metoda proprie a subclasei\n&quot;, 
+    &quot;        self.sold += suma\n&quot;, 
+    &quot;        self.sold_nou()&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;a4314456&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# instanta noua subclasa\n&quot;, 
+    &quot;Cont_cec = CEC()   \n&quot;, 
+    &quot;print(Cont_cec.__dict__)\n&quot;, 
+    &quot;print(Cont_cec.nr_conturi)\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;Cont_cec.alim_cont(20000)   # metoda mostenita\n&quot;, 
+    &quot;Cont_cec.plata_op(1800)     # metoda proprie\n&quot;, 
+    &quot;Cont_cec.extr_cash(1950)    # metoda mostenita\n&quot;, 
+    &quot;Cont_cec.sold_nou()         # metoda mostenita&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;899cf54d&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# instanta noua superclasa\n&quot;, 
+    &quot;Cont_banca = Banca()  \n&quot;, 
+    &quot;\n&quot;, 
+    &quot;Cont_banca.sold_nou()\n&quot;, 
+    &quot;Cont_banca.desc_cont(5000)  # o instanta a unei superclase nu poate accesa metodele subclaselor&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;8a746bf1&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;isinstance(Cont_cec, Banca)\n&quot;, 
+    &quot;isinstance(Cont_cec, CEC)\n&quot;, 
+    &quot;isinstance(Cont_banca, Banca)\n&quot;, 
+    &quot;isinstance(Cont_banca, CEC)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;2f31ed41&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;issubclass(CEC, Banca)\n&quot;, 
+    &quot;issubclass(Banca, CEC)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;0b845e09&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;print(\&quot;Numar conturi inainte: \&quot;, Banca.nr_conturi)\n&quot;, 
+    &quot;del Cont_banca\n&quot;, 
+    &quot;print(\&quot;Numar conturi dupa: \&quot;, Banca.nr_conturi)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;01c9e389&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### &lt;span class=\&quot;ita\&quot;&gt; &lt;span class=\&quot;green\&quot;&gt;  Mostenire ierarhica&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;22c642d3&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;class A:\n&quot;, 
+    &quot;    x = 'x din A'\n&quot;, 
+    &quot;    y = \&quot;y din A\&quot;\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;class B(A):\n&quot;, 
+    &quot;    x = 'x din B'\n&quot;, 
+    &quot;    z = 'z din B'\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;class C(B):\n&quot;, 
+    &quot;    x = 'x din C'\n&quot;, 
+    &quot;    w = {1: 'cirese din C'}\n&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;d37996db&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# instantiere\n&quot;, 
+    &quot;obj_a = A()\n&quot;, 
+    &quot;obj_b = B()\n&quot;, 
+    &quot;obj_c = C()&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;4b8a4ef9&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# accesare atribute\n&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;43cfe3ce&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### &lt;span class=\&quot;ita\&quot;&gt; &lt;span class=\&quot;green\&quot;&gt;  Mostenire multipla&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;203b3c74&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;class X(C, B, A):\n&quot;, 
+    &quot;    pass&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;380c3948&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# instantiere\n&quot;, 
+    &quot;obj_x = X()\n&quot;, 
+    &quot;print(X.__mro__)     # method resolution order&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;1b155ff4&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# accesare atribute\n&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;7f209447&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### &lt;span class=\&quot;ita\&quot;&gt; &lt;span class=\&quot;green\&quot;&gt; Mostenire __init__()&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;984e1847&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;class Persoana:\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __init__(self, nume, prenume):\n&quot;, 
+    &quot;        self.nume = nume\n&quot;, 
+    &quot;        self.prenume = prenume\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;class Student(Persoana):\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __init__(self, facultate, *parent):\n&quot;, 
+    &quot;        self.facultate = facultate\n&quot;, 
+    &quot;        super().__init__(*parent)\n&quot;, 
+    &quot;        \n&quot;, 
+    &quot;class Medic(Persoana):\n&quot;, 
+    &quot;    pass&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;4dc94427&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# instantiere Student / Medic\n&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;eaf102ca&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;## &lt;span class=\&quot;trcz\&quot;&gt; 6.10. Polimorfism  - caracteristici&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;919daa50&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### Metode cu denumiri identice, utilizate in clase diferite, cu functionalitati diferite in ierarhia de mostenire\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Fiecare metoda e diferita, dar similara din punct de vedere conceptual\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;### Are avantajul ca se apeleaza cu acelasi nume in toate clasele\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;###  Cel mai bun exemplu functia len() &quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;98e0008f&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;class Carte:\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __init__(self, titlu, autor, pagini):  # \&quot;constructor\&quot;\n&quot;, 
+    &quot;        print(f\&quot;O noua carte cu titlul: {titlu}, scrisa de: {autor}\&quot;)\n&quot;, 
+    &quot;        self.titlu = titlu\n&quot;, 
+    &quot;        self.autor = autor\n&quot;, 
+    &quot;        self.pagini = pagini\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __str__(self):  # printare\n&quot;, 
+    &quot;        return \&quot;Titlu: {0}, Autor: {1}, Pagini: {2} \&quot;.format(self.titlu, self.autor, self.pagini)\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __del__(self):  # destructor\n&quot;, 
+    &quot;        print(\&quot;Cartea {0} a fost casata\&quot;.format(self.titlu))\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __len__(self):\n&quot;, 
+    &quot;        return self.pagini\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;HdC = Carte(\&quot;Hotul de Carti\&quot;, \&quot;Markus Zusak\&quot;, 573)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;2af0d4b3&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;print(HdC)\n&quot;, 
+    &quot;len(HdC)\n&quot;, 
+    &quot;del HdC&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;6cb56ef1&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### &lt;span class=\&quot;ita\&quot;&gt; &lt;span class=\&quot;green\&quot;&gt;  Exemplu polimorfism&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;41de1bcf&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;class Electrocasnice:\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __init__(self, nume):\n&quot;, 
+    &quot;        self.nume = nume\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    # metoda abstracta\n&quot;, 
+    &quot;    def caracteristici(self, *lista):\n&quot;, 
+    &quot;        raise NotImplementedError(\&quot;Metoda abstracta - se defineste in subclasa\&quot;)\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __str__(self):\n&quot;, 
+    &quot;        caracteristici_listate = ''\n&quot;, 
+    &quot;        for k, v in self.__dict__.items():\n&quot;, 
+    &quot;            caracteristici_listate += str(k).ljust(15) + ': ' + str(v) + '\\n'\n&quot;, 
+    &quot;        return caracteristici_listate\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;class Aragaz(Electrocasnice):\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def caracteristici(self, combustibil='Gaz', numar_ochiuri=4, culoare='Negru', provenienta='Romania'):\n&quot;, 
+    &quot;        self.numar_ochiuri = numar_ochiuri\n&quot;, 
+    &quot;        self.culoare = culoare\n&quot;, 
+    &quot;        self.provenienta = provenienta\n&quot;, 
+    &quot;        self.combustibil = combustibil\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;class Televizor(Electrocasnice):\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def caracteristici(self, diagonala=101, ecran='led', tip_ecran='plat', culoare='Negru'):\n&quot;, 
+    &quot;        self.diagonala = diagonala\n&quot;, 
+    &quot;        self.culoare = culoare\n&quot;, 
+    &quot;        self.ecran = ecran\n&quot;, 
+    &quot;        self.tip_ecran = tip_ecran\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;class Sobe(Electrocasnice):\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def caracteristici(self, constructie='Metal', combustibil='Gaz', culoare='Maro'):\n&quot;, 
+    &quot;        self.culoare = culoare\n&quot;, 
+    &quot;        self.constructie = constructie\n&quot;, 
+    &quot;        self.combustibil = combustibil\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;class test(Electrocasnice):\n&quot;, 
+    &quot;    pass&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;6fbdd966&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# obiect aragaz\n&quot;, 
+    &quot;a = Aragaz('Aragaz cu 4 ochiuri')\n&quot;, 
+    &quot;a.caracteristici()&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;5a2bab84&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# obiecte televizor\n&quot;, 
+    &quot;t = Televizor('Televizor diag 101')\n&quot;, 
+    &quot;t.caracteristici()\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;t1 = Televizor('lx_100')\n&quot;, 
+    &quot;t1.caracteristici(207, 'led_albastru', 'curbat', 'verde')&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;53f8fc8c&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# obiect soba\n&quot;, 
+    &quot;s = Sobe('Soba din teracota pe lemne')\n&quot;, 
+    &quot;s.caracteristici('teracota', 'lemn')&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;7a196ece&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# obiect test\n&quot;, 
+    &quot;test_obj = test('test')\n&quot;, 
+    &quot;try:\n&quot;, 
+    &quot;    test_obj.caracteristici('ceva')\n&quot;, 
+    &quot;except NotImplementedError:\n&quot;, 
+    &quot;    print('Trebuie implementata metoda caracteristici!')&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;5a91c494&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;# accesare caractersitici\n&quot;, 
+    &quot;for i in (a, t, t1, s):\n&quot;, 
+    &quot;    print(i)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;4ce05252&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;## &lt;span class=\&quot;trcz\&quot;&gt; 6.11. Metode getter/setter&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;8743c8cd&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### &lt;span class=\&quot;ita\&quot;&gt; &lt;span class=\&quot;green\&quot;&gt;  cu decoratori&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;6ba1540a&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;class GS:\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __init__(self):\n&quot;, 
+    &quot;        self.__variabila = None\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    @property                       # decorator\n&quot;, 
+    &quot;    def variabila(self):\n&quot;, 
+    &quot;        print(\&quot;Get variabila\&quot;)      # flag - sa vedem ce metoda apeleaza\n&quot;, 
+    &quot;        return self.__variabila\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    @variabila.setter\n&quot;, 
+    &quot;    def variabila(self, value):\n&quot;, 
+    &quot;        print(\&quot;Set variabila\&quot;)      # flag - sa vedem ce metoda apeleaza\n&quot;, 
+    &quot;        self.__variabila = value\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    @variabila.deleter\n&quot;, 
+    &quot;    def variabila(self):\n&quot;, 
+    &quot;        print(\&quot;Delete variabila\&quot;)   # flag - sa vedem ce metoda apeleaza\n&quot;, 
+    &quot;        del self.__variabila&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;88729a32&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;obiect = GS()\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;# print(obiect.__variabila)    # nu are atributul\n&quot;, 
+    &quot;print(obiect.variabila)        # apeleaza metoda \&quot;get\&quot;, (None)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;715ddcec&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;obiect.variabila = 100         # apeleaza metoda \&quot;set\&quot; - atribuie valoare\n&quot;, 
+    &quot;print(obiect.variabila)        # apeleaza metoda \&quot;get\&quot;\n&quot;, 
+    &quot;del obiect.variabila           # apeleaza delete&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;84607061&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### &lt;span class=\&quot;ita\&quot;&gt; &lt;span class=\&quot;green\&quot;&gt;  cu property()&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;0deaa6d9&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;class GS_alt:\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __init__(self, atribut_initial):\n&quot;, 
+    &quot;        self.__set_atribut(atribut_initial)\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __get_atribut(self):\n&quot;, 
+    &quot;        print(\&quot;Getter / accesor\&quot;)\n&quot;, 
+    &quot;        return self.__atribut\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    def __set_atribut(self, atribut):\n&quot;, 
+    &quot;        print(\&quot;Setter / mutator\&quot;)\n&quot;, 
+    &quot;        self.__atribut = atribut\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;    atribut = property(__get_atribut, __set_atribut)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;9d43401b&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;obj1 = GS_alt(5)\n&quot;, 
+    &quot;\n&quot;, 
+    &quot;print(obj1.atribut)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;17bb79ab&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;obj1.atribut = 15\n&quot;, 
+    &quot;print(obj1.atribut)&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;3122344a&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [ 
+    &quot;obj1.__setattr__('atribut', 100)\n&quot;, 
+    &quot;obj1.__getattribute__('atribut')&quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;markdown&quot;, 
+   &quot;id&quot;: &quot;ee1563ee&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;source&quot;: [ 
+    &quot;### &lt;span class=\&quot;ita\&quot;&gt; &lt;span class=\&quot;green\&quot;&gt; &quot; 
+   ] 
+  }, 
+  { 
+   &quot;cell_type&quot;: &quot;code&quot;, 
+   &quot;execution_count&quot;: null, 
+   &quot;id&quot;: &quot;668b6ca7&quot;, 
+   &quot;metadata&quot;: {}, 
+   &quot;outputs&quot;: [], 
+   &quot;source&quot;: [] 
+  } 
+ ], 
+ &quot;metadata&quot;: { 
+  &quot;kernelspec&quot;: { 
+   &quot;display_name&quot;: &quot;Python 3 (ipykernel)&quot;, 
+   &quot;language&quot;: &quot;python&quot;, 
+   &quot;name&quot;: &quot;python3&quot; 
+  }, 
+  &quot;language_info&quot;: { 
+   &quot;codemirror_mode&quot;: { 
+    &quot;name&quot;: &quot;ipython&quot;, 
+    &quot;version&quot;: 3 
+   }, 
+   &quot;file_extension&quot;: &quot;.py&quot;, 
+   &quot;mimetype&quot;: &quot;text/x-python&quot;, 
+   &quot;name&quot;: &quot;python&quot;, 
+   &quot;nbconvert_exporter&quot;: &quot;python&quot;, 
+   &quot;pygments_lexer&quot;: &quot;ipython3&quot;, 
+   &quot;version&quot;: &quot;3.9.7&quot; 
+  } 
+ }, 
+ &quot;nbformat&quot;: 4, 
+ &quot;nbformat_minor&quot;: 5 
+} 
+</span></pre>
+</body>
+</html>

@@ -1,0 +1,14 @@
+a = 'Canta cucu\' ...'  		# variabila
+x = (3, 'Acasa e soare', ('Si aici e soare', True, 7), False, a, 3, 3, a)  # tuplu
+print(x[1])
+print(x[2][0][3:10]) 			# un tuplu este indexabil
+print(x[1][10])
+x[0] =  5 	    # incercam sa atribuim valoarea 5 primului element (imutabil)
+
+for items in x:
+    print(items)     # for in tuplu
+
+for items in x:
+    print(items)
+    if type(items) == str:
+        print(items.split())

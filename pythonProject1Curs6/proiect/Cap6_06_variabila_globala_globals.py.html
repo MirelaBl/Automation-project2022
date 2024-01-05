@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Cap6_06_variabila_globala_globals.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #6897bb;}
+.s4 { color: #cc7832;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_06_variabila_globala_globals.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+606 OOP   
+Variabila globala - globals() 
+PF - 08.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+<span class="s1">a = </span><span class="s3">100                     </span><span class="s2"># Creare VG</span>
+<span class="s1">b = </span><span class="s0">'caine'</span>
+<span class="s1">c = [</span><span class="s0">'a'</span><span class="s4">,</span><span class="s0">'x'</span><span class="s4">, </span><span class="s0">'ax'</span><span class="s1">]</span>
+
+<span class="s1">globals()  </span><span class="s2"># DICT cu VG la un moment dat</span>
+
+<span class="s4">if </span><span class="s0">'c' </span><span class="s4">in </span><span class="s1">globals():</span>
+    <span class="s1">print(c)  </span><span class="s2"># verifica existenta VG</span>
+
+<span class="s1">print(b)</span>
+
+<span class="s1">globals()[</span><span class="s0">'b'</span><span class="s1">] = </span><span class="s0">'pisica'  </span><span class="s2"># atribuire valoare valoare noua VG direct in globals()</span>
+
+<span class="s1">globals()[</span><span class="s0">'cimpanzeu'</span><span class="s1">] = </span><span class="s0">'maimuta'  </span><span class="s2"># o noua VG definita direct in globals()</span>
+
+<span class="s1">globals()[</span><span class="s0">'Dacia'</span><span class="s1">] = Auto()  </span><span class="s2"># o instanta a unui obiect creata direct in globals()</span>
+
+<span class="s2"># functia eval()</span>
+<span class="s1">eval(</span><span class="s0">'Dacia.Culoare'</span><span class="s1">)</span>
+</pre>
+</body>
+</html>

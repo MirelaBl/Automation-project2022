@@ -1,0 +1,157 @@
+<html>
+<head>
+<title>Cap6_23_mostenire_pizza.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #cc7832;}
+.s4 { color: #629755; font-style: italic;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_23_mostenire_pizza.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+623 Clase avansat   
+Pizza - mostenire 
+PF - 08.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+
+<span class="s3">class </span><span class="s1">Pizza():</span>
+    <span class="s4">&quot;&quot;&quot; Superclasa &quot;&quot;&quot;</span>
+
+    <span class="s1">timp_coacere = </span><span class="s5">12</span>
+
+    <span class="s1">lista_bauturi = {</span><span class="s0">'apa'</span><span class="s1">: </span><span class="s5">5</span><span class="s3">, </span><span class="s0">'cola'</span><span class="s1">: </span><span class="s5">8</span><span class="s3">, </span><span class="s0">'suc_mere' </span><span class="s1">: </span><span class="s5">12</span><span class="s3">, </span><span class="s0">'limonada'</span><span class="s1">: </span><span class="s5">15</span><span class="s1">}   </span><span class="s2"># pret</span>
+    <span class="s1">dimensiuni = {</span><span class="s0">&quot;mare&quot;</span><span class="s1">: </span><span class="s5">1.5</span><span class="s3">, </span><span class="s0">&quot;medie&quot;</span><span class="s1">: </span><span class="s5">1.2</span><span class="s3">, </span><span class="s0">&quot;mica&quot;</span><span class="s1">: </span><span class="s5">1</span><span class="s1">}  </span><span class="s2"># coeficient pret pe dimensiuni</span>
+    <span class="s1">blaturi = {</span><span class="s0">&quot;crocant&quot;</span><span class="s1">: </span><span class="s5">6</span><span class="s3">, </span><span class="s0">&quot;subtire&quot;</span><span class="s1">: </span><span class="s5">5</span><span class="s3">, </span><span class="s0">&quot;pufos&quot;</span><span class="s1">: </span><span class="s5">7</span><span class="s1">}  </span><span class="s2"># pret</span>
+    <span class="s1">pret_baza_toping = </span><span class="s5">2  </span><span class="s2"># pret pentru o pizza mica, se aplica cof de dimensiune</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self):</span>
+        <span class="s1">self.ingrediente = list()</span>
+        <span class="s1">self.bautura_comandata = []</span>
+        <span class="s1">self.dimensiune = </span><span class="s0">'medie'</span>
+        <span class="s1">self.blat = </span><span class="s0">'crocant'</span>
+        <span class="s1">self.pret_blat = </span><span class="s5">0</span>
+        <span class="s1">self.pret_ingrediente = </span><span class="s5">0</span>
+        <span class="s1">self.pret_pizza = </span><span class="s5">0</span>
+
+    <span class="s2"># schimba caracteristici</span>
+    <span class="s3">def </span><span class="s1">schimba_dimensiune(self):</span>
+        <span class="s1">dim = input(</span><span class="s0">'Introduceti &quot;mica&quot;, &quot;medie&quot; sau &quot;mare&quot;'</span><span class="s1">).lower()</span>
+        <span class="s3">if </span><span class="s1">dim </span><span class="s3">in </span><span class="s1">self.dimensiuni:</span>
+            <span class="s1">self.dimensiune = dim</span>
+
+    <span class="s3">def </span><span class="s1">schimba_blat(self):</span>
+        <span class="s1">blat = input(</span><span class="s0">'Introduceti &quot;crocant&quot;, &quot;subtire&quot;, &quot;pufos&quot;'</span><span class="s1">).lower()</span>
+        <span class="s3">if </span><span class="s1">blat </span><span class="s3">in </span><span class="s1">self.blaturi:</span>
+            <span class="s1">self.blat = blat</span>
+
+    <span class="s3">def </span><span class="s1">adauga_ingrediente(self</span><span class="s3">, </span><span class="s1">*lista):</span>
+        <span class="s1">self.ingrediente.extend(lista)</span>
+
+    <span class="s3">def </span><span class="s1">adauga_bautura(self):</span>
+        <span class="s3">while True</span><span class="s1">:</span>
+            <span class="s1">bautura = input(</span><span class="s0">&quot;'apa': 5 lei, 'cola': 8 lei, 'suc_mere' : 12 lei,'limonada': 15 lei&quot;</span><span class="s1">)</span>
+            <span class="s3">if </span><span class="s1">bautura == </span><span class="s0">''</span><span class="s1">:</span>
+                <span class="s3">break</span>
+            <span class="s3">elif </span><span class="s1">bautura </span><span class="s3">in </span><span class="s1">self.lista_bauturi:</span>
+                <span class="s1">self.bautura_comandata.append(bautura)</span>
+            <span class="s3">else</span><span class="s1">:</span>
+                <span class="s1">print(</span><span class="s0">f'Nu avem </span><span class="s3">{</span><span class="s1">bautura</span><span class="s3">}</span><span class="s0">'</span><span class="s1">)</span>
+
+    <span class="s2"># calculatii</span>
+    <span class="s3">def </span><span class="s1">pret_bauturi(self):</span>
+        <span class="s1">self.pret_bautura = </span><span class="s5">0</span>
+        <span class="s3">if </span><span class="s1">self.bautura_comandata:</span>
+            <span class="s3">for </span><span class="s1">i </span><span class="s3">in </span><span class="s1">self.bautura_comandata:</span>
+                <span class="s1">self.pret_bautura += self.lista_bauturi[i]</span>
+
+    <span class="s3">def </span><span class="s1">pret_baza_blat(self):</span>
+        <span class="s1">self.pret_blat = self.blaturi[self.blat]</span>
+
+    <span class="s3">def </span><span class="s1">pret_baza_ingrediente(self):</span>
+        <span class="s1">self.pret_ingrediente = len(self.ingrediente) * self.pret_baza_toping</span>
+
+    <span class="s3">def </span><span class="s1">pret_pizza_total(self):</span>
+        <span class="s1">self.pret_baza_blat()</span>
+        <span class="s1">self.pret_baza_ingrediente()</span>
+        <span class="s1">self.pret_pizza = (self.pret_blat + self.pret_ingrediente) \</span>
+                          <span class="s1">* self.dimensiuni[self.dimensiune]</span>
+
+    <span class="s3">def </span><span class="s1">calculeaza(self):</span>
+        <span class="s1">self.pret_bauturi()</span>
+        <span class="s1">self.pret_pizza_total()</span>
+
+    <span class="s3">def </span><span class="s1">__str__(self):</span>
+        <span class="s1">self.calculeaza()</span>
+        <span class="s1">result = </span><span class="s0">f&quot;&quot;&quot;        Bautura: </span><span class="s3">{</span><span class="s1">self.pret_bautura</span><span class="s3">}</span>
+        <span class="s0">Pizza: </span><span class="s3">{</span><span class="s1">self.pret_pizza</span><span class="s3">}</span>
+        <span class="s0">--------------------------------</span>
+        <span class="s0">Total: </span><span class="s3">{</span><span class="s1">self.pret_pizza + self.pret_bautura</span><span class="s3">}</span>
+        <span class="s0">&quot;&quot;&quot;</span>
+        <span class="s3">return </span><span class="s1">result</span>
+
+
+<span class="s3">class </span><span class="s1">Pizza_vegan(Pizza):</span>
+    <span class="s1">sos = </span><span class="s0">'dulce'</span>
+    <span class="s1">timp_coacere = </span><span class="s5">15</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self):</span>
+        <span class="s1">super().__init__()</span>
+        <span class="s1">self.ingrediente.extend([</span><span class="s0">'rosii'</span><span class="s3">, </span><span class="s0">'masline'</span><span class="s3">, </span><span class="s0">'ciuperci'</span><span class="s1">])</span>
+
+
+<span class="s3">class </span><span class="s1">Pizza_branzeturi(Pizza):</span>
+
+    <span class="s1">sos = </span><span class="s0">'ceapa'</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self):</span>
+        <span class="s1">super().__init__()</span>
+        <span class="s1">self.ingrediente.extend([</span><span class="s0">'m'</span><span class="s3">,</span><span class="s0">'rb'</span><span class="s3">, </span><span class="s0">'rw'</span><span class="s1">])</span>
+
+
+<span class="s3">class </span><span class="s1">Pizza_carnivora(Pizza):</span>
+
+    <span class="s1">sos = </span><span class="s0">'mustar'</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self):</span>
+        <span class="s1">super().__init__()</span>
+        <span class="s1">self.ingrediente.extend([</span><span class="s0">'pui'</span><span class="s3">, </span><span class="s0">'bacon'</span><span class="s3">, </span><span class="s0">'vita'</span><span class="s1">])</span>
+
+<span class="s2"># instantiem</span>
+<span class="s1">carniv1 = Pizza_carnivora()</span>
+
+<span class="s1">print(carniv1.__dict__)</span>
+<span class="s1">carniv1.adauga_bautura()</span>
+<span class="s1">carniv1.adauga_bautura()</span>
+
+<span class="s1">carniv1.adauga_ingrediente(</span><span class="s0">'carne'</span><span class="s3">, </span><span class="s0">'carne'</span><span class="s3">, </span><span class="s0">'ciuperci'</span><span class="s1">)</span>
+<span class="s1">print(carniv1.ingrediente)</span>
+
+<span class="s1">carniv1.schimba_dimensiune()</span>
+<span class="s1">print(carniv1.dimensiune)</span>
+
+<span class="s1">print(carniv1)</span>
+
+<span class="s2"># instantiem</span>
+<span class="s1">vegan = Pizza_vegan()</span>
+<span class="s1">vegan.adauga_ingrediente(</span><span class="s0">'rozmarin'</span><span class="s3">, </span><span class="s0">'dovlecel'</span><span class="s1">)</span>
+<span class="s1">vegan.schimba_dimensiune()</span>
+<span class="s1">vegan.schimba_blat()</span>
+<span class="s1">vegan.adauga_bautura()</span>
+
+<span class="s1">print(vegan)</span>
+
+<span class="s1">print(vegan.__dict__)</span>
+
+</pre>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>Cap6_07_recursivitate_classmethod.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #cc7832;}
+.s4 { color: #629755; font-style: italic;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_07_recursivitate_classmethod.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+607 OOP   
+Recursivitatea --&gt; crearea de obiecte recursiv 
+PF - 08.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+<span class="s3">from </span><span class="s1">random </span><span class="s3">import </span><span class="s1">randint  </span><span class="s2"># importam functia randint care returneaza un numar intreg aleator dint-un interval</span>
+
+
+<span class="s3">class </span><span class="s1">Banca:</span>
+    <span class="s4">&quot;&quot;&quot;Institutie financiara&quot;&quot;&quot;</span>
+    <span class="s1">nr_conturi = </span><span class="s5">0  </span><span class="s2"># numara cate conturi saunt create la un moment dat</span>
+    <span class="s1">conturi = {}  </span><span class="s2"># incrementeaza numarul de conturi disponibile la fiecare instantiere</span>
+    <span class="s1">valute = {</span><span class="s0">'RON'</span><span class="s3">, </span><span class="s0">'EUR'</span><span class="s3">, </span><span class="s0">'USD'</span><span class="s3">, </span><span class="s0">'GBP'</span><span class="s3">, </span><span class="s0">'CHF'</span><span class="s1">}</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">client</span><span class="s3">, </span><span class="s1">nume_cont):</span>
+        <span class="s0">&quot;&quot;&quot;Numele contului va fi de forma: valuta + 10 cifre, 
+            valuta fiind una din setul de valori&quot;&quot;&quot;  </span><span class="s2">#</span>
+        <span class="s3">if </span><span class="s1">nume_cont[</span><span class="s5">0</span><span class="s1">: </span><span class="s5">3</span><span class="s1">] </span><span class="s3">in </span><span class="s1">Banca.valute:</span>
+            <span class="s3">if </span><span class="s1">nume_cont[</span><span class="s5">3</span><span class="s1">:].isdigit():</span>
+                <span class="s3">if not </span><span class="s1">nume_cont </span><span class="s3">in </span><span class="s1">Banca.conturi:</span>
+                    <span class="s1">self.nume_cont = nume_cont</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s3">raise </span><span class="s1">NameError(</span><span class="s0">'Nume incorect!'</span><span class="s1">)</span>
+        <span class="s1">self.client = client</span>
+        <span class="s1">self.sold = </span><span class="s5">0</span>
+        <span class="s1">Banca.nr_conturi += </span><span class="s5">1</span>
+        <span class="s1">Banca.conturi[client] = nume_cont</span>
+
+    <span class="s1">@classmethod  </span><span class="s2"># o metoda a clasei, poate fi apelata fara sa existe o instanta</span>
+    <span class="s3">def </span><span class="s1">creez_cont(cls</span><span class="s3">, </span><span class="s1">Cate</span><span class="s3">, </span><span class="s1">valuta</span><span class="s3">, </span><span class="s1">*persoane):</span>
+        <span class="s4">&quot;&quot;&quot; 
+        metoda care poate crea multiple instante apeland clasa 
+        :param Cate: cate conturi vor fi create 
+        :param valuta: poate fi una din setul de valori Banca.valute 
+        :return: 
+        &quot;&quot;&quot;</span>
+        <span class="s3">for </span><span class="s1">i </span><span class="s3">in </span><span class="s1">range(Cate):</span>
+            <span class="s1">persoana = persoane[i]</span>
+            <span class="s1">x = randint(</span><span class="s5">0</span><span class="s3">, </span><span class="s5">10000000000</span><span class="s1">)</span>
+            <span class="s1">x = valuta + </span><span class="s0">'%010d' </span><span class="s1">% x</span>
+            <span class="s1">globals()[persoana] = Banca(persoana</span><span class="s3">, </span><span class="s1">x)</span>
+
+<span class="s2"># instanta obisnuita</span>
+<span class="s1">Vasile = Banca(</span><span class="s0">'Vasile'</span><span class="s3">, </span><span class="s0">'RON1111111111'</span><span class="s1">)  </span><span class="s2"># Cream un cont</span>
+
+<span class="s2"># instantiere recursiva - apelarea unei metode a clasei poate fi facuta si de classa si de obiect</span>
+<span class="s1">lista_persoane = (</span><span class="s0">'Ana'</span><span class="s3">, </span><span class="s0">'Lia'</span><span class="s3">, </span><span class="s0">'Vio'</span><span class="s3">, </span><span class="s0">'Mary'</span><span class="s1">)</span>
+<span class="s1">Banca.creez_cont(len(lista_persoane)</span><span class="s3">, </span><span class="s0">'EUR'</span><span class="s3">, </span><span class="s1">*lista_persoane)</span>
+
+<span class="s1">Vasile.creez_cont(</span><span class="s5">2</span><span class="s3">, </span><span class="s0">'GBP'</span><span class="s3">, </span><span class="s0">'Emil'</span><span class="s3">, </span><span class="s0">'George'</span><span class="s1">)</span>
+
+<span class="s1">print(Banca.nr_conturi)</span>
+<span class="s1">print(Banca.conturi)</span>
+<span class="s1">print(Vasile.nr_conturi)</span>
+<span class="s1">print(Vasile.conturi)</span>
+
+<span class="s1">print(Vasile.__dict__)</span>
+<span class="s1">print(Ana.__dict__)</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>Cap5_R58_T53.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #cc7832;}
+.s4 { color: #629755; font-style: italic;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap5_R58_T53.py</font>
+</center></td></tr></table>
+<pre><span class="s0"># Tema 53</span>
+<span class="s0"># Demonstreaza utilizarea clasei si a metodelor</span>
+<span class="s0"># PF - v 21/09/2017</span>
+
+<span class="s2">''' 
+ Creati o clasa pentru prelucrare de texte, la initializare trebuie data calea catre fisier 
+    Creati o metoda pentru scriere 
+    Creati o metoda pentru citire fisiere 
+    Creati o metoda care sa faca split in cuvinte 
+    Creati o metoda care sa numere cate aparitii are un cuvant dat. 
+    Utilizati metodele create 
+''' </span><span class="s0">#</span>
+
+<span class="s3">class </span><span class="s1">PrelText:</span>
+    <span class="s4">&quot;&quot;&quot;Prelucreaza fisierul text&quot;&quot;&quot;</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">fisier):</span>
+        <span class="s1">self.fisier = fisier</span>
+
+    <span class="s3">def </span><span class="s1">citeste(self):</span>
+        <span class="s3">try</span><span class="s1">:</span>
+            <span class="s1">self.citire = open ( self.fisier</span><span class="s3">, </span><span class="s2">'r'</span><span class="s1">)</span>
+        <span class="s3">except </span><span class="s1">FileNotFoundError </span><span class="s3">as </span><span class="s1">e:</span>
+            <span class="s1">print(</span><span class="s2">'Fisierul nu poate fi citit'</span><span class="s3">, </span><span class="s1">e)</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s3">for </span><span class="s1">line </span><span class="s3">in </span><span class="s1">self.citire.readlines():</span>
+                <span class="s1">line = line.rstrip ( )</span>
+                <span class="s1">print (line)</span>
+            <span class="s1">self.citire.close ( )</span>
+
+    <span class="s3">def </span><span class="s1">scrie(self</span><span class="s3">, </span><span class="s1">text):</span>
+        <span class="s1">self.text = text</span>
+        <span class="s3">try</span><span class="s1">:</span>
+            <span class="s1">self.scriere = open(self.fisier</span><span class="s3">, </span><span class="s2">'a+'</span><span class="s1">)</span>
+        <span class="s3">except </span><span class="s1">IOError </span><span class="s3">as </span><span class="s1">e:</span>
+            <span class="s1">print(</span><span class="s2">'Fisierul nu poate fi deschis'</span><span class="s3">, </span><span class="s1">e)</span>
+        <span class="s3">else</span><span class="s1">:</span>
+            <span class="s1">self.scriere.write ( </span><span class="s2">'</span><span class="s3">\n</span><span class="s2">' </span><span class="s1">+ self.text )</span>
+            <span class="s1">self.scriere.close ()</span>
+
+    <span class="s3">def </span><span class="s1">dsplit(self):</span>
+        <span class="s1">self.cit = open ( self.fisier</span><span class="s3">, </span><span class="s2">'r' </span><span class="s1">)</span>
+        <span class="s1">lista = []</span>
+        <span class="s3">for </span><span class="s1">line </span><span class="s3">in </span><span class="s1">self.cit:</span>
+            <span class="s1">line = line.rstrip ( )</span>
+            <span class="s3">for </span><span class="s1">cuv </span><span class="s3">in </span><span class="s1">line.split ( </span><span class="s2">' ' </span><span class="s1">):</span>
+                <span class="s1">lista.append ( cuv )</span>
+        <span class="s1">print (lista)</span>
+        <span class="s1">self.cit.close ( )</span>
+
+    <span class="s3">def </span><span class="s1">cauta(self</span><span class="s3">, </span><span class="s1">cuvant):</span>
+        <span class="s1">self.cuvant = cuvant</span>
+        <span class="s1">self.cit = open ( self.fisier</span><span class="s3">, </span><span class="s2">'r' </span><span class="s1">)</span>
+        <span class="s1">lista = []</span>
+        <span class="s3">for </span><span class="s1">line </span><span class="s3">in </span><span class="s1">self.cit:</span>
+            <span class="s1">line = line.rstrip ( )</span>
+            <span class="s3">for </span><span class="s1">cuv </span><span class="s3">in </span><span class="s1">line.split ( </span><span class="s2">' ' </span><span class="s1">):</span>
+                <span class="s1">lista.append ( cuv )</span>
+        <span class="s1">count = </span><span class="s5">0</span>
+        <span class="s3">for </span><span class="s1">i </span><span class="s3">in </span><span class="s1">lista:</span>
+            <span class="s3">if </span><span class="s1">self.cuvant == i:</span>
+                <span class="s1">count += </span><span class="s5">1</span>
+        <span class="s1">print ( </span><span class="s2">'Cuvantul'</span><span class="s3">, </span><span class="s1">self.cuvant</span><span class="s3">, </span><span class="s2">'are'</span><span class="s3">, </span><span class="s1">count</span><span class="s3">, </span><span class="s2">'aparitii!' </span><span class="s1">)</span>
+
+
+<span class="s1">Romeo = PrelText(</span><span class="s2">'C:/WT/romeo.txt'</span><span class="s1">)</span>
+
+<span class="s1">Romeo.citeste()</span>
+
+<span class="s1">Romeo.scrie ( </span><span class="s2">'</span><span class="s3">\n\t\t</span><span class="s2">Shakespeare - Romeo si Julieta' </span><span class="s1">)</span>
+
+<span class="s1">Romeo.dsplit ( )</span>
+
+<span class="s1">Romeo.cauta(</span><span class="s2">'Julieta'</span><span class="s1">)</span>
+
+<span class="s1">Guta = PrelText(</span><span class="s2">'c:/wt/guta.txt'</span><span class="s1">)</span>
+
+<span class="s1">Guta.citeste()</span>
+
+<span class="s1">Guta.scrie ( </span><span class="s2">'</span><span class="s3">\n</span><span class="s2">Si vazand el asta treaba </span><span class="s3">\n</span><span class="s2">calul a-nhamat degraba</span><span class="s3">\n</span><span class="s2">' </span><span class="s1">)</span>
+
+<span class="s1">Guta.cauta ( </span><span class="s2">'Guta' </span><span class="s1">)</span>
+
+<span class="s1">Guta.dsplit ( )</span>
+</pre>
+</body>
+</html>

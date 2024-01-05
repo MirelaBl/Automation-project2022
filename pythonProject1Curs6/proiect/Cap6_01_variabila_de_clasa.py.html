@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>Cap6_01_variabila_de_clasa.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #cc7832;}
+.s4 { color: #629755; font-style: italic;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_01_variabila_de_clasa.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+601 OOP VS 
+Variabila de clasa 
+PF - 08.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+<span class="s2"># pylint: disable=invalid-name</span>
+<span class="s2"># pylint: disable=too-few-public-methods</span>
+
+
+<span class="s3">class </span><span class="s1">Clasa:</span>
+    <span class="s4">&quot;&quot;&quot;Aceasta clasa are variabile de clasa&quot;&quot;&quot;</span>
+
+    <span class="s1">nr_magic = </span><span class="s5">7</span>
+    <span class="s1">nr_instante = </span><span class="s5">0  </span><span class="s2"># variabila de clasa (statica). Numara instantele create</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self):</span>
+        <span class="s1">Clasa.nr_instante += </span><span class="s5">1  </span><span class="s2"># apelare! nume_clasa.variabila</span>
+
+<span class="s1">obj1 = Clasa()</span>
+
+<span class="s1">print(obj1.__dict__)</span>
+<span class="s1">print(</span><span class="s0">'____________'</span><span class="s1">)</span>
+
+<span class="s2"># apelarea variabilei se poate face prin nume clasa sau nume instanta</span>
+<span class="s1">print(Clasa.nr_magic)</span>
+<span class="s1">print(</span><span class="s0">'**************'</span><span class="s1">)</span>
+
+<span class="s1">print(Clasa.nr_instante)</span>
+<span class="s1">print(</span><span class="s0">'::::::::::::::::'</span><span class="s1">)</span>
+
+<span class="s1">print(obj1.nr_magic)</span>
+<span class="s1">print(obj1.nr_instante)</span>
+
+<span class="s2"># modificare atribut de clasa</span>
+<span class="s1">Clasa.nr_magic = </span><span class="s5">6</span>
+
+<span class="s1">obj2 = Clasa()</span>
+
+<span class="s1">print(obj2.nr_instante)</span>
+<span class="s1">print(obj1.nr_instante)</span>
+<span class="s1">print(Clasa.nr_instante)</span>
+<span class="s1">print(obj1.nr_magic)</span>
+<span class="s1">print(obj2.nr_magic)</span>
+
+<span class="s1">print(obj2.__dict__)</span>
+
+<span class="s1">input(</span><span class="s0">&quot;Apasa ENTER pentru a iesi: &quot;</span><span class="s1">)</span>
+</pre>
+</body>
+</html>

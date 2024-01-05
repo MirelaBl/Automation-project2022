@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Cap6_10_incapsulare_exemplu_explicat2.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #cc7832;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_10_incapsulare_exemplu_explicat2.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+610 OOP   
+Incapsulare - exemplu explicat 2 
+PF - 08.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+<span class="s3">class </span><span class="s1">Car:</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self):</span>
+        <span class="s1">self.__maxspeed = </span><span class="s4">200</span>
+        <span class="s2"># self.__name = &quot;Supercar&quot;</span>
+
+    <span class="s3">def </span><span class="s1">drive(self):</span>
+        <span class="s1">print(</span><span class="s0">'driving with maxspeed ' </span><span class="s1">+ str(self.__maxspeed))</span>
+
+    <span class="s3">def </span><span class="s1">setMaxSpeed(self</span><span class="s3">, </span><span class="s1">speed):</span>
+        <span class="s1">self.__maxspeed = speed</span>
+
+
+<span class="s1">redcar = Car()</span>
+<span class="s1">redcar.drive()</span>
+<span class="s1">redcar._Car__maxspeed</span>
+
+
+<span class="s1">redcar.__maxspeed = </span><span class="s4">350      </span><span class="s2"># nu putem s-o schimbam direct, e privata</span>
+<span class="s1">redcar.drive()</span>
+
+
+<span class="s1">redcar.setMaxSpeed(</span><span class="s4">320</span><span class="s1">)     </span><span class="s2"># ... doar prin intermediul unei metode</span>
+<span class="s1">redcar.drive()</span>
+
+<span class="s1">print(redcar.__maxspeed)</span>
+
+<span class="s1">print(redcar._Car__maxspeed)</span>
+
+<span class="s1">print(redcar.__dict__)</span>
+
+<span class="s1">redcar._Car__maxspeed = </span><span class="s4">150</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Cap5_R23.2_Cs9.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap5_R23.2_Cs9.py</font>
+</center></td></tr></table>
+<pre><span class="s0">from </span><span class="s1">datetime </span><span class="s0">import </span><span class="s1">datetime</span>
+<span class="s0">from </span><span class="s1">prettytable </span><span class="s0">import </span><span class="s1">PrettyTable</span>
+
+<span class="s0">class </span><span class="s1">Stoc():</span>
+
+    <span class="s1">lista_prod = []</span>
+
+    <span class="s0">def </span><span class="s1">__init__(self</span><span class="s0">, </span><span class="s1">denp</span><span class="s0">, </span><span class="s1">categ</span><span class="s0">, </span><span class="s1">um = </span><span class="s2">'kg'</span><span class="s0">, </span><span class="s1">sold = </span><span class="s3">0</span><span class="s1">):</span>
+        <span class="s1">self.denp = denp</span>
+        <span class="s1">self.categ = categ</span>
+        <span class="s1">self.um = um</span>
+        <span class="s1">self.sold = sold</span>
+        <span class="s1">self.dict_op = {}</span>
+        <span class="s1">self.lista_prod.append(denp)</span>
+
+    <span class="s0">def </span><span class="s1">genereaza_cheia(self):</span>
+        <span class="s0">if </span><span class="s1">self.dict_op:</span>
+            <span class="s1">cheie = max(self.dict_op.keys()) + </span><span class="s3">1</span>
+        <span class="s0">else</span><span class="s1">:</span>
+            <span class="s1">cheie = </span><span class="s3">1</span>
+        <span class="s0">return </span><span class="s1">cheie</span>
+
+
+    <span class="s0">def </span><span class="s1">input(self</span><span class="s0">, </span><span class="s1">cant</span><span class="s0">, </span><span class="s1">data = str ( datetime.now ( ).strftime ( </span><span class="s2">'%Y%m%d' </span><span class="s1">) )):</span>
+        <span class="s1">cheia = self.genereaza_cheia()</span>
+        <span class="s1">self.dict_op[cheia] = [data</span><span class="s0">, </span><span class="s1">cant</span><span class="s0">, </span><span class="s3">0</span><span class="s1">]</span>
+        <span class="s1">self.sold += cant</span>
+
+    <span class="s0">def </span><span class="s1">output(self</span><span class="s0">, </span><span class="s1">cant</span><span class="s0">, </span><span class="s1">data = str ( datetime.now ( ).strftime ( </span><span class="s2">'%Y%m%d' </span><span class="s1">) )):</span>
+        <span class="s1">cheia = self.genereaza_cheia()</span>
+        <span class="s1">self.dict_op[cheia] = [data</span><span class="s0">, </span><span class="s3">0</span><span class="s0">, </span><span class="s1">cant]</span>
+        <span class="s1">self.sold -= cant</span>
+
+    <span class="s0">def </span><span class="s1">fisap(self):</span>
+        <span class="s1">print(</span><span class="s2">'Fisa produsului {0}, {1}'</span><span class="s1">.format(self.denp</span><span class="s0">, </span><span class="s1">self.um))</span>
+        <span class="s1">listeaza = PrettyTable()</span>
+        <span class="s1">listeaza.field_names = [</span><span class="s2">'Nrc'</span><span class="s0">, </span><span class="s2">'Data'</span><span class="s0">, </span><span class="s2">'Intrare'</span><span class="s0">, </span><span class="s2">'Iesire'</span><span class="s1">]</span>
+        <span class="s0">for </span><span class="s1">k</span><span class="s0">, </span><span class="s1">v </span><span class="s0">in </span><span class="s1">self.dict_op.items():</span>
+            <span class="s1">listeaza.add_row([k</span><span class="s0">, </span><span class="s1">v[</span><span class="s3">0</span><span class="s1">]</span><span class="s0">, </span><span class="s1">v[</span><span class="s3">1</span><span class="s1">]</span><span class="s0">, </span><span class="s1">v[</span><span class="s3">2</span><span class="s1">]])</span>
+        <span class="s1">listeaza.add_row([</span><span class="s2">'Stoc'</span><span class="s0">, </span><span class="s2">'actual'</span><span class="s0">, </span><span class="s2">''</span><span class="s0">, </span><span class="s1">self.sold])</span>
+
+        <span class="s1">print(listeaza)</span>
+
+<span class="s1">miere = Stoc(</span><span class="s2">'miere'</span><span class="s0">, </span><span class="s2">'alimente'</span><span class="s1">)</span>
+<span class="s1">miere.input(</span><span class="s3">100</span><span class="s0">, </span><span class="s2">'20191223'</span><span class="s1">)</span>
+<span class="s1">miere.output(</span><span class="s3">72</span><span class="s0">, </span><span class="s2">'20191228'</span><span class="s1">)</span>
+<span class="s1">miere.input(</span><span class="s3">150</span><span class="s1">)</span>
+<span class="s1">miere.output(</span><span class="s3">113</span><span class="s1">)</span>
+
+<span class="s1">miere.fisap()</span>
+
+<span class="s1">miere.__dict__</span>
+
+
+<span class="s1">gem = Stoc(</span><span class="s2">'gem'</span><span class="s0">, </span><span class="s2">'alimente'</span><span class="s1">)</span>
+
+<span class="s1">gem.input(</span><span class="s3">156</span><span class="s1">)</span>
+<span class="s1">gem.output(</span><span class="s3">117</span><span class="s1">)</span>
+
+<span class="s1">gem.fisap()</span>
+
+<span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">Stoc.lista_prod:</span>
+    <span class="s1">eval(i).fisap()</span></pre>
+</body>
+</html>

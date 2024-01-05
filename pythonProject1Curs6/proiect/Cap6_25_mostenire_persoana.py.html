@@ -1,0 +1,132 @@
+<html>
+<head>
+<title>Cap6_25_mostenire_persoana.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a8759;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #cc7832;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cap6_25_mostenire_persoana.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+625 Clase avansat   
+Mostenire - Persoana 
+PF - 13.06.2021 v5 
+&quot;&quot;&quot;  </span><span class="s2">#</span>
+
+
+<span class="s3">class </span><span class="s1">Adrese():</span>
+
+    <span class="s3">def </span><span class="s1">atr_adresa(self</span><span class="s3">, </span><span class="s1">oras</span><span class="s3">, </span><span class="s1">judet</span><span class="s3">, </span><span class="s1">strada</span><span class="s3">, </span><span class="s1">nr):</span>
+        <span class="s1">self.adresa = {</span><span class="s0">'oras'</span><span class="s1">: oras</span><span class="s3">, </span><span class="s0">'judet'</span><span class="s1">: judet</span><span class="s3">, </span><span class="s0">'strada'</span><span class="s1">: strada</span><span class="s3">, </span><span class="s0">'nr'</span><span class="s1">: nr}</span>
+
+    <span class="s3">def </span><span class="s1">are_email(self</span><span class="s3">, </span><span class="s1">email):</span>
+        <span class="s1">self.email = email</span>
+
+
+<span class="s3">class </span><span class="s1">Persoana(Adrese):</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">nume</span><span class="s3">, </span><span class="s1">varsta</span><span class="s3">, </span><span class="s1">sex):</span>
+        <span class="s1">self.nume = nume</span>
+        <span class="s1">self.varsta = varsta</span>
+        <span class="s1">self.sex = sex</span>
+
+
+<span class="s3">class </span><span class="s1">Student(Persoana):</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">facultate</span><span class="s3">, </span><span class="s1">an</span><span class="s3">, </span><span class="s1">**parent):</span>
+        <span class="s1">super().__init__(**parent)</span>
+        <span class="s1">self.facultate = facultate</span>
+        <span class="s1">self.an = an</span>
+
+    <span class="s3">def </span><span class="s1">atr_specializare(self</span><span class="s3">, </span><span class="s1">specializare):</span>
+        <span class="s1">self.specializare = specializare</span>
+
+    <span class="s3">def </span><span class="s1">catalog(self):</span>
+        <span class="s1">self.note = {}</span>
+
+    <span class="s3">def </span><span class="s1">pune_nota(self</span><span class="s3">, </span><span class="s1">materia</span><span class="s3">, </span><span class="s1">nota):</span>
+        <span class="s1">self.note[materia] = nota</span>
+
+
+<span class="s3">class </span><span class="s1">Medic(Persoana):</span>
+
+    <span class="s3">def </span><span class="s1">tip_medic(self</span><span class="s3">, </span><span class="s1">tip):</span>
+        <span class="s1">self.tip = tip</span>
+
+    <span class="s3">def </span><span class="s1">atr_specializare(self</span><span class="s3">, </span><span class="s1">specializare):</span>
+        <span class="s1">self.specializare = specializare</span>
+
+
+<span class="s3">class </span><span class="s1">Rezident(Medic):</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">spital</span><span class="s3">, </span><span class="s1">**parent):</span>
+        <span class="s1">self.spital = spital</span>
+        <span class="s1">super().__init__(**parent)</span>
+
+<span class="s2"># studenti</span>
+<span class="s1">student1 = Student(</span><span class="s0">'Arte'</span><span class="s3">, </span><span class="s4">2</span><span class="s3">, </span><span class="s1">nume=</span><span class="s0">'Vasile'</span><span class="s3">, </span><span class="s1">varsta=</span><span class="s4">25</span><span class="s3">, </span><span class="s1">sex=</span><span class="s0">'m'</span><span class="s1">)</span>
+
+<span class="s1">student1.atr_adresa(</span><span class="s0">'Cluj-Napoca'</span><span class="s3">, </span><span class="s0">'Cluj'</span><span class="s3">, </span><span class="s0">'Frumoasa'</span><span class="s3">, </span><span class="s4">5</span><span class="s1">)</span>
+<span class="s1">student1.are_email(</span><span class="s0">'vasile@ro.ro'</span><span class="s1">)</span>
+<span class="s1">student1.atr_specializare(</span><span class="s0">'electrotehnica'</span><span class="s1">)</span>
+<span class="s1">student1.catalog()</span>
+<span class="s1">student1.pune_nota(</span><span class="s0">'Mate'</span><span class="s3">, </span><span class="s4">10</span><span class="s1">)</span>
+
+<span class="s1">print(student1.__dict__)</span>
+
+<span class="s2"># medici</span>
+<span class="s1">medic1 = Medic(</span><span class="s0">'Ana'</span><span class="s3">, </span><span class="s4">29</span><span class="s3">, </span><span class="s0">'f'</span><span class="s1">)</span>
+
+<span class="s1">medic1.tip_medic(</span><span class="s0">'primar'</span><span class="s1">)</span>
+<span class="s1">medic1.atr_specializare(</span><span class="s0">'pediatrie'</span><span class="s1">)</span>
+<span class="s1">medic1.are_email(</span><span class="s0">'Ana@medic.ro'</span><span class="s1">)</span>
+
+<span class="s1">print(medic1.__dict__)</span>
+
+<span class="s2"># rezidenti</span>
+<span class="s1">rezident1 = Rezident(</span><span class="s0">'Universitar'</span><span class="s3">, </span><span class="s1">nume=</span><span class="s0">'Mariana'</span><span class="s3">, </span><span class="s1">varsta=</span><span class="s4">27</span><span class="s3">, </span><span class="s1">sex=</span><span class="s0">'f'</span><span class="s1">)</span>
+
+<span class="s1">print(rezident1.__dict__)</span>
+<span class="s1">isinstance(rezident1</span><span class="s3">, </span><span class="s1">Persoana)</span>
+
+<span class="s2"># adrese</span>
+
+
+<span class="s3">class </span><span class="s1">Firma(Adrese):</span>
+
+    <span class="s3">def </span><span class="s1">__init__(self</span><span class="s3">, </span><span class="s1">nume_firma</span><span class="s3">, </span><span class="s1">cui):</span>
+        <span class="s1">self.nume = nume_firma</span>
+        <span class="s1">self.cui = cui</span>
+
+<span class="s1">firma1 = Firma(</span><span class="s0">'Alfa'</span><span class="s3">, </span><span class="s4">12345678</span><span class="s1">)</span>
+<span class="s1">print(firma1.__dict__)</span>
+
+<span class="s1">firma1.atr_adresa(</span><span class="s0">'Oradea'</span><span class="s3">, </span><span class="s0">'Bihor'</span><span class="s3">, </span><span class="s0">'Galbena'</span><span class="s3">, </span><span class="s4">1</span><span class="s1">)</span>
+<span class="s1">firma1.are_email(</span><span class="s0">'office@alfa.ro'</span><span class="s1">)</span>
+
+
+<span class="s2"># dupa refactoring</span>
+
+<span class="s1">persoana1 = Persoana(</span><span class="s0">'Popa'</span><span class="s3">, </span><span class="s4">15</span><span class="s3">, </span><span class="s0">'f'</span><span class="s1">)</span>
+<span class="s1">print(persoana1.__dict__)</span>
+<span class="s1">persoana1.atr_adresa(</span><span class="s0">'Zalau'</span><span class="s3">, </span><span class="s0">'Salaj'</span><span class="s3">, </span><span class="s0">'Vesela'</span><span class="s3">, </span><span class="s4">7</span><span class="s1">)</span>
+
+<span class="s1">student2 = Student(</span><span class="s0">'chimie'</span><span class="s3">, </span><span class="s4">3</span><span class="s3">, </span><span class="s1">nume=</span><span class="s0">'Cristina'</span><span class="s3">, </span><span class="s1">varsta=</span><span class="s4">25</span><span class="s3">, </span><span class="s1">sex=</span><span class="s0">'f'</span><span class="s1">)</span>
+<span class="s1">student2.are_email(</span><span class="s0">&quot;cristina@email.ro&quot;</span><span class="s1">)</span>
+<span class="s1">print(student2.__dict__)</span>
+
+<span class="s1">firma2 = Firma(</span><span class="s0">'Beta'</span><span class="s3">, </span><span class="s4">89756421</span><span class="s1">)</span>
+<span class="s1">firma2.atr_adresa(</span><span class="s0">'Zimnice'</span><span class="s3">, </span><span class="s0">'Teleorman'</span><span class="s3">, </span><span class="s0">'Corabiei'</span><span class="s3">, </span><span class="s4">7</span><span class="s1">)</span>
+<span class="s1">firma2.are_email(</span><span class="s0">'beta@firma.ro'</span><span class="s1">)</span>
+<span class="s1">firma2.__dict__</span></pre>
+</body>
+</html>
